@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ProjectFinFin</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_newfeed">NewfeedActivity</string>
+    <string name="title_activity_description">DescriptionActivity</string>
+    <string name="title_activity_newsfeed">NewsfeedActivity</string>
+    <string name="Next">Next</string>
+    <color name="actionbar1">#db1bd1ae</color>
+    <string name="title_activity_signup">SignupActivity</string>
+</resources>

@@ -1,5 +1,6 @@
 package com.projectfinfin.projectfinfin;
 
+import android.app.Activity;
 import android.app.ListActivity;
 import android.content.Context;
 //import android.support.v7.app.ActionBarActivity;
@@ -10,75 +11,49 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 
-public class NewsfeedActivity extends ListActivity {
+public class NewsfeedActivity extends Activity {
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newsfeed);
-        setupCustomListView();
-    }
+       // setupCustomListView();
 
-    private void setupCustomListView() {
-        setListAdapter(new EfficientAdapter(getApplicationContext()));
-    }
+        int[] resId = {R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher,
+                R.mipmap.ic_launcher,R.mipmap.ic_launcher,
+                R.mipmap.ic_launcher,R.mipmap.ic_launcher,
+                R.mipmap.ic_launcher,R.mipmap.ic_launcher,R.mipmap.ic_launcher};
 
-    public class EfficientAdapter extends BaseAdapter{
+        String[] list = { "Aerith Gainsborough", "Barret Wallace", "Cait Sith"
+                , "Cid Highwind", "Cloud Strife", "RedXIII", "Sephiroth"
+                , "Tifa Lockhart", "Vincent Valentine", "Yuffie Kisaragi"
+                , "ZackFair" };
 
-        public Context mContext;
-        public LayoutInflater mInflater;
+        CustomAdapter adapter = new CustomAdapter(getApplicationContext(), list, resId);
 
-        public EfficientAdapter(Context ctx){
-            mContext = ctx;
-            mInflater = LayoutInflater.from(mContext);
-        }
-        @Override
-        public int getCount() {
-            return 10;
-        }
+        ListView listView = (ListView)findViewById(R.id.listview1);
+        listView.setAdapter(adapter);
 
-        @Override
-        public View getView(int position, View convertedView, ViewGroup viewGroup) {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
 
-            ViewHolder viewHolder = null;
-            if(convertedView == null){
-                //create convertedView and bind Widgets in convertedView
-                convertedView = mInflater.inflate(R.layout.listview_row , null);
-                viewHolder = new ViewHolder();
-                viewHolder.brandImage = (ImageView)convertedView.findViewById(R.id.brandImage);
-                viewHolder.titleTextView = (TextView)convertedView.findViewById(R.id.titleTextView);
-                convertedView.setTag(viewHolder);
-            }else{
-                // re-bind widgets in convertedView
-                viewHolder = (ViewHolder) convertedView.getTag();
             }
-                //update content in convertedView
-         //   viewHolder.titleTextView.setText(String.valueOf(position));
-            return convertedView;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return null;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return 0;
-        }
+        });
 
     }
 
-        public class ViewHolder{
-            public ImageView brandImage;
-            public TextView titleTextView;
-        }
+
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
        // Inflate the menu; this adds items to the action bar if it is present.

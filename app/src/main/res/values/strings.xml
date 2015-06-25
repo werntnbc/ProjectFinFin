@@ -9,4 +9,5 @@
     <string name="Next">Next</string>
     <color name="actionbar1">#db1bd1ae</color>
     <string name="title_activity_signup">SignupActivity</string>
+    <string name="title_activity_custom_adapter">CustomAdapter</string>
 </resources>

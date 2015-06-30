@@ -14,7 +14,7 @@ import android.widget.TextView;
 
 
 public class CustomAdapter extends BaseAdapter {
-
+    //Create all this class for help listview newsfeed page
     Context mContext;
     String[] strName;
     int[] resId;

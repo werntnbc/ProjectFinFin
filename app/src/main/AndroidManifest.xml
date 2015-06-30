@@ -28,6 +28,10 @@
             android:name=".CustomAdapter"
             android:label="@string/title_activity_custom_adapter" >
         </activity>
+        <activity
+            android:name=".DescriptionActivity"
+            android:label="@string/title_activity_description" >
+        </activity>
     </application>
 
 </manifest>

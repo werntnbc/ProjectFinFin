@@ -10,4 +10,9 @@
     <color name="actionbar1">#db1bd1ae</color>
     <string name="title_activity_signup">SignupActivity</string>
     <string name="title_activity_custom_adapter">CustomAdapter</string>
+    <string name="title_activity_category">CategoryActivity</string>
+    <string name="drawer_open">Open Navigation drawer</string>
+    <string name="drawer_close">Close Navigation drawer</string>
+
+
 </resources>

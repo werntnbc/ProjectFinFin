@@ -32,6 +32,10 @@
             android:name=".DescriptionActivity"
             android:label="@string/title_activity_description" >
         </activity>
+        <activity
+            android:name=".CategoryActivity"
+            android:label="@string/title_activity_category" >
+        </activity>
     </application>
 
 </manifest>

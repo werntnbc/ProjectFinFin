@@ -1,28 +1,16 @@
 package com.projectfinfin.projectfinfin;
 
-import android.app.Activity;
-import android.app.FragmentTransaction;
-import android.app.ListActivity;
-import android.content.Context;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
-import android.media.Image;
-import android.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.view.LayoutInflater;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
+import android.support.v4.app.ActionBarDrawerToggle;
 
 
 public class NewsfeedActivity extends ActionBarActivity{
@@ -30,9 +18,10 @@ public class NewsfeedActivity extends ActionBarActivity{
 
     //for navigation drawable
     public static final String KEY_DRAWABLE_ID = "drawableId";
-    private String[] mDrawerTitle = {"Cover", "Guitar", "Bass", "Drum"};
-    private DrawerLayout mDrawerLayout;
+    private String[] mDrawerTitle = {"News feed", "Category", "Camera", "Map", "Profile"};
     private ListView mListView;
+    private ActionBarDrawerToggle mDrawerToggle;
+    private DrawerLayout mDrawerLayout;
 
 
     @Override
@@ -40,10 +29,8 @@ public class NewsfeedActivity extends ActionBarActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newsfeed);
 
-
-
-
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         //for navigation drawer
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -83,10 +70,42 @@ public class NewsfeedActivity extends ActionBarActivity{
             }
         });
 
+        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                if (position == 0) { // เช็คลำดับ
+                    Intent i = new Intent(getApplicationContext()
+                            , NewsfeedActivity.class);
+                    finish(); // ไว้เคลียค่าจากหน้าทีอยู่ก่อน เริ่มหน้าใหม่ ด้านล่าง
+                    startActivity(i);
+                }else if(position == 1){
+                    Intent i = new Intent(getApplicationContext(),CategoryActivity.class);
+                    finish();
+                    startActivity(i);
+                }
+            }
+        });
+
+        mDrawerToggle = new ActionBarDrawerToggle(
+                this,   // Context
+                mDrawerLayout,  // DrawerLayout
+                R.drawable.ic_drawer,  // รูปภาพที่จะใช้
+                R.string.drawer_open, // ค่า String ในไฟล์ strings.xml
+                R.string.drawer_close // ค่า String ในไฟล์ strings.xml
+        ) {
+
+            public void onDrawerClosed(View view) {
+                super.onDrawerClosed(view);
+                invalidateOptionsMenu();
+            }
+
+            public void onDrawerOpened(View drawerView) {
+                super.onDrawerOpened(drawerView);
+                invalidateOptionsMenu();
+            }
+        };
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
-
-
-
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -99,7 +118,10 @@ public class NewsfeedActivity extends ActionBarActivity{
         if (id == R.id.action_settings) {
             return true;
         }
-
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        //Toast.makeText(this, "On click Top bar", Toast.LENGTH_LONG).show();
         return super.onOptionsItemSelected(item);
     }
 }

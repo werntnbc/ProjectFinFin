@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 public class LoginActivity extends ActionBarActivity {
@@ -15,12 +16,32 @@ public class LoginActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Button button = (Button)findViewById(R.id.button_email);
-        button.setOnClickListener(new View.OnClickListener() {
+        Button buttonEmail = (Button)findViewById(R.id.button_email);
+        Button buttonFacebook = (Button)findViewById(R.id.button_facebook);
+        TextView textviewSignup = (TextView)findViewById(R.id.signup_now);
+        //Click button sign in with email
+        buttonEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i1 = new Intent(getApplicationContext(), SignupActivity.class);
-                startActivity(i1);
+                Intent i = new Intent(getApplicationContext(), LoginEmailActivity.class);
+                startActivity(i);
+            }
+        });
+        //Click button sign in with facebook
+        buttonFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), NewsfeedActivity.class);
+                startActivity(i);
+            }
+        });
+
+        //Click text sign up now!
+        textviewSignup.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), SignupActivity.class);
+                startActivity(i);
             }
         });
     }
@@ -49,9 +70,9 @@ public class LoginActivity extends ActionBarActivity {
 
 
 
-    public void onConfirmClicked(View v){
+    /*public void onConfirmClicked(View v){
         Intent i = new Intent(getApplicationContext(), NewsfeedActivity.class);
         startActivity(i);
-    }
+    }*/
 
 }

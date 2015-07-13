@@ -16,29 +16,13 @@ import android.support.v4.app.ActionBarDrawerToggle;
 public class NewsfeedActivity extends ActionBarActivity{
 
 
-    //for navigation drawable
-    public static final String KEY_DRAWABLE_ID = "drawableId";
-    private String[] mDrawerTitle = {"News feed", "Category", "Camera", "Map", "Profile"};
-    private ListView mListView;
-    private ActionBarDrawerToggle mDrawerToggle;
-    private DrawerLayout mDrawerLayout;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newsfeed);
 
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
 
-        //for navigation drawer
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mListView = (ListView) findViewById(R.id.drawer);
-
-        ArrayAdapter<String> adapterDrawer = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, mDrawerTitle);
-
-        mListView.setAdapter(adapterDrawer);
 
         // for listview newsfeed page
         int[] resId = {R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher,
@@ -70,41 +54,6 @@ public class NewsfeedActivity extends ActionBarActivity{
             }
         });
 
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) { // เช็คลำดับ
-                    Intent i = new Intent(getApplicationContext()
-                            , NewsfeedActivity.class);
-                    finish(); // ไว้เคลียค่าจากหน้าทีอยู่ก่อน เริ่มหน้าใหม่ ด้านล่าง
-                    startActivity(i);
-                }else if(position == 1){
-                    Intent i = new Intent(getApplicationContext(),CategoryActivity.class);
-                    finish();
-                    startActivity(i);
-                }
-            }
-        });
-
-        mDrawerToggle = new ActionBarDrawerToggle(
-                this,   // Context
-                mDrawerLayout,  // DrawerLayout
-                R.drawable.ic_drawer,  // รูปภาพที่จะใช้
-                R.string.drawer_open, // ค่า String ในไฟล์ strings.xml
-                R.string.drawer_close // ค่า String ในไฟล์ strings.xml
-        ) {
-
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-                invalidateOptionsMenu();
-            }
-
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                invalidateOptionsMenu();
-            }
-        };
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
     }
 
     @Override
@@ -116,9 +65,6 @@ public class NewsfeedActivity extends ActionBarActivity{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
-        }
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
             return true;
         }
         //Toast.makeText(this, "On click Top bar", Toast.LENGTH_LONG).show();

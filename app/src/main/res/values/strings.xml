@@ -1,6 +1,5 @@
 <resources>
-    <string name="app_name">ProjectFinFin</string>
-
+    <string name="app_name">Snapshop</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_newfeed">NewfeedActivity</string>
@@ -13,6 +12,8 @@
     <string name="title_activity_category">CategoryActivity</string>
     <string name="drawer_open">Open Navigation drawer</string>
     <string name="drawer_close">Close Navigation drawer</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_login_email">LoginEmailActivity</string>
 
 
 </resources>

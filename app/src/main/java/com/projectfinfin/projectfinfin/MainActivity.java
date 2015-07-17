@@ -1,5 +1,7 @@
 package com.projectfinfin.projectfinfin;
-
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarActivity;
+import android.content.Intent;
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -8,6 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,8 +35,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
 
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
 
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mListView = (ListView) findViewById(R.id.drawer);
@@ -46,9 +47,28 @@ public class MainActivity extends Activity {
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                selectFragment(position);
+                Fragment fragment = null;
+                switch (position) {
+                    case 0:
+                        fragment = new CameraFragment();
+                        break;
+                    default:
+                        break;
+                }
+                if (fragment != null) {
+                    FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction()
+                            .replace(R.id.container, fragment).commit();
+                } else {
+                    // error in creating fragment
+                    Log.e("MainActivity", "Error in creating fragment");
+                }
             }
         });
+
+
+      getActionBar().setDisplayHomeAsUpEnabled(true);
+        getActionBar().setHomeButtonEnabled(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,   // Context
@@ -56,7 +76,8 @@ public class MainActivity extends Activity {
                 R.drawable.ic_drawer,  // รูปภาพที่จะใช้
                 R.string.drawer_open, // ค่า String ในไฟล์ strings.xml
                 R.string.drawer_close // ค่า String ในไฟล์ strings.xml
-                ) {
+        ) {
+
 
             public void onDrawerClosed(View view) {
                 super.onDrawerClosed(view);
@@ -90,25 +111,36 @@ public class MainActivity extends Activity {
         }
         return super.onOptionsItemSelected(item);
     }
+
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
         mDrawerToggle.syncState();
     }
-    private void selectFragment(int position) {
+
+
+
+   /* public void displayView(int position) {
         Fragment fragment = null;
-        switch (position){
+        switch (position) {
             case 0:
                 fragment = new CameraFragment();
+                break;
+            default:
+                break;
         }
-
         if (fragment != null) {
             FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction ft = fragmentManager.beginTransaction();
-            ft.replace(R.id.container, fragment);
-            ft.commit();
+            fragmentManager.beginTransaction()
+                    .replace(R.id.container, fragment).commit();
+        } else {
+            // error in creating fragment
+            Log.e("MainActivity", "Error in creating fragment");
         }
+    }
+
+    private void selectFragment(int position) {
         //Fragment fragment = new CameraFragment();
         Bundle args = new Bundle();
         //fragment.setArguments(args);
@@ -120,5 +152,6 @@ public class MainActivity extends Activity {
         mListView.setItemChecked(position, true);
         setTitle(mDrawerTitle[position]);
         mDrawerLayout.closeDrawer(mListView);
-    }
+    } */
 }
+

@@ -30,7 +30,7 @@ public class NewsfeedActivity extends ActionBarActivity{
                 R.mipmap.ic_launcher, R.mipmap.ic_launcher,
                 R.mipmap.ic_launcher, R.mipmap.ic_launcher, R.mipmap.ic_launcher};
 
-        String[] list = {"Aerith Gainsborough", "Barret Wallace", "Cait Sith"
+        String[] list = {"Burger King", "Barret Wallace", "Cait Sith"
                 , "Cid Highwind", "Cloud Strife", "RedXIII", "Sephiroth"
                 , "Tifa Lockhart", "Vincent Valentine", "Yuffie Kisaragi"
                 , "ZackFair"};

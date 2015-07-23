@@ -15,8 +15,6 @@ import android.support.v4.app.ActionBarDrawerToggle;
 
 public class NewsfeedActivity extends ActionBarActivity{
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

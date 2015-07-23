@@ -1,4 +1,6 @@
 package com.projectfinfin.projectfinfin;
+
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
@@ -20,7 +22,7 @@ import android.widget.ListView;
 import android.widget.Switch;
 
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
 
     //for navigation drawable
     public static final String KEY_DRAWABLE_ID = "drawableId";
@@ -35,7 +37,6 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
 
-
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mListView = (ListView) findViewById(R.id.drawer);
 
@@ -44,13 +45,44 @@ public class MainActivity extends Activity {
 
         mListView.setAdapter(adapter);
 
+        //Click all menu navigation
         mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Fragment fragment = null;
+                Intent intent = null;
                 switch (position) {
                     case 0:
+                        intent = new Intent(getApplicationContext(), NewsfeedActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        fragment = new CategoryFragment();
+                        FragmentTransaction transaction1 = getFragmentManager().beginTransaction();
+                        transaction1.replace(R.id.container, fragment);
+                        transaction1.addToBackStack(null);
+                        transaction1.commit();
+                        break;
+                    case 2:
                         fragment = new CameraFragment();
+                        FragmentTransaction transaction2 = getFragmentManager().beginTransaction();
+                        transaction2.replace(R.id.container, fragment);
+                        transaction2.addToBackStack(null);
+                        transaction2.commit();
+                        break;
+                    case 3:
+                        fragment = new MapFragment();
+                        FragmentTransaction transaction3 = getFragmentManager().beginTransaction();
+                        transaction3.replace(R.id.container, fragment);
+                        transaction3.addToBackStack(null);
+                        transaction3.commit();
+                        break;
+                    case 4:
+                        fragment = new ProfileFragment();
+                        FragmentTransaction transaction4 = getFragmentManager().beginTransaction();
+                        transaction4.replace(R.id.container, fragment);
+                        transaction4.addToBackStack(null);
+                        transaction4.commit();
                         break;
                     default:
                         break;
@@ -67,8 +99,8 @@ public class MainActivity extends Activity {
         });
 
 
-      getActionBar().setDisplayHomeAsUpEnabled(true);
-        getActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,   // Context
@@ -92,8 +124,6 @@ public class MainActivity extends Activity {
 
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-
-        //selectFragment(0);
 
     }
 

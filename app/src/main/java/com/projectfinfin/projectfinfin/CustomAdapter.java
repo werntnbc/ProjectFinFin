@@ -1,11 +1,7 @@
 package com.projectfinfin.projectfinfin;
 
 import android.content.Context;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -19,11 +15,13 @@ public class CustomAdapter extends BaseAdapter {
     String[] strName;
     int[] resId;
 
+
     public CustomAdapter(Context context, String[] strName, int[] resId){
         this.mContext = context;
         this.strName = strName;
         this.resId = resId;
     }
+
 
 
     @Override
@@ -47,7 +45,7 @@ public class CustomAdapter extends BaseAdapter {
                 (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if(view == null)
-            view = mInflater.inflate(R.layout.listview_row, parent, false);
+            view = mInflater.inflate(R.layout.listview_newsfeed, parent, false);
 
         TextView textView = (TextView)view.findViewById(R.id.titleTextView);
         textView.setText(strName[position]);
@@ -56,8 +54,6 @@ public class CustomAdapter extends BaseAdapter {
         imageView.setBackgroundResource(resId[position]);
 
         return view;
-
-
 
     }
 }

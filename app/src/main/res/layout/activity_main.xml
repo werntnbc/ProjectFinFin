@@ -4,6 +4,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ffffff"
     tools:context="com.projectfinfin.projectfinfin.MainActivity">
 
     <!-- Content -->
@@ -21,5 +22,7 @@
         android:choiceMode="singleChoice"
         android:dividerHeight="1dp"
         android:background="#FFFFFF"/>
+
+
 
 </android.support.v4.widget.DrawerLayout>

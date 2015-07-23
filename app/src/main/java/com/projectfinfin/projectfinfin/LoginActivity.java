@@ -16,10 +16,11 @@ public class LoginActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Button buttonEmail = (Button)findViewById(R.id.button_email);
-        Button buttonFacebook = (Button)findViewById(R.id.button_facebook);
-        TextView textviewSignup = (TextView)findViewById(R.id.signup_now);
+
+
+
         //Click button sign in with email
+        Button buttonEmail = (Button)findViewById(R.id.button_email);
         buttonEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -28,15 +29,17 @@ public class LoginActivity extends ActionBarActivity {
             }
         });
         //Click button sign in with facebook
+        Button buttonFacebook = (Button)findViewById(R.id.button_facebook);
         buttonFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), NewsfeedActivity.class);
+                Intent i = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(i);
             }
         });
 
         //Click text sign up now!
+        TextView textviewSignup = (TextView)findViewById(R.id.signup_now);
         textviewSignup.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {

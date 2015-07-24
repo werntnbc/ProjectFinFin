@@ -12,6 +12,7 @@ public class SignupActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        //button back on action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 

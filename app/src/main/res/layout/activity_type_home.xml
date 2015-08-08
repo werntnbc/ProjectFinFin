@@ -7,7 +7,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.projectfinfin.projectfinfin.CategoryActivity">
+    tools:context="com.projectfinfin.projectfinfin.TypeHomeActivity">
+
     <!--scroll view -->
     <ScrollView
         android:layout_width="match_parent"
@@ -23,73 +24,59 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="65dp"
-                android:text="Please Select Category : "
+                android:text="Please Select Type : "
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/button_C_food"
+                android:id="@+id/button"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
                 android:layout_below="@+id/text"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/category_food" />
+                android:background="@drawable/home_bedding" />
 
             <Button
-                android:id="@+id/button_C_fashion"
+                android:id="@+id/button1"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
                 android:layout_below="@+id/button"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/category_sport" />
+                android:background="@drawable/home_bath" />
 
 
             <Button
-                android:id="@+id/button_C_beauty"
+                android:id="@+id/button2"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
                 android:layout_below="@+id/button1"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/category_beauty" />
+                android:background="@drawable/home_cooking" />
 
             <Button
-                android:id="@+id/button_C_baby"
+                android:id="@+id/button3"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
                 android:layout_below="@+id/button1"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/category_baby" />
+                android:background="@drawable/home_furniture" />
 
             <Button
-                android:id="@+id/button_C_home"
+                android:id="@+id/button4"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
                 android:layout_below="@+id/button1"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
-                android:background="@drawable/category_home" />
+                android:background="@drawable/home_appliance" />
 
-            <Button
-                android:id="@+id/button_C_mobile"
-                android:layout_width="320dp"
-                android:layout_height="70dp"
-                android:layout_below="@+id/button1"
-                android:layout_marginLeft="0dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/category_mobile" />
-
-            <Button
-                android:id="@+id/button_C_eletronic"
-                android:layout_width="320dp"
-                android:layout_height="70dp"
-                android:layout_below="@+id/button1"
-                android:layout_marginLeft="0dp"
-                android:layout_marginTop="10dp"
-                android:background="@drawable/category_electronic" />
+           
 
         </LinearLayout>
     </ScrollView>
+
+
 </RelativeLayout>

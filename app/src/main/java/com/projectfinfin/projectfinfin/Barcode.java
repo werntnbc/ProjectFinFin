@@ -1,6 +1,5 @@
 package com.projectfinfin.projectfinfin;
 
-
 import net.sourceforge.zbar.Config;
 import net.sourceforge.zbar.Image;
 import net.sourceforge.zbar.ImageScanner;
@@ -19,9 +18,6 @@ import android.os.Handler;
 import android.widget.FrameLayout;
 
 
-/**
- * Created by TNBC's on 1/8/2558.
- */
 public class Barcode extends Activity {
 
     private Camera mCamera;

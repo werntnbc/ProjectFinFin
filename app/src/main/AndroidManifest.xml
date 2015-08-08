@@ -54,7 +54,47 @@
         </activity>
         <activity
             android:name=".SettingActivity"
-            android:label="@string/title_activity_setting">
+            android:label="@string/title_activity_setting" >
+        </activity>
+        <activity
+            android:name=".TypeFoodActivity"
+            android:label="@string/title_activity_type_food" >
+        </activity>
+        <activity
+            android:name=".TypeFashionActivity"
+            android:label="@string/title_activity_type_fashion" >
+        </activity>
+        <activity
+            android:name=".TypeBeautyActivity"
+            android:label="@string/title_activity_type_beauty" >
+        </activity>
+        <activity
+            android:name=".TypeBabyActivity"
+            android:label="@string/title_activity_type_baby" >
+        </activity>
+        <activity
+            android:name=".TypeHomeActivity"
+            android:label="@string/title_activity_type_home" >
+        </activity>
+        <activity
+            android:name=".TypeMobileActivity"
+            android:label="@string/title_activity_type_mobile" >
+        </activity>
+        <activity
+            android:name=".TypeElectronicActivity"
+            android:label="@string/title_activity_type_electronic" >
+        </activity>
+        <activity
+            android:name=".Barcode"
+            android:label="@string/title_activity_barcode" >
+        </activity>
+        <activity
+            android:name=".CameraPreview"
+            android:label="@string/title_activity_camera_preview" >
+        </activity>
+        <activity
+            android:name=".CameraTestActivity"
+            android:label="@string/title_activity_camera_test" >
         </activity>
     </application>
 

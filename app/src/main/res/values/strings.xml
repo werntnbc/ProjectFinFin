@@ -23,9 +23,7 @@
     <string name="title_activity_type_home">Type Home</string>
     <string name="title_activity_type_mobile">Type Mobile</string>
     <string name="title_activity_type_electronic">Type Electronic</string>
-    <string name="title_activity_barcode">Barcode</string>
-    <string name="title_activity_camera_preview">CameraPreview</string>
-    <string name="title_activity_camera_test">CameraTestActivity</string>
+    <string name="title_activity_group">Group</string>
 
 
 </resources>

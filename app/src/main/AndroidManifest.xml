@@ -85,16 +85,12 @@
             android:label="@string/title_activity_type_electronic" >
         </activity>
         <activity
-            android:name=".Barcode"
-            android:label="@string/title_activity_barcode" >
-        </activity>
-        <activity
-            android:name=".CameraPreview"
-            android:label="@string/title_activity_camera_preview" >
-        </activity>
-        <activity
-            android:name=".CameraTestActivity"
-            android:label="@string/title_activity_camera_test" >
+            android:name=".GroupActivity"
+            android:label="@string/title_activity_group"
+            android:parentActivityName=".TypeFoodActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TypeFoodActivity" />
         </activity>
     </application>
 

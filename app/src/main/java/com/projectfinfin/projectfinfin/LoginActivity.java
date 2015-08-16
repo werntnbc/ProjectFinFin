@@ -18,7 +18,6 @@ public class LoginActivity extends ActionBarActivity {
         setContentView(R.layout.activity_login);
 
 
-
         //Click button sign in with email
         Button buttonEmail = (Button)findViewById(R.id.button_email);
         buttonEmail.setOnClickListener(new View.OnClickListener() {

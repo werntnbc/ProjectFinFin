@@ -28,7 +28,7 @@
                 android:textSize="20sp" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_noodle"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
                 android:layout_below="@+id/text"
@@ -37,26 +37,26 @@
                 android:background="@drawable/food_noodle" />
 
             <Button
-                android:id="@+id/button1"
+                android:id="@+id/button_buffet"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
-                android:layout_below="@+id/button"
+                android:layout_below="@+id/button_noodle"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/food_buffet" />
 
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/button_pizza"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
-                android:layout_below="@+id/button1"
+                android:layout_below="@+id/button_buffet"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/food_pizza" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/button_fastfood"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
                 android:layout_below="@+id/button1"
@@ -65,100 +65,100 @@
                 android:background="@drawable/food_fastfood" />
 
             <Button
-                android:id="@+id/button4"
+                android:id="@+id/button_steak"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
-                android:layout_below="@+id/button1"
+                android:layout_below="@+id/button_fastfood"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/food_steak" />
 
             <Button
-                android:id="@+id/button5"
+                android:id="@+id/button_shabu"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
-                android:layout_below="@+id/button1"
+                android:layout_below="@+id/button_steak"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/food_shabu" />
 
             <Button
-                android:id="@+id/button6"
+                android:id="@+id/button_seafood"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
-                android:layout_below="@+id/button1"
+                android:layout_below="@+id/button_shabu"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/food_seafood" />
 
             <Button
-                android:id="@+id/button7"
+                android:id="@+id/button_grill"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
-                android:layout_below="@+id/button1"
+                android:layout_below="@+id/button_seafood"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/food_grill" />
 
             <Button
-                android:id="@+id/button8"
+                android:id="@+id/button_japan"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
-                android:layout_below="@+id/button1"
+                android:layout_below="@+id/button_grill"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/food_japan" />
 
             <Button
-                android:id="@+id/button9"
+                android:id="@+id/button_thai"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
-                android:layout_below="@+id/button1"
+                android:layout_below="@+id/button_japan"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/food_thai" />
 
             <Button
-                android:id="@+id/button10"
+                android:id="@+id/button_chinese"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
-                android:layout_below="@+id/button1"
+                android:layout_below="@+id/button_thai"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/food_chinese" />
 
             <Button
-                android:id="@+id/button11"
+                android:id="@+id/button_beverage"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
-                android:layout_below="@+id/button1"
+                android:layout_below="@+id/button_chinese"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/food_beverage" />
 
             <Button
-                android:id="@+id/button12"
+                android:id="@+id/button_dessert"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
-                android:layout_below="@+id/button1"
+                android:layout_below="@+id/button_beverage"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/food_dessert" />
 
             <Button
-                android:id="@+id/button13"
+                android:id="@+id/button_bakery"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
-                android:layout_below="@+id/button1"
+                android:layout_below="@+id/button_dessert"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/food_bakery" />
 
             <Button
-                android:id="@+id/button14"
+                android:id="@+id/button_ice"
                 android:layout_width="320dp"
                 android:layout_height="70dp"
-                android:layout_below="@+id/button1"
+                android:layout_below="@+id/button_bakery"
                 android:layout_marginLeft="0dp"
                 android:layout_marginTop="10dp"
                 android:background="@drawable/food_ice" />

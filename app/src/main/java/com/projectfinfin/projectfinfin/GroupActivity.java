@@ -1,36 +1,25 @@
 package com.projectfinfin.projectfinfin;
 
-import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
 
 
-public class TypeFoodActivity extends ActionBarActivity {
+public class GroupActivity extends ActionBarActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_type_food);
-        //Click button type food noodle go to group
-        Button buttonNoodle = (Button)findViewById(R.id.button_noodle);
-        buttonNoodle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), GroupActivity.class);
-                startActivity(i);
-            }
-        });
-        
+        setContentView(R.layout.activity_group);
+        //button back on action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_type_food, menu);
+        getMenuInflater().inflate(R.menu.menu_group, menu);
         return true;
     }
 

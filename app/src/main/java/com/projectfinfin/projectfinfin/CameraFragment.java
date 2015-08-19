@@ -46,8 +46,10 @@ public class CameraFragment extends Fragment {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
-            Toast.makeText(getActivity(), data.getStringExtra(ZBarConstants.SCAN_RESULT) , Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(), data.getStringExtra(ZBarConstants.SCAN_RESULT) , Toast.LENGTH_LONG).show();
+            Intent i = new Intent(getActivity().getApplicationContext(), NewsfeedActivity.class);
+            i.putExtra("url","http://snappyshop.me/AndroidQuery/checkPromo/"+data.getStringExtra(ZBarConstants.SCAN_RESULT));
+            startActivity(i);
         }
     }
-
 }

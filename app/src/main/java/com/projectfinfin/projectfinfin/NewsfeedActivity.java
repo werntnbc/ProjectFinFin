@@ -48,6 +48,19 @@ public class NewsfeedActivity extends ActionBarActivity{
         // Get the view from listview_main.xml
         setContentView(R.layout.activity_newsfeed);
         // Execute DownloadJSON AsyncTask
+        /*if(savedInstanceState == null){
+            Bundle extra = getIntent().getExtras();
+            if(extra != null){
+                url = extra.getString(url);
+            }
+        }*/
+        Intent lin = getIntent();
+        Bundle extra = lin.getExtras();
+
+        if(extra != null){
+            url = (String) extra.get("url");
+        }
+
         new DownloadJSON().execute();
     }
 

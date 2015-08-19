@@ -104,10 +104,10 @@ public class MainActivity extends ActionBarActivity {
 
         mDrawerToggle = new ActionBarDrawerToggle(
                 this,   // Context
-                mDrawerLayout,  // DrawerLayout
-                R.drawable.ic_drawer,  // รูปภาพที่จะใช้
-                R.string.drawer_open, // ค่า String ในไฟล์ strings.xml
-                R.string.drawer_close // ค่า String ในไฟล์ strings.xml
+                mDrawerLayout,
+                R.drawable.ic_drawer,
+                R.string.drawer_open,
+                R.string.drawer_close
         ) {
 
 

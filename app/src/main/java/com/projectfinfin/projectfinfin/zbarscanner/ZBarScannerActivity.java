@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
+import com.projectfinfin.projectfinfin.NewsfeedActivity;
 import com.projectfinfin.projectfinfin.R;
 
 import net.sourceforge.zbar.Config;
@@ -93,7 +94,10 @@ public class ZBarScannerActivity extends FragmentActivity implements Camera.Prev
             case ZBAR_SCANNER_REQUEST:
             case ZBAR_QR_SCANNER_REQUEST:
                 if (resultCode == RESULT_OK) {
-                    Toast.makeText(this, "Scan Result = " + data.getStringExtra(ZBarConstants.SCAN_RESULT), Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(getApplicationContext(), NewsfeedActivity.class);
+                    i.putExtra("url","http://snappyshop.me/AndroidQuery/checkPromo/"+data.getStringExtra(ZBarConstants.SCAN_RESULT));
+                    startActivity(i);
+                    //Toast.makeText(this, "Scan Result = " + data.getStringExtra(ZBarConstants.SCAN_RESULT), Toast.LENGTH_SHORT).show();
                 } else if (resultCode == RESULT_CANCELED && data != null) {
                     String error = data.getStringExtra(ZBarConstants.ERROR_INFO);
                     if (!TextUtils.isEmpty(error)) {

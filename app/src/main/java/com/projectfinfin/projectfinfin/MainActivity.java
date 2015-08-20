@@ -1,14 +1,10 @@
 package com.projectfinfin.projectfinfin;
 
-import android.support.v4.app.FragmentActivity;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
@@ -19,7 +15,9 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Switch;
+
+import com.projectfinfin.projectfinfin.Fragments.CameraFragment;
+import com.projectfinfin.projectfinfin.Fragments.CategoryFragment;
 
 
 public class MainActivity extends ActionBarActivity {

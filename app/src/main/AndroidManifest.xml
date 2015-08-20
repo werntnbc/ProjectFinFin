@@ -16,6 +16,8 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
+            android:name="com.projectfinfin.projectfinfin.jsonFeed.SingleItemView"/>
+        <activity
             android:name=".LoginActivity"
             android:label="@string/app_name">
             <intent-filter>

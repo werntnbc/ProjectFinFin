@@ -1,4 +1,4 @@
-package com.projectfinfin.projectfinfin;
+package com.projectfinfin.projectfinfin.Fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -13,6 +13,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.projectfinfin.projectfinfin.NewsfeedActivity;
+import com.projectfinfin.projectfinfin.R;
 import com.projectfinfin.projectfinfin.zbarscanner.ZBarConstants;
 import com.projectfinfin.projectfinfin.zbarscanner.ZBarScannerActivity;
 

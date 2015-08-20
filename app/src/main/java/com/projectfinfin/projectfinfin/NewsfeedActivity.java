@@ -59,6 +59,8 @@ public class NewsfeedActivity extends ActionBarActivity{
 
         if(extra != null){
             url = (String) extra.get("url");
+        }else{
+            url = "http://snappyshop.me/android/QueryPromotion.php";
         }
 
         new DownloadJSON().execute();

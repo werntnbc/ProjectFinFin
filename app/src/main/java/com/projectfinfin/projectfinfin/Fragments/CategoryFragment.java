@@ -1,4 +1,4 @@
-package com.projectfinfin.projectfinfin;
+package com.projectfinfin.projectfinfin.Fragments;
 
 import android.app.Fragment;
 import android.content.Intent;
@@ -8,6 +8,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+
+import com.projectfinfin.projectfinfin.R;
+import com.projectfinfin.projectfinfin.TypeBabyActivity;
+import com.projectfinfin.projectfinfin.TypeBeautyActivity;
+import com.projectfinfin.projectfinfin.TypeElectronicActivity;
+import com.projectfinfin.projectfinfin.TypeFashionActivity;
+import com.projectfinfin.projectfinfin.TypeFoodActivity;
+import com.projectfinfin.projectfinfin.TypeHomeActivity;
+import com.projectfinfin.projectfinfin.TypeMobileActivity;
 
 /**
  * Created by TNBC's on 18/7/2558.

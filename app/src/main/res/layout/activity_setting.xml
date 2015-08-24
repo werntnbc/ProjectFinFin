@@ -74,6 +74,7 @@
             <!--button logout-->
 
             <Button
+                android:id="@+id/bLogout"
                 android:layout_width="300dp"
                 android:layout_height="40dp"
                 android:layout_below="@+id/listview_support"

@@ -20,7 +20,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="400dp"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:background="#FFFFFF">
     <LinearLayout
@@ -118,7 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:src="@drawable/ic_drawer"/>
+            android:src="@drawable/groupfood_burgerking"/>
 
     </LinearLayout>
 

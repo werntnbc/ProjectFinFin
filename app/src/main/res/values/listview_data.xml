@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="my_image_array">
+        <item>@drawable/groupfood_burgerking</item>
+        <item>@drawable/groupfood_audrey</item>
+        <item>@drawable/groupfood_dominopizza</item>
+        <item>@drawable/groupfood_mc</item>
+        <item>@drawable/groupfood_pizzacompany</item>
+        <item>@drawable/groupfood_santafe</item>
+        <item>@drawable/groupfood_sizzler</item>
+        <item>@drawable/groupfood_yayoi</item>
+        <item>@drawable/groupfood_mk</item>
+        <item>@drawable/groupfood_truecoffee</item>
+    </string-array>
+
+    <string-array name="my_string_array">
+        <item>Burger King</item>
+        <item>Audrey</item>
+        <item>Domino Pizza</item>
+        <item>Mc</item>
+        <item>Pizza Company</item>
+        <item>Santafe</item>
+        <item>Sizzler</item>
+        <item>Yayoi</item>
+        <item>MK</item>
+        <item>True Coffee</item>
+    </string-array>
+
+    <color name="blue">#32E0FF</color>
+    <color name="yellow">#FFE432</color>
+
+
+</resources>

@@ -10,7 +10,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 
-public class LoginActivity extends ActionBarActivity {
+public class LoginActivity extends ActionBarActivity implements View.OnClickListener{
+
+    TextView tvSignupNow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class LoginActivity extends ActionBarActivity {
         });
 
         //Click text sign up now!
+        /*
         TextView textviewSignup = (TextView)findViewById(R.id.signup_now);
         textviewSignup.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -46,6 +49,18 @@ public class LoginActivity extends ActionBarActivity {
                 startActivity(i);
             }
         });
+        */
+        tvSignupNow = (TextView)findViewById(R.id.tvSignupNow);
+        tvSignupNow.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tvSignupNow:
+                startActivity(new Intent(this, SignupActivity.class));
+                break;
+        }
     }
 
     @Override

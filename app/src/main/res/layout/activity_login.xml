@@ -71,7 +71,7 @@
         android:text="Already have an account?" />
 
     <TextView
-        android:id="@+id/signup_now"
+        android:id="@+id/tvSignupNow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"

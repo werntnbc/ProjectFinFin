@@ -19,16 +19,17 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             android:layout_weight="4"
-            android:text="Email"
+            android:text="Username"
             android:textSize="20sp"
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/etUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
-            android:layout_weight="6.5"
-            android:hint="Email address" />
+            android:layout_weight="10"
+            android:hint="username" />
 
     </LinearLayout>
 
@@ -50,6 +51,7 @@
             android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="3.5"
@@ -75,9 +77,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Reset your password."
+            android:textColor="#db1bd1ae"
             android:textStyle="bold"/>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/bLogin"
+        android:layout_below="@+id/reset_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login"/>
 
 
 </RelativeLayout>

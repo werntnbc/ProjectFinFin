@@ -14,12 +14,15 @@ public class CustomAdapter extends BaseAdapter {
     Context mContext;
     String[] strName;
     int[] resId;
+    //AsysncTask
+    LayoutInflater INFLATER;
 
 
     public CustomAdapter(Context context, String[] strName, int[] resId){
         this.mContext = context;
         this.strName = strName;
         this.resId = resId;
+        INFLATER = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 
@@ -41,7 +44,7 @@ public class CustomAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View view, ViewGroup parent) {
-        LayoutInflater mInflater =
+       /* LayoutInflater mInflater =
                 (LayoutInflater)mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         if(view == null)
@@ -52,6 +55,29 @@ public class CustomAdapter extends BaseAdapter {
 
         ImageView imageView = (ImageView)view.findViewById(R.id.brandImage);
         imageView.setBackgroundResource(resId[position]);
+
+        return view;
+        */
+
+        //Test AsyncTask
+        ImageView imageView = null;
+        if(view == null) {
+            view = INFLATER.inflate(R.layout.listview_newsfeed, parent, false);
+            imageView = (ImageView)view.findViewById(R.id.brandImage);
+        } else {
+            imageView = (ImageView)view.findViewById(R.id.brandImage);
+            DecodeTask dt1 = (DecodeTask)imageView.getTag(R.id.brandImage);
+            if(dt1 != null)
+                dt1.cancel(true);
+        }
+
+        imageView.setImageBitmap(null);
+//        DecodeTask dt2 = new DecodeTask(getContext(), imageView, resId[position]);
+//        dt2.execute();
+//        imageView.setTag(R.id.brandImage, dt2);
+
+        TextView textView = (TextView)view.findViewById(R.id.titleTextView);
+        textView.setText(strName[position]);
 
         return view;
 

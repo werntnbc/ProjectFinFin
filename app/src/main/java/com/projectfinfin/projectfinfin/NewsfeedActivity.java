@@ -1,6 +1,7 @@
 package com.projectfinfin.projectfinfin;
 
 import android.app.ProgressDialog;
+import android.content.res.TypedArray;
 import android.os.AsyncTask;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class NewsfeedActivity extends ActionBarActivity{
+public class NewsfeedActivity extends ActionBarActivity {
 
     // Declare Variables
     JSONObject jsonobject;
@@ -57,13 +58,42 @@ public class NewsfeedActivity extends ActionBarActivity{
         Intent lin = getIntent();
         Bundle extra = lin.getExtras();
 
-        if(extra != null){
+        if (extra != null) {
             url = (String) extra.get("url");
-        }else{
+        } else {
             url = "http://snappyshop.me/android/QueryPromotion.php";
         }
 
         new DownloadJSON().execute();
+
+        //newfeed AsyncTask werntnbc
+        int[] array_res = getImageArray(R.array.my_image_array, R.mipmap.ic_launcher);
+        String[] array_string = getStringArray(R.array.my_string_array);
+
+        ListView listView = (ListView) findViewById(R.id.listview);
+        //error wait edit
+//        listView.setAdapter(new CustomAdapter(getApplicationContext(), android.R.id.text1, array_string, array_res));
+
+
+    }
+
+    //newfeed AsyncTask for image
+    public int[] getImageArray(int resId, int defResId) {
+        TypedArray my_image_array = getResources().obtainTypedArray(resId);
+        int[] array_res = new int[my_image_array.length()];
+        for (int i = 0; i < array_res.length; i++)
+            array_res[i] = my_image_array.getResourceId(i, defResId);
+        my_image_array.recycle();
+        return array_res;
+    }
+    //newfeed AsyncTask for String
+    public String[] getStringArray(int resId) {
+        TypedArray my_string_array = getResources().obtainTypedArray(resId);
+        String[] array_string = new String[my_string_array.length()];
+        for (int i = 0; i < array_string.length; i++)
+            array_string[i] = my_string_array.getString(i);
+        my_string_array.recycle();
+        return array_string;
     }
 
     // DownloadJSON AsyncTask

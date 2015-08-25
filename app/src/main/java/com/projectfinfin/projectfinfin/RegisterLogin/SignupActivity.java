@@ -1,12 +1,13 @@
-package com.projectfinfin.projectfinfin;
+package com.projectfinfin.projectfinfin.RegisterLogin;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.projectfinfin.projectfinfin.R;
 
 
 public class SignupActivity extends ActionBarActivity implements View.OnClickListener {
@@ -40,10 +41,19 @@ public class SignupActivity extends ActionBarActivity implements View.OnClickLis
                 String password = etPassword.getText().toString();
                 int age = Integer.parseInt(etAge.getText().toString());
 
-                User registeredData = new User(username, password, age);
-
+                User user = new User(username, password, age);
+                registerUser(user);
                 break;
         }
+    }
+    private void registerUser(User user){
+        ServerRequests serverRequests = new ServerRequests(this);
+        ServerRequests.storeUserDataInBackground(user, new GetUserCallback() {
+            @Override
+            public void done(User returnedUser) {
+                startActivity(new Intent(SignupActivity.this, LoginActivity.class));
+            }
+        });
     }
 }
 

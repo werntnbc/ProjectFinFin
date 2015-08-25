@@ -10,6 +10,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.projectfinfin.projectfinfin.RegisterLogin.LoginActivity;
+import com.projectfinfin.projectfinfin.RegisterLogin.User;
+import com.projectfinfin.projectfinfin.RegisterLogin.UserLocalStore;
+
 
 public class SettingActivity extends ActionBarActivity implements View.OnClickListener {
 
@@ -62,6 +66,8 @@ public class SettingActivity extends ActionBarActivity implements View.OnClickLi
 
         if(authenticate() == true){
             displayUserDetails();
+        }else{
+            startActivity(new Intent(SettingActivity.this, LoginActivity.class));
         }
     }
 

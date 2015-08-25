@@ -5,7 +5,7 @@
     android:paddingLeft="16dp"
     android:paddingRight="16dp"
     android:background="#FFFFFF"
-    tools:context="com.projectfinfin.projectfinfin.SignupActivity">
+    tools:context="com.projectfinfin.projectfinfin.RegisterLogin.SignupActivity">
 
 
     <LinearLayout

@@ -10,6 +10,8 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,7 +20,7 @@
         <activity
             android:name="com.projectfinfin.projectfinfin.jsonFeed.SingleItemView"/>
         <activity
-            android:name=".LoginActivity"
+            android:name=".RegisterLogin.LoginActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +31,7 @@
             android:name=".NewsfeedActivity"
             android:label="@string/title_activity_newsfeed" />
         <activity
-            android:name=".SignupActivity"
+            android:name=".RegisterLogin.SignupActivity"
             android:label="@string/title_activity_signup"
             android:parentActivityName=".MainActivity">
             <meta-data
@@ -48,7 +50,7 @@
             android:name=".MainActivity"
             android:label="@string/title_activity_main" />
         <activity
-            android:name=".LoginEmailActivity"
+            android:name=".RegisterLogin.LoginEmailActivity"
             android:label="@string/title_activity_login_email"
             android:parentActivityName=".MainActivity">
             <meta-data

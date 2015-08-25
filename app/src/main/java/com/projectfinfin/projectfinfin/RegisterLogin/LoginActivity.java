@@ -1,4 +1,4 @@
-package com.projectfinfin.projectfinfin;
+package com.projectfinfin.projectfinfin.RegisterLogin;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
@@ -8,6 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.projectfinfin.projectfinfin.MainActivity;
+import com.projectfinfin.projectfinfin.R;
 
 
 public class LoginActivity extends ActionBarActivity implements View.OnClickListener{

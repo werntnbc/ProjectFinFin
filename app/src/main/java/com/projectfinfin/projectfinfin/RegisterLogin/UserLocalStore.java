@@ -1,4 +1,4 @@
-package com.projectfinfin.projectfinfin;
+package com.projectfinfin.projectfinfin.RegisterLogin;
 
 import android.content.Context;
 import android.content.SharedPreferences;

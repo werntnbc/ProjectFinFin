@@ -1,12 +1,15 @@
-package com.projectfinfin.projectfinfin;
+package com.projectfinfin.projectfinfin.RegisterLogin;
 
+import android.app.AlertDialog;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+
+import com.projectfinfin.projectfinfin.R;
+import com.projectfinfin.projectfinfin.SettingActivity;
 
 
 public class LoginEmailActivity extends ActionBarActivity implements View.OnClickListener {
@@ -35,13 +38,43 @@ public class LoginEmailActivity extends ActionBarActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.bLogin:
-                User user = new User(null, null);
-                userLocalStore.storeUserDeta(user);
-                userLocalStore.setUserLoggedIn(true);
+                String username = etUsername.getText().toString();
+                String password = etPassword.getText().toString();
+                User user = new User(username , password);
+
+                authenticate(user);
+
                 break;
         }
     }
 
+    private void authenticate(User user){
+        ServerRequests serverRequests = new ServerRequests(this);
+        ServerRequests.fetchUserDataInBackground(user, new GetUserCallback() {
+            @Override
+            public void done(User returnedUser) {
+                if (returnedUser == null){
+                    showErrorMessage();
+                }else {
+                    logUserIn(returnedUser);
+                }
+            }
+        });
+    }
+
+    private void showErrorMessage(){
+        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(LoginEmailActivity.this);
+        dialogBuilder.setMessage("Incorrect user details");
+        dialogBuilder.setPositiveButton("Ok", null);
+        dialogBuilder.show();
+    }
+
+    private void logUserIn(User returnedUser){
+        userLocalStore.storeUserDeta(returnedUser);
+        userLocalStore.setUserLoggedIn(true);
+
+        startActivity(new Intent(this, SettingActivity.class));
+    }
 }
     /*
     @Override

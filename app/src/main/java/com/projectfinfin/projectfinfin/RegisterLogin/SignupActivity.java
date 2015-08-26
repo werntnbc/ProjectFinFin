@@ -48,7 +48,7 @@ public class SignupActivity extends ActionBarActivity implements View.OnClickLis
     }
     private void registerUser(User user){
         ServerRequests serverRequests = new ServerRequests(this);
-        ServerRequests.storeUserDataInBackground(user, new GetUserCallback() {
+        serverRequests.storeUserDataInBackground(user, new GetUserCallback() {
             @Override
             public void done(User returnedUser) {
                 startActivity(new Intent(SignupActivity.this, LoginActivity.class));

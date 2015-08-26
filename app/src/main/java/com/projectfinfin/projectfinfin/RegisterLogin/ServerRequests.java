@@ -25,8 +25,8 @@ import java.util.ArrayList;
  */
 public class ServerRequests {
 
-    ProgressDialog progressDialog;
-    public static final int CONNECTION_TIME = 1000 * 15;
+     ProgressDialog progressDialog;
+    public static final int CONNECTION_TIMEOUT = 1000 * 15;
     public static final String SERVER_ADDRESS = "http://snappyshop.me/";
 
     public ServerRequests(Context context) {
@@ -79,8 +79,6 @@ public class ServerRequests {
 
             }
 
-            post.setEntity(dataToSend);
-
             return null;
         }
 
@@ -115,7 +113,7 @@ public class ServerRequests {
             HttpClient client = new DefaultHttpClient(httpRequestParams);
             HttpPost post = new HttpPost(SERVER_ADDRESS + "FetchUserData.php");
 
-            User returnedUser;
+            User returnedUser = null;
             try {
                 post.setEntity(new UrlEncodedFormEntity(dataToSend));
                 HttpResponse httpResponse = client.execute(post);

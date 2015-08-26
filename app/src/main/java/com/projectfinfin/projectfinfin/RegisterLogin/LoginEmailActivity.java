@@ -50,7 +50,7 @@ public class LoginEmailActivity extends ActionBarActivity implements View.OnClic
 
     private void authenticate(User user){
         ServerRequests serverRequests = new ServerRequests(this);
-        ServerRequests.fetchUserDataInBackground(user, new GetUserCallback() {
+        serverRequests.fetchUserDataInBackground(user, new GetUserCallback() {
             @Override
             public void done(User returnedUser) {
                 if (returnedUser == null){

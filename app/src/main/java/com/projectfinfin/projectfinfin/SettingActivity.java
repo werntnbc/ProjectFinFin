@@ -18,7 +18,7 @@ import com.projectfinfin.projectfinfin.RegisterLogin.UserLocalStore;
 public class SettingActivity extends ActionBarActivity implements View.OnClickListener {
 
     Button bLogout;
-    EditText etUsername ,etPassword, etAge;
+    EditText etUsername, etPassword, etAge;
     UserLocalStore userLocalStore;
 
     @Override
@@ -54,36 +54,47 @@ public class SettingActivity extends ActionBarActivity implements View.OnClickLi
         bLogout.setOnClickListener(this);
         userLocalStore = new UserLocalStore(this);
         //maybe dont use
-        etUsername = (EditText)findViewById(R.id.etUsername);
-        etPassword = (EditText)findViewById(R.id.etPassword);
-        etAge = (EditText)findViewById(R.id.etAge);
+        etUsername = (EditText) findViewById(R.id.etUsername);
+        etPassword = (EditText) findViewById(R.id.etPassword);
+        etAge = (EditText) findViewById(R.id.etAge);
     }
 
     //maybe dont use
+
     @Override
     protected void onStart() {
         super.onStart();
+        //startActivity(new Intent(SettingActivity.this, LoginActivity.class));
 
-        if(authenticate() == true){
-            displayUserDetails();
-        }else{
+        if (authenticate() == true) {
+            //displayUserDetails();
+
+
+        } else {
             startActivity(new Intent(SettingActivity.this, LoginActivity.class));
         }
+
     }
 
     //maybe dont use
-    private boolean authenticate(){
-        return  userLocalStore.getUserLoggedIn();
+
+    private boolean authenticate() {
+        return userLocalStore.getUserLoggedIn();
     }
+
+
     //maybe dont use
-    private void displayUserDetails(){
+    /*
+    private void displayUserDetails() {
+
         User user = userLocalStore.getLoggedInUser();
         etUsername.setText(user.username);
         etPassword.setText(user.password);
         etAge.setText(user.age + "");
 
-    }
 
+    }
+    */
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

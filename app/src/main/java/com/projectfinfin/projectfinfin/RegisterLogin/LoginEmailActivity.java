@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.projectfinfin.projectfinfin.MainActivity;
 import com.projectfinfin.projectfinfin.R;
 import com.projectfinfin.projectfinfin.SettingActivity;
 
@@ -50,12 +51,13 @@ public class LoginEmailActivity extends ActionBarActivity implements View.OnClic
 
     private void authenticate(User user){
         ServerRequests serverRequests = new ServerRequests(this);
-        serverRequests.fetchUserDataInBackground(user, new GetUserCallback() {
+        //serverRequests.fetchUserDataInBackground(user, new GetUserCallback() {
+        serverRequests.fetchUserDataAsyncTask(user, new GetUserCallback() {
             @Override
             public void done(User returnedUser) {
-                if (returnedUser == null){
+                if (returnedUser == null) {
                     showErrorMessage();
-                }else {
+                } else {
                     logUserIn(returnedUser);
                 }
             }
@@ -73,7 +75,7 @@ public class LoginEmailActivity extends ActionBarActivity implements View.OnClic
         userLocalStore.storeUserDeta(returnedUser);
         userLocalStore.setUserLoggedIn(true);
 
-        startActivity(new Intent(this, SettingActivity.class));
+        startActivity(new Intent(this, MainActivity.class));
     }
 }
     /*

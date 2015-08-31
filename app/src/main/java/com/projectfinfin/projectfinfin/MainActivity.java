@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.projectfinfin.projectfinfin.Floor.FloorSpinner;
 import com.projectfinfin.projectfinfin.Fragments.CameraFragment;
 import com.projectfinfin.projectfinfin.Fragments.CategoryFragment;
 
@@ -24,7 +25,7 @@ public class MainActivity extends ActionBarActivity {
 
     //for navigation drawable
     public static final String KEY_DRAWABLE_ID = "drawableId";
-    private String[] mDrawerTitle = {"News feed", "Category", "Camera", "Map", "Profile"};
+    private String[] mDrawerTitle = {"News feed", "Category", "Camera", "Map",  "Floor", "Profile" };
     private ListView mListView;
     private ActionBarDrawerToggle mDrawerToggle;
     private DrawerLayout mDrawerLayout;
@@ -76,11 +77,18 @@ public class MainActivity extends ActionBarActivity {
                         transaction3.commit();
                         break;
                     case 4:
-                        fragment = new ProfileFragment();
+                        fragment = new FloorSpinner();
                         FragmentTransaction transaction4 = getFragmentManager().beginTransaction();
                         transaction4.replace(R.id.container, fragment);
                         transaction4.addToBackStack(null);
                         transaction4.commit();
+                        break;
+                    case 5:
+                        fragment = new ProfileFragment();
+                        FragmentTransaction transaction5 = getFragmentManager().beginTransaction();
+                        transaction5.replace(R.id.container, fragment);
+                        transaction5.addToBackStack(null);
+                        transaction5.commit();
                         break;
                     default:
                         break;

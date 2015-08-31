@@ -31,5 +31,13 @@
     <string name="promotion_name">"ชื่อโปรโมชั่น : "</string>
     <string name="promo_description">"เอียด : "</string>
 
+    <string-array name="Floor_array">
+        <item>G Floor</item>
+        <item>1st Floor</item>
+        <item>2nd Floor</item>
+        <item>3rd Floor</item>
+        <item>4th Floor</item>
+    </string-array>
+
 
 </resources>

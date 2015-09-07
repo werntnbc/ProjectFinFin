@@ -6,18 +6,23 @@ package com.projectfinfin.projectfinfin.jsonFeed;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.projectfinfin.projectfinfin.R;
 
-public class SingleItemView extends Activity {
+public class SingleItemView extends ActionBarActivity {
     // Declare Variables
-    String promo_id;
+    String position;
     String promo_name;
+    String promo_startdate;
+    String promo_enddate;
+    String promo_location;
+    String promo_link;
     String promo_des;
     String link_img1;
-    String position;
+
     ImageLoader imageLoader = new ImageLoader(this);
 
     @Override
@@ -27,27 +32,41 @@ public class SingleItemView extends Activity {
         setContentView(R.layout.singleitemview);
 
         Intent i = getIntent();
-        // Get the result of rank
-        promo_id = i.getStringExtra("promo_id");
-        // Get the result of country
+
+        // Get the result of promotion name
         promo_name = i.getStringExtra("promo_name");
-        // Get the result of population
+        // Get the result of start date
+        promo_startdate = i.getStringExtra("promo_startdate");
+        // Get the result of end date
+        promo_enddate = i.getStringExtra("promo_enddate");
+        // Get the result of location
+        promo_location = i.getStringExtra("promo_location");
+        // Get the result of link
+        promo_link = i.getStringExtra("promo_link");
+        // Get the result of description
         promo_des = i.getStringExtra("promo_des");
-        // Get the result of flag
+        // Get the result of picture
         link_img1 = i.getStringExtra("link_img1");
 
         // Locate the TextViews in singleitemview.xml
-        TextView txtrank = (TextView) findViewById(R.id.promo_id);
-        TextView txtcountry = (TextView) findViewById(R.id.promo_name);
-        TextView txtpopulation = (TextView) findViewById(R.id.promo_des);
+        TextView txtname = (TextView) findViewById(R.id.promo_name);
+        TextView txtstartdate = (TextView)findViewById(R.id.promo_startdate);
+        TextView txtenddate = (TextView)findViewById(R.id.promo_enddate);
+        TextView txtlocation = (TextView)findViewById(R.id.promo_location);
+        TextView txtlink = (TextView)findViewById(R.id.promo_link);
+        TextView txtdes = (TextView)findViewById(R.id.promo_des);
 
         // Locate the ImageView in singleitemview.xml
         ImageView imgflag = (ImageView) findViewById(R.id.link_img1);
 
         // Set results to the TextViews
-        txtrank.setText(promo_id);
-        txtcountry.setText(promo_name);
-        txtpopulation.setText(promo_des);
+        txtname.setText(promo_name);
+        txtstartdate.setText(promo_startdate);
+        txtenddate.setText(promo_enddate);
+        txtlocation.setText(promo_location);
+        txtlink.setText(promo_link);
+        txtdes.setText(promo_des);
+
 
         // Capture position and set results to the ImageView
         // Passes flag images URL into ImageLoader.class

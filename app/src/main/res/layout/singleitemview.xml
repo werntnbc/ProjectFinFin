@@ -2,54 +2,170 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
+    android:layout_height="fill_parent"
+    android:paddingBottom="16dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:paddingTop="16dp"
+    android:background="#a9a9a9">
 
-    <TextView
-        android:id="@+id/ranklabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/promotion_id" />
 
-    <TextView
-        android:id="@+id/promo_id"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/ranklabel" />
 
-    <TextView
-        android:id="@+id/countrylabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/ranklabel"
-        android:text="@string/promotion_name" />
 
-    <TextView
-        android:id="@+id/promo_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/promo_id"
-        android:layout_toRightOf="@+id/countrylabel" />
+    <!--scroll view -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/populationlabel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/countrylabel"
-        android:text="@string/promo_description" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/promo_des"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/promo_name"
-        android:layout_toRightOf="@+id/populationlabel" />
+            <!--layout bg white-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="#FFFFFF">
 
-    <ImageView
-        android:id="@+id/link_img1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:background="#000000"
-        android:padding="1dp" />
+            <!-- promotion name-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/promo_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:textColor="@color/app_color"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <!--date-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/datelabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/promo_name"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/promotion_date"
+                    android:textColor="@color/font_color" />
+                <TextView
+                    android:id="@+id/promo_startdate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/promo_name"
+                    android:layout_marginTop="30dp"
+                    android:layout_toRightOf="@+id/datelabel"
+                    android:textColor="#db1cf6d3" />
+                <TextView
+                    android:id="@+id/tvto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/promo_name"
+                    android:layout_marginTop="30dp"
+                    android:layout_toRightOf="@+id/promo_startdate"
+                    android:text=" - "
+                    android:textColor="@color/font_color" />
+                <TextView
+                    android:id="@+id/promo_enddate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/promo_name"
+                    android:layout_marginTop="30dp"
+                    android:layout_toRightOf="@+id/tvto"
+                    android:textColor="#db1cf6d3" />
+            </LinearLayout>
+
+            <!--location-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/locationlabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/promo_startdate"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/promotion_location"
+                    android:textColor="@color/font_color" />
+                <TextView
+                    android:id="@+id/promo_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/promo_startdate"
+                    android:layout_marginTop="30dp"
+                    android:layout_toRightOf="@+id/locationlabel"
+                    android:textColor="#db1cf6d3" />
+            </LinearLayout>
+
+            <!-- link -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:id="@+id/linklabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/promo_location"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/promotion_link"
+                    android:textColor="@color/font_color" />
+                <TextView
+                    android:id="@+id/promo_link"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/promo_location"
+                    android:layout_marginTop="30dp"
+                    android:layout_toRightOf="@+id/linklabel"
+                    android:textColor="#db1cf6d3" />
+            </LinearLayout>
+
+            <!-- description-->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/descriptionlabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/promo_link"
+                    android:layout_marginTop="30dp"
+                    android:text="@string/promotion_description"
+                    android:textColor="@color/font_color" />
+
+                <TextView
+                    android:id="@+id/promo_des"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/descriptionlabel"
+                    android:layout_marginTop="30dp"
+                    android:textColor="@color/font_color" />
+
+            </LinearLayout>
+
+
+            <!-- pictue -->
+            <ImageView
+                android:id="@+id/link_img1"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_below="@+id/promo_des"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp"/>
+
+        </LinearLayout>
+
+
+        </LinearLayout>
+    </ScrollView>
+
 
 </RelativeLayout>

@@ -19,6 +19,8 @@ import android.widget.TextView;
 import com.projectfinfin.projectfinfin.NewsfeedActivity;
 import com.projectfinfin.projectfinfin.R;
 
+import org.w3c.dom.Text;
+
 public class ListViewAdapter extends BaseAdapter {
 
     // Declare Variables
@@ -52,10 +54,14 @@ public class ListViewAdapter extends BaseAdapter {
 
     public View getView(final int position, View convertView, ViewGroup parent) {
         // Declare Variables
-        TextView rank;
-        TextView country;
-        TextView population;
-        ImageView flag;
+        TextView proname;
+        TextView startdate;
+        TextView enddate;
+        TextView location;
+    //    TextView prolink;
+    //    TextView prodes;
+        ImageView propic;
+
 
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -65,20 +71,28 @@ public class ListViewAdapter extends BaseAdapter {
         resultp = data.get(position);
 
         // Locate the TextViews in listview_item.xml
-        rank = (TextView) itemView.findViewById(R.id.promo_id);
-        country = (TextView) itemView.findViewById(R.id.promo_name);
-        population = (TextView) itemView.findViewById(R.id.promo_des);
+        proname = (TextView) itemView.findViewById(R.id.promo_name);
+        startdate = (TextView)itemView.findViewById(R.id.promo_startdate);
+        enddate = (TextView)itemView.findViewById(R.id.promo_enddate);
+        location = (TextView)itemView.findViewById(R.id.promo_location);
+    //    prolink = (TextView)itemView.findViewById(R.id.promo_link);
+    //    prodes = (TextView)itemView.findViewById(R.id.promo_des);
 
         // Locate the ImageView in listview_item.xml
-        flag = (ImageView) itemView.findViewById(R.id.link_img1);
+        propic = (ImageView) itemView.findViewById(R.id.link_img1);
 
         // Capture position and set results to the TextViews
-        rank.setText(resultp.get(NewsfeedActivity.promo_id));
-        country.setText(resultp.get(NewsfeedActivity.promo_name));
-        population.setText(resultp.get(NewsfeedActivity.promo_des));
+
+        proname.setText(resultp.get(NewsfeedActivity.promo_name));
+        location.setText(resultp.get(NewsfeedActivity.promo_location));
+        startdate.setText(resultp.get(NewsfeedActivity.promo_startdate));
+        enddate.setText(resultp.get(NewsfeedActivity.promo_enddate));
+    //    prolink.setText(resultp.get(NewsfeedActivity.promo_link));
+    //    prodes.setText(resultp.get(NewsfeedActivity.promo_des));
+
         // Capture position and set results to the ImageView
-        // Passes flag images URL into ImageLoader.class
-        imageLoader.DisplayImage(resultp.get(NewsfeedActivity.link_img1), flag);
+        // Passes propic images URL into ImageLoader.class
+        imageLoader.DisplayImage(resultp.get(NewsfeedActivity.link_img1), propic);
         // Capture ListView item click
         itemView.setOnClickListener(new OnClickListener() {
 
@@ -87,13 +101,19 @@ public class ListViewAdapter extends BaseAdapter {
                 // Get the position
                 resultp = data.get(position);
                 Intent intent = new Intent(context, SingleItemView.class);
-                // Pass all data rank
-                intent.putExtra("promo_id", resultp.get(NewsfeedActivity.promo_id));
-                // Pass all data country
+                // Pass all data proname
                 intent.putExtra("promo_name", resultp.get(NewsfeedActivity.promo_name));
-                // Pass all data population
-                intent.putExtra("promo_des",resultp.get(NewsfeedActivity.promo_des));
-                // Pass all data flag
+                // Pass all data start date
+                intent.putExtra("promo_startdate", resultp.get(NewsfeedActivity.promo_startdate));
+                // Pass all data end date
+                intent.putExtra("promo_enddate", resultp.get(NewsfeedActivity.promo_enddate));
+                // Pass all data location
+                intent.putExtra("promo_location", resultp.get(NewsfeedActivity.promo_location));
+                // Pass all data link
+                intent.putExtra("promo_link", resultp.get(NewsfeedActivity.promo_link));
+                // Pass all data description
+                intent.putExtra("promo_des", resultp.get(NewsfeedActivity.promo_des));
+                // Pass all data propic
                 intent.putExtra("link_img1", resultp.get(NewsfeedActivity.link_img1));
                 // Start SingleItemView Class
                 context.startActivity(intent);

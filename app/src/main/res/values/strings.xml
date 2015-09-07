@@ -7,6 +7,7 @@
     <string name="Next">Next</string>
     <color name="actionbar1">#db1bd1ae</color>
     <color name="app_color">#db1bd1ae</color>
+    <color name="font_color">#ff989898</color>
     <string name="title_activity_signup">Sign Up</string>
     <string name="title_activity_custom_adapter">CustomAdapter</string>
     <string name="title_activity_category">Category</string>
@@ -25,11 +26,16 @@
     <string name="title_activity_type_electronic">Type Electronic</string>
     <string name="title_activity_group">Group</string>
     <string name="title_activity_camera_preview">Scanner</string>
+    <string name="title_activity_singleitemview">Description</string>
 
 
-    <string name="promotion_id">"รหัสโปรโมชั่น : "</string>
-    <string name="promotion_name">"ชื่อโปรโมชั่น : "</string>
-    <string name="promo_description">"เอียด : "</string>
+    <string name="promotion_id">"ID : "</string>
+    <string name="promotion_storeid">"Store ID : "</string>
+    <string name="promotion_name">"Name : "</string>
+    <string name="promotion_description">"Description : "</string>
+    <string name="promotion_date">"Date : "</string>
+    <string name="promotion_location">"Location : "</string>
+    <string name="promotion_link">"Link : "</string>
 
     <string-array name="Floor_array">
         <item>G Floor</item>

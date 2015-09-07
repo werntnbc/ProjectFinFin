@@ -3,6 +3,7 @@ package com.projectfinfin.projectfinfin;
 import android.app.ProgressDialog;
 import android.content.res.TypedArray;
 import android.os.AsyncTask;
+import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
@@ -37,10 +38,14 @@ public class NewsfeedActivity extends ActionBarActivity {
     ListViewAdapter adapter;
     ProgressDialog mProgressDialog;
     ArrayList<HashMap<String, String>> arraylist;
-    public static String promo_id = "promo_id";
+
     public static String promo_name = "promo_name";
-    public static String promo_des = "promo_des";
     public static String link_img1 = "link_img1";
+    public static String promo_location = "promo_location";
+    public static String promo_startdate = "promo_startdate";
+    public static String promo_enddate = "promo_enddate";
+    public static String promo_link = "promo_link";
+    public static String promo_des = "promo_des";
     static String url = "http://snappyshop.me/AndroidQuery/checkPromo/2";
 
     @Override
@@ -129,10 +134,14 @@ public class NewsfeedActivity extends ActionBarActivity {
                     HashMap<String, String> map = new HashMap<String, String>();
                     jsonobject = jsonarray.getJSONObject(i);
                     // Retrive JSON Objects
-                    map.put("promo_id", jsonobject.getString("promotion_id"));
                     map.put("promo_name", jsonobject.getString("promotion_name"));
+                    map.put("promo_startdate", jsonobject.getString("start_date"));
+                    map.put("promo_enddate", jsonobject.getString("end_date"));
+                    map.put("promo_location", jsonobject.getString("promotion_location"));
+                    map.put("promo_link", jsonobject.getString("link"));
                     map.put("promo_des", jsonobject.getString("promotion_des"));
-                    map.put("link_img1", jsonobject.getString("link_images"));
+                    map.put("link_img1", jsonobject.getString("img_name"));
+
                     // Set the JSON Objects into the array
                     arraylist.add(map);
                 }

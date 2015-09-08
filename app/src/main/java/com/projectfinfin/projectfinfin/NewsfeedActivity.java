@@ -40,12 +40,14 @@ public class NewsfeedActivity extends ActionBarActivity {
     ArrayList<HashMap<String, String>> arraylist;
 
     public static String promo_name = "promo_name";
-    public static String link_img1 = "link_img1";
     public static String promo_location = "promo_location";
     public static String promo_startdate = "promo_startdate";
     public static String promo_enddate = "promo_enddate";
     public static String promo_link = "promo_link";
     public static String promo_des = "promo_des";
+    public static String link_img1 = "link_img1";
+    public static String link_img2 = "link_img2";
+    public static String link_img3 = "link_img3";
     static String url = "http://snappyshop.me/AndroidQuery/checkPromo/2";
 
     @Override
@@ -140,8 +142,9 @@ public class NewsfeedActivity extends ActionBarActivity {
                     map.put("promo_location", jsonobject.getString("promotion_location"));
                     map.put("promo_link", jsonobject.getString("link"));
                     map.put("promo_des", jsonobject.getString("promotion_des"));
-                    map.put("link_img1", jsonobject.getString("img_name"));
-
+                    map.put("link_img1", jsonobject.getString("img_name1"));
+                    map.put("link_img2", jsonobject.getString("img_name2"));
+                    map.put("link_img3", jsonobject.getString("img_name3"));
                     // Set the JSON Objects into the array
                     arraylist.add(map);
                 }

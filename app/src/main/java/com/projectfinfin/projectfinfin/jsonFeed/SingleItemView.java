@@ -22,6 +22,8 @@ public class SingleItemView extends ActionBarActivity {
     String promo_link;
     String promo_des;
     String link_img1;
+    String link_img2;
+    String link_img3;
 
     ImageLoader imageLoader = new ImageLoader(this);
 
@@ -30,6 +32,7 @@ public class SingleItemView extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         // Get the view from singleitemview.xml
         setContentView(R.layout.singleitemview);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent i = getIntent();
 
@@ -45,8 +48,14 @@ public class SingleItemView extends ActionBarActivity {
         promo_link = i.getStringExtra("promo_link");
         // Get the result of description
         promo_des = i.getStringExtra("promo_des");
-        // Get the result of picture
+        // Get the result of picture1
         link_img1 = i.getStringExtra("link_img1");
+        // Get the result of picture2
+        link_img2 = i.getStringExtra("link_img2");
+        // Get the result of picture3
+        link_img3 = i.getStringExtra("link_img3");
+
+
 
         // Locate the TextViews in singleitemview.xml
         TextView txtname = (TextView) findViewById(R.id.promo_name);
@@ -57,7 +66,9 @@ public class SingleItemView extends ActionBarActivity {
         TextView txtdes = (TextView)findViewById(R.id.promo_des);
 
         // Locate the ImageView in singleitemview.xml
-        ImageView imgflag = (ImageView) findViewById(R.id.link_img1);
+        ImageView imgflag1 = (ImageView) findViewById(R.id.link_img1);
+        ImageView imgflag2 = (ImageView) findViewById(R.id.link_img2);
+        ImageView imgflag3 = (ImageView) findViewById(R.id.link_img3);
 
         // Set results to the TextViews
         txtname.setText(promo_name);
@@ -70,6 +81,10 @@ public class SingleItemView extends ActionBarActivity {
 
         // Capture position and set results to the ImageView
         // Passes flag images URL into ImageLoader.class
-        imageLoader.DisplayImage(link_img1, imgflag);
+        imageLoader.DisplayImage(link_img1, imgflag1);
+        imageLoader.DisplayImage(link_img2, imgflag2);
+        imageLoader.DisplayImage(link_img3, imgflag3);
+
+
     }
 }

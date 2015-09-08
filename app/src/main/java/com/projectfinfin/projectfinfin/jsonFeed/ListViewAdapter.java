@@ -115,6 +115,10 @@ public class ListViewAdapter extends BaseAdapter {
                 intent.putExtra("promo_des", resultp.get(NewsfeedActivity.promo_des));
                 // Pass all data propic
                 intent.putExtra("link_img1", resultp.get(NewsfeedActivity.link_img1));
+                // Pass all data propic
+                intent.putExtra("link_img2", resultp.get(NewsfeedActivity.link_img2));
+                // Pass all data propic
+                intent.putExtra("link_img3", resultp.get(NewsfeedActivity.link_img3));
                 // Start SingleItemView Class
                 context.startActivity(intent);
 

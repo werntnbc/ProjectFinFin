@@ -151,12 +151,32 @@
             </LinearLayout>
 
 
-            <!-- pictue -->
+            <!-- pictue 1-->
             <ImageView
                 android:id="@+id/link_img1"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
                 android:layout_below="@+id/promo_des"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp"/>
+
+            <!-- pictue 2-->
+            <ImageView
+                android:id="@+id/link_img2"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_below="@+id/link_img1"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="10dp"/>
+
+            <!-- pictue 2-->
+            <ImageView
+                android:id="@+id/link_img3"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_below="@+id/link_img2"
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="10dp"/>

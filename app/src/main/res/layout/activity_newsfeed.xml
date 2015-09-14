@@ -10,7 +10,7 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_margin="10dp"
-        android:ems="15"
+        android:ems="10"
         android:hint="Search"
         android:lines="1" />
 

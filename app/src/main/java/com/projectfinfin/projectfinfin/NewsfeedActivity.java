@@ -9,11 +9,14 @@ import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.widget.Toast;
@@ -35,9 +38,12 @@ public class NewsfeedActivity extends ActionBarActivity {
     JSONObject jsonobject;
     JSONArray jsonarray;
     ListView listview;
+    EditText etSearch;
     ListViewAdapter adapter;
     ProgressDialog mProgressDialog;
     ArrayList<HashMap<String, String>> arraylist;
+    ArrayList<String> arr_list;
+
 
     public static String promo_name = "promo_name";
     public static String promo_location = "promo_location";
@@ -74,13 +80,81 @@ public class NewsfeedActivity extends ActionBarActivity {
         new DownloadJSON().execute();
 
         //newfeed AsyncTask werntnbc
-        int[] array_res = getImageArray(R.array.my_image_array, R.mipmap.ic_launcher);
-        String[] array_string = getStringArray(R.array.my_string_array);
+        final int[] array_res = getImageArray(R.array.my_image_array, R.mipmap.ic_launcher);
+        final String[] array_string = getStringArray(R.array.my_string_array);
 
         ListView listView = (ListView) findViewById(R.id.listview);
         //error wait edit
 //        listView.setAdapter(new CustomAdapter(getApplicationContext(), android.R.id.text1, array_string, array_res));
 
+//search
+        etSearch = (EditText) findViewById(R.id.etSearch);
+        etSearch.addTextChangedListener(new TextWatcher() {
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //ArrayList<String> src_list = new ArrayList<String>();
+                ArrayList<HashMap<String, String>> src_list = new ArrayList<HashMap<String, String>>();
+                int textlength = etSearch.getText().length();
+                for (int i = 0; i < arraylist.size(); i++) {
+                    try {
+                        String storeName = arraylist.get(i).get("promo_name").toString();
+                        if (etSearch.getText().toString().equalsIgnoreCase(storeName.substring(0, textlength))) {
+                            // .equalsIgnoreCase(arraylist.get(i).subSequence(0, textlength) .toString())) {
+                            //.subSequence(0, textlength).toString())) {
+                            // src_list.add(arraylist.get(i));
+                            src_list.add(arraylist.get(i));
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+                listview.setAdapter(new ArrayAdapter<>(NewsfeedActivity.this, android.R.layout.simple_list_item_1, src_list));
+                //  adapter.notifyDataSetChanged();
+            }
+
+            public void beforeTextChanged(CharSequence s, int start
+                    , int count, int after) {
+            }
+
+            public void afterTextChanged(Editable s) {
+            }
+
+        });
+
+
+        //search
+/*
+        etSearch = (EditText) findViewById(R.id.etSearch);
+        etSearch.addTextChangedListener(new TextWatcher() {
+            public void afterTextChanged(Editable arg0) {
+                //ArrayList<String> src_list = new ArrayList<String>();
+                ArrayList<HashMap<String, String>> src_list = new ArrayList<HashMap<String, String>>();
+                int textlength = etSearch.getText().length();
+                for (int i = 0; i < arraylist.size(); i++) {
+                    try {
+                        String storeName = arraylist.get(i).get("promo_name").toString();
+                        if (etSearch.getText().toString().equalsIgnoreCase(storeName.substring(0,textlength))){
+                               // .equalsIgnoreCase(arraylist.get(i).subSequence(0, textlength) .toString())) {
+                                        //.subSequence(0, textlength).toString())) {
+                           // src_list.add(arraylist.get(i));
+                            src_list.add(arraylist.get(i));
+                        }
+                    } catch (Exception e) {
+                    }
+                }
+                listview.setAdapter(new ArrayAdapter<>(NewsfeedActivity.this, android.R.layout.simple_list_item_1, src_list));
+              //  adapter.notifyDataSetChanged();
+            }
+
+            public void beforeTextChanged(CharSequence s, int start
+                    , int count, int after) {
+            }
+
+            public void onTextChanged(CharSequence s, int start
+                    , int before, int count) {
+            }
+
+        });
+
+*/
 
     }
 
@@ -93,6 +167,7 @@ public class NewsfeedActivity extends ActionBarActivity {
         my_image_array.recycle();
         return array_res;
     }
+
     //newfeed AsyncTask for String
     public String[] getStringArray(int resId) {
         TypedArray my_string_array = getResources().obtainTypedArray(resId);

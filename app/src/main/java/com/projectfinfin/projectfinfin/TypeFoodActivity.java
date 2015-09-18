@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.projectfinfin.projectfinfin.Grid.GridViewActivity;
+
 
 public class TypeFoodActivity extends ActionBarActivity {
 
@@ -17,10 +19,20 @@ public class TypeFoodActivity extends ActionBarActivity {
         setContentView(R.layout.activity_type_food);
         //Click button type food noodle go to group
         Button buttonNoodle = (Button)findViewById(R.id.button_noodle);
+        Button buttonPizza = (Button)findViewById(R.id.button_pizza);
         buttonNoodle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), GroupActivity.class);
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl","?id=1");
+                startActivity(i);
+            }
+        });
+        buttonPizza.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl","?id=3");
                 startActivity(i);
             }
         });

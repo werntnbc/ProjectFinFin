@@ -21,6 +21,7 @@ import android.widget.ListView;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.widget.Toast;
 
+import com.projectfinfin.projectfinfin.jsonFeed.ImageLoader;
 import com.projectfinfin.projectfinfin.jsonFeed.JSONfunctions;
 import com.projectfinfin.projectfinfin.jsonFeed.ListViewAdapter;
 
@@ -50,6 +51,7 @@ public class NewsfeedActivity extends ActionBarActivity {
     public static String promo_startdate = "promo_startdate";
     public static String promo_enddate = "promo_enddate";
     public static String promo_link = "promo_link";
+    public static String logo_pic = "logo_pic";
     public static String promo_des = "promo_des";
     public static String link_img1 = "link_img1";
     public static String link_img2 = "link_img2";
@@ -61,13 +63,6 @@ public class NewsfeedActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         // Get the view from listview_main.xml
         setContentView(R.layout.activity_newsfeed);
-        // Execute DownloadJSON AsyncTask
-        /*if(savedInstanceState == null){
-            Bundle extra = getIntent().getExtras();
-            if(extra != null){
-                url = extra.getString(url);
-            }
-        }*/
         Intent lin = getIntent();
         Bundle extra = lin.getExtras();
 
@@ -217,6 +212,7 @@ public class NewsfeedActivity extends ActionBarActivity {
                     map.put("promo_location", jsonobject.getString("promotion_location"));
                     map.put("promo_link", jsonobject.getString("link"));
                     map.put("promo_des", jsonobject.getString("promotion_des"));
+                    map.put("logo_pic", jsonobject.getString("member_avatar"));
                     map.put("link_img1", jsonobject.getString("img_name1"));
                     map.put("link_img2", jsonobject.getString("img_name2"));
                     map.put("link_img3", jsonobject.getString("img_name3"));

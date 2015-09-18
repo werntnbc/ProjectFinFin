@@ -21,6 +21,7 @@ import android.os.Handler;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.projectfinfin.projectfinfin.R;
@@ -44,12 +45,18 @@ public class ImageLoader {
 
     public void DisplayImage(String url, ImageView imageView) {
         imageViews.put(imageView, url);
+        //clearCache();
         Bitmap bitmap = memoryCache.get(url);
         if (bitmap != null)
             imageView.setImageBitmap(bitmap);
         else {
             queuePhoto(url, imageView);
             imageView.setImageResource(stub_id);
+            //imageView.setImageResource(android.R.color.transparent);
+            //imageView.setImageDrawable(null);
+            //imageView.setImageBitmap(null);
+            //imageView.setImageDrawable(null);
+            //imageView.setVisibility(View.GONE);
         }
     }
 
@@ -185,7 +192,10 @@ public class ImageLoader {
             if (bitmap != null)
                 photoToLoad.imageView.setImageBitmap(bitmap);
             else
-                photoToLoad.imageView.setImageResource(stub_id);
+                //photoToLoad.imageView.setImageResource(stub_id);
+                //photoToLoad.imageView.setImageResource(android.R.color.transparent);
+                //photoToLoad.imageView.setImageDrawable(null);
+                photoToLoad.imageView.setVisibility(View.GONE);
         }
     }
 

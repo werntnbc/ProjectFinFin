@@ -8,6 +8,7 @@ import java.util.HashMap;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -35,6 +36,7 @@ public class ListViewAdapter extends BaseAdapter {
         this.context = context;
         data = arraylist;
         imageLoader = new ImageLoader(context);
+        imageLoader.clearCache();
     }
 
     @Override
@@ -79,7 +81,7 @@ public class ListViewAdapter extends BaseAdapter {
     //    prodes = (TextView)itemView.findViewById(R.id.promo_des);
 
         // Locate the ImageView in listview_item.xml
-        propic = (ImageView) itemView.findViewById(R.id.link_img1);
+        propic = (ImageView) itemView.findViewById(R.id.logo_pic);
 
         // Capture position and set results to the TextViews
 
@@ -92,7 +94,8 @@ public class ListViewAdapter extends BaseAdapter {
 
         // Capture position and set results to the ImageView
         // Passes propic images URL into ImageLoader.class
-        imageLoader.DisplayImage(resultp.get(NewsfeedActivity.link_img1), propic);
+        Log.v("sssssssssssss", "web/assets/images/avatars/"+resultp.get(NewsfeedActivity.logo_pic));
+        imageLoader.DisplayImage("web/assets/images/avatars/" + resultp.get(NewsfeedActivity.logo_pic), propic);
         // Capture ListView item click
         itemView.setOnClickListener(new OnClickListener() {
 

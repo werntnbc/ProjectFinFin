@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvUsername"
                 android:layout_marginTop="10dp"
-                android:hint="username" />
+                android:hint="Input your username" />
 
 
             <TextView
@@ -52,9 +52,27 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvPassword"
                 android:layout_marginTop="10dp"
-                android:hint="password"
+                android:hint="Input your password"
                 android:inputType="textPassword" />
 
+            <TextView
+                android:id="@+id/cfPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/etUsername"
+                android:layout_marginTop="20dp"
+                android:text="Password"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <EditText
+                android:id="@+id/etcfPassword"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tvPassword"
+                android:layout_marginTop="10dp"
+                android:hint="Confirm Password"
+                android:inputType="textPassword" />
 
             <TextView
                 android:id="@+id/tvAge"
@@ -72,6 +90,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/tvAge"
                 android:layout_marginTop="10dp"
+                android:inputType="number"
                 android:hint="age" />
 
 

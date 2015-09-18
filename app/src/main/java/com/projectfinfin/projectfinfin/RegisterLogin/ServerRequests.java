@@ -29,6 +29,7 @@ public class ServerRequests {
     ProgressDialog progressDialog;
     public static final int CONNECTION_TIMEOUT = 1000 * 15;
     public static final String SERVER_ADDRESS = "http://snappyshop.me/android/";
+    public static String Result = "";
 
     public ServerRequests(Context context) {
         progressDialog = new ProgressDialog(context);
@@ -65,6 +66,7 @@ public class ServerRequests {
 
         @Override
         protected Void doInBackground(Void... params) {
+
             ArrayList<NameValuePair> dataToSend = new ArrayList<>();
             dataToSend.add(new BasicNameValuePair("username", user.username));
             dataToSend.add(new BasicNameValuePair("password", user.password));
@@ -76,11 +78,15 @@ public class ServerRequests {
 
             try {
                 post.setEntity(new UrlEncodedFormEntity(dataToSend));
-                client.execute(post);
+                HttpResponse httpResponse = client.execute(post);
+
+                HttpEntity entity = httpResponse.getEntity();
+                Result = EntityUtils.toString(entity);
+                Log.e("Resulttttttttttttt ",Result);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
             return null;
         }
 

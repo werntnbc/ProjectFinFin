@@ -1,5 +1,6 @@
 package com.projectfinfin.projectfinfin.RegisterLogin;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.projectfinfin.projectfinfin.MainActivity;
 import com.projectfinfin.projectfinfin.R;
@@ -22,6 +24,17 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        Bundle extra = getIntent().getExtras();
+
+        if(extra != null){
+            String Check = (String) extra.get("Register");
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(LoginActivity.this);
+            dialogBuilder.setMessage("Register Successful");
+            dialogBuilder.setPositiveButton("Ok", null);
+            if(Check.equalsIgnoreCase("Success")){
+                dialogBuilder.show();
+            }
+        }
 
         //Click button sign in with email
         Button buttonEmail = (Button)findViewById(R.id.button_email);

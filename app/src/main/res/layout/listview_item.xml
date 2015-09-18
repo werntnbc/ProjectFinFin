@@ -79,7 +79,7 @@
 
     <!-- pictue -->
     <ImageView
-        android:id="@+id/link_img1"
+        android:id="@+id/logo_pic"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:adjustViewBounds="true"

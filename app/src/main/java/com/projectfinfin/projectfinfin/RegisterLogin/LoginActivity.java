@@ -4,20 +4,22 @@ import android.app.AlertDialog;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.projectfinfin.projectfinfin.MainActivity;
+import com.projectfinfin.projectfinfin.NewsfeedActivity;
 import com.projectfinfin.projectfinfin.R;
+import com.projectfinfin.projectfinfin.TestActivity;
 
 
 public class LoginActivity extends ActionBarActivity implements View.OnClickListener{
 
     TextView tvSignupNow;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +52,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         buttonFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                Intent i = new Intent(getApplicationContext(), TestActivity.class);
                 startActivity(i);
             }
         });
@@ -69,6 +71,8 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         tvSignupNow = (TextView)findViewById(R.id.tvSignupNow);
         tvSignupNow.setOnClickListener(this);
     }
+
+
 
     @Override
     public void onClick(View v) {

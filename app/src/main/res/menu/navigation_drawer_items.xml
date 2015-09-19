@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="all">
+        <item
+            android:id="@+id/navItem1"
+            android:icon="@drawable/ic_menu"
+            android:title="Newsfeed"/>
+        <item
+            android:id="@+id/navItem2"
+            android:icon="@drawable/ic_menu"
+            android:title="Category"/>
+
+        <item
+            android:id="@+id/navItem3"
+            android:icon="@drawable/ic_menu"
+            android:title="Camera"/>
+
+        <item
+            android:id="@+id/navItem4"
+            android:icon="@drawable/ic_menu"
+            android:title="Floor"/>
+
+        <item
+            android:id="@+id/navItem5"
+            android:icon="@drawable/ic_menu"
+            android:title="Setting"/>
+    </group>
+
+</menu>

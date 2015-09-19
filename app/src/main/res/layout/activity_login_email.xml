@@ -7,7 +7,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     tools:context="com.projectfinfin.projectfinfin.RegisterLogin.LoginEmailActivity">
 
-
+    <!--
     <TextView
         android:id="@+id/tvUsername"
         android:layout_width="match_parent"
@@ -46,17 +46,45 @@
         android:layout_marginTop="10dp"
         android:hint="password"
         android:inputType="textPassword" />
+        -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <EditText
+            android:id="@+id/etUsername"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Username" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp">
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Password"
+            android:inputType="textPassword"/>
+    </android.support.design.widget.TextInputLayout>
+
+    </LinearLayout>
 
 
     <LinearLayout
         android:id="@+id/reset_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etPassword"
-        android:layout_marginTop="10dp"
         android:layout_centerInParent="true"
         android:orientation="horizontal">
-
 
         <TextView
             android:layout_width="wrap_content"
@@ -69,7 +97,6 @@
             android:hint="Reset your password."
             android:textColor="#db1bd1ae"
             android:textStyle="bold" />
-
     </LinearLayout>
 
 

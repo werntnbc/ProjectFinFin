@@ -16,103 +16,95 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
-            <TextView
-                android:id="@+id/tvUsername"
+            <LinearLayout
+                android:id="@+id/tvusersignup"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:layout_weight="4"
-                android:text="Username"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                android:orientation="vertical">
 
-            <EditText
-                android:id="@+id/etUsername"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvUsername"
-                android:layout_marginTop="10dp"
-                android:hint="Input your username" />
+                <!-- Username -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
 
+                    <EditText
+                        android:id="@+id/etUsername"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Input your username" />
+                </android.support.design.widget.TextInputLayout>
 
-            <TextView
-                android:id="@+id/tvPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/etUsername"
-                android:layout_marginTop="20dp"
-                android:text="Password"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                <!-- Password -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
 
-            <EditText
-                android:id="@+id/etPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvPassword"
-                android:layout_marginTop="10dp"
-                android:hint="Input your password"
-                android:inputType="textPassword" />
+                    <EditText
+                        android:id="@+id/etPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Input your password"
+                        android:inputType="textPassword" />
+                </android.support.design.widget.TextInputLayout>
 
-            <TextView
-                android:id="@+id/cfPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/etUsername"
-                android:layout_marginTop="20dp"
-                android:text="Password"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                <!-- Confirm Password -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
 
-            <EditText
-                android:id="@+id/etcfPassword"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvPassword"
-                android:layout_marginTop="10dp"
-                android:hint="Confirm Password"
-                android:inputType="textPassword" />
+                    <EditText
+                        android:id="@+id/etcfPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Confirm Password"
+                        android:inputType="textPassword" />
+                </android.support.design.widget.TextInputLayout>
 
-            <TextView
-                android:id="@+id/tvAge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/etPassword"
-                android:layout_marginTop="20dp"
-                android:text="Age"
-                android:textSize="20sp"
-                android:textStyle="bold" />
+                <!-- Age -->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
 
-            <EditText
-                android:id="@+id/etAge"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/tvAge"
-                android:layout_marginTop="10dp"
-                android:inputType="number"
-                android:hint="age" />
+                    <EditText
+                        android:id="@+id/etAge"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Age"
+                        android:inputType="number" />
+                </android.support.design.widget.TextInputLayout>
 
 
-            <Button
-                android:id="@+id/bRegister"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/etAge"
-                android:layout_marginTop="10dp"
-                android:text="Register" />
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/tvTerm"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/bRegister"
-               android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-                android:text="Term of Service and Privacy Policy"
-                android:textSize="18dp" />
 
+
+                <Button
+                    android:id="@+id/bRegister"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:layout_below="@+id/etAge"
+                    android:background="@color/app_color"
+                    android:text="Register"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvTerm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/bRegister"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp"
+                    android:text="Term of Service and Privacy Policy"
+                    android:textSize="18dp" />
 
         </LinearLayout>
     </ScrollView>
+
+
 </RelativeLayout>

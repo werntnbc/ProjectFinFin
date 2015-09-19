@@ -11,7 +11,7 @@
     <string name="title_activity_signup">Sign Up</string>
     <string name="title_activity_custom_adapter">CustomAdapter</string>
     <string name="title_activity_category">Category</string>
-    <string name="drawer_open">Open Navigation drawer</string>
+   <string name="drawer_open">Open Navigation drawer</string>
     <string name="drawer_close">Close Navigation drawer</string>
     <string name="title_activity_main">Menu</string>
     <string name="title_activity_login_email">Log in</string>
@@ -44,6 +44,8 @@
         <item>3rd Floor</item>
         <item>4th Floor</item>
     </string-array>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_activity_test">TestActivity</string>
 
 
 </resources>

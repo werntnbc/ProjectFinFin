@@ -1,17 +1,24 @@
 package com.projectfinfin.projectfinfin;
 
 import android.app.ProgressDialog;
+import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.AsyncTask;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,7 +26,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.support.v4.app.ActionBarDrawerToggle;
-import android.widget.Toast;
+import android.support.v7.widget.Toolbar;
+
 
 import com.projectfinfin.projectfinfin.jsonFeed.ImageLoader;
 import com.projectfinfin.projectfinfin.jsonFeed.JSONfunctions;
@@ -44,6 +52,11 @@ public class NewsfeedActivity extends ActionBarActivity {
     ProgressDialog mProgressDialog;
     ArrayList<HashMap<String, String>> arraylist;
     ArrayList<String> arr_list;
+    //tool bar
+    Toolbar toolbar;
+    DrawerLayout drawerLayout;
+   android.support.v7.app.ActionBarDrawerToggle drawerToggle;
+    CoordinatorLayout rootLayout;
 
 
     public static String promo_name = "promo_name";
@@ -113,45 +126,29 @@ public class NewsfeedActivity extends ActionBarActivity {
             }
 
         });
+        //tool bar
+        initToolbar();
+        initInstances();
+    }
+    //tool bar
+    private void initToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
 
+    private void initInstances() {
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        drawerToggle = new android.support.v7.app.ActionBarDrawerToggle(this, drawerLayout, R.string.hello_world, R.string.hello_world);
+        drawerLayout.setDrawerListener(drawerToggle);
 
-        //search
-/*
-        etSearch = (EditText) findViewById(R.id.etSearch);
-        etSearch.addTextChangedListener(new TextWatcher() {
-            public void afterTextChanged(Editable arg0) {
-                //ArrayList<String> src_list = new ArrayList<String>();
-                ArrayList<HashMap<String, String>> src_list = new ArrayList<HashMap<String, String>>();
-                int textlength = etSearch.getText().length();
-                for (int i = 0; i < arraylist.size(); i++) {
-                    try {
-                        String storeName = arraylist.get(i).get("promo_name").toString();
-                        if (etSearch.getText().toString().equalsIgnoreCase(storeName.substring(0,textlength))){
-                               // .equalsIgnoreCase(arraylist.get(i).subSequence(0, textlength) .toString())) {
-                                        //.subSequence(0, textlength).toString())) {
-                           // src_list.add(arraylist.get(i));
-                            src_list.add(arraylist.get(i));
-                        }
-                    } catch (Exception e) {
-                    }
-                }
-                listview.setAdapter(new ArrayAdapter<>(NewsfeedActivity.this, android.R.layout.simple_list_item_1, src_list));
-              //  adapter.notifyDataSetChanged();
-            }
+        rootLayout = (CoordinatorLayout) findViewById(R.id.rootLayout);
 
-            public void beforeTextChanged(CharSequence s, int start
-                    , int count, int after) {
-            }
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-            public void onTextChanged(CharSequence s, int start
-                    , int before, int count) {
-            }
-
-        });
-
-*/
 
     }
+
 
     //newfeed AsyncTask for image
     public int[] getImageArray(int resId, int defResId) {
@@ -237,5 +234,42 @@ public class NewsfeedActivity extends ActionBarActivity {
             // Close the progressdialog
             mProgressDialog.dismiss();
         }
+    }
+
+    @Override
+    public void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
+        drawerToggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (drawerToggle.onOptionsItemSelected(item))
+            return true;
+
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_settings) {
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 }

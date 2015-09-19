@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.projectfinfin.projectfinfin">
-
+    package="com.projectfinfin.projectfinfin" >
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -10,32 +9,28 @@
     <uses-feature android:name="android.hardware.camera" />
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
-
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme" >
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.projectfinfin.projectfinfin.Grid.GridViewActivity"
-            android:label="@string/app_name">
+            android:name=".Grid.GridViewActivity"
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name="com.projectfinfin.projectfinfin.jsonFeed.SingleItemView"/>
+        <activity android:name=".jsonFeed.SingleItemView" />
         <activity
             android:name=".RegisterLogin.LoginActivity"
-            android:label="@string/app_name">
+            android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -47,7 +42,7 @@
         <activity
             android:name=".RegisterLogin.SignupActivity"
             android:label="@string/title_activity_signup"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
@@ -55,23 +50,19 @@
         <activity
             android:name=".DescriptionActivity"
             android:label="@string/title_activity_description"
-            android:parentActivityName=".NewsfeedActivity">
+            android:parentActivityName=".NewsfeedActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".NewsfeedActivity" />
         </activity>
         <activity
-            android:name=".MainActivity"
-            android:label="@string/title_activity_main" />
-        <activity
             android:name=".RegisterLogin.LoginEmailActivity"
             android:label="@string/title_activity_login_email"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".MainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-
         <activity
             android:name=".SettingActivity"
             android:label="@string/title_activity_setting" />
@@ -96,19 +87,34 @@
         <activity
             android:name=".TypeElectronicActivity"
             android:label="@string/title_activity_type_electronic" />
-   <activity
-        android:name=".zbarscanner.ZBarScannerActivity"
-        android:label="@string/title_activity_camera_preview" />
-
         <activity
-        android:name=".GroupActivity"
-        android:label="@string/title_activity_group"
-        android:parentActivityName=".TypeFoodActivity">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".TypeFoodActivity" />
-    </activity>
-
+            android:name=".zbarscanner.ZBarScannerActivity"
+            android:label="@string/title_activity_camera_preview" />
+        <activity
+            android:name=".GroupActivity"
+            android:label="@string/title_activity_group"
+            android:parentActivityName=".TypeFoodActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".TypeFoodActivity" />
+        </activity>
+        <activity
+            android:name=".MenuActivity"
+            android:label="@string/title_activity_menu"
+            android:theme="@style/AppTheme">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".TestActivity"
+            android:label="@string/title_activity_test" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

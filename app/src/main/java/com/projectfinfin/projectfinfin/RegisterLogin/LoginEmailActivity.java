@@ -8,9 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.projectfinfin.projectfinfin.MainActivity;
+import com.projectfinfin.projectfinfin.NewsfeedActivity;
 import com.projectfinfin.projectfinfin.R;
-import com.projectfinfin.projectfinfin.SettingActivity;
+import com.projectfinfin.projectfinfin.TestActivity;
+
+import junit.framework.Test;
 
 
 public class LoginEmailActivity extends ActionBarActivity implements View.OnClickListener {
@@ -75,7 +77,7 @@ public class LoginEmailActivity extends ActionBarActivity implements View.OnClic
         userLocalStore.storeUserDeta(returnedUser);
         userLocalStore.setUserLoggedIn(true);
 
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, TestActivity.class));
     }
 }
     /*

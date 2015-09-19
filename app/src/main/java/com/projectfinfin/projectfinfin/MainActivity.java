@@ -1,6 +1,5 @@
 package com.projectfinfin.projectfinfin;
 
-
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.app.Fragment;
@@ -21,9 +20,10 @@ import com.projectfinfin.projectfinfin.Floor.FloorSpinner;
 import com.projectfinfin.projectfinfin.Fragments.CameraFragment;
 import com.projectfinfin.projectfinfin.Fragments.CategoryFragment;
 
-
-public class MainActivity extends ActionBarActivity {
-
+/**
+ * Created by TNBC's on 19/9/2558.
+ */
+public class MainActivity extends ActionBarActivity{
     //for navigation drawable
     public static final String KEY_DRAWABLE_ID = "drawableId";
     private String[] mDrawerTitle = {"News feed", "Category", "Camera", "Map",  "Floor", "Profile" };
@@ -191,4 +191,3 @@ public class MainActivity extends ActionBarActivity {
         mDrawerLayout.closeDrawer(mListView);
     } */
 }
-

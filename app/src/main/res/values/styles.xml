@@ -1,23 +1,7 @@
 <resources>
 
 
-
-
-    <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#db1bd1ae</item>
-        <item name="colorPrimaryDark">#1565C0</item>
-        <item name="colorAccent">#E91E63</item>
-
-    </style>
-
-    <style name="AppTheme.WithoutActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-    </style>
-
-
-    <style name="AppTheme.HaveActionBar" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!--Theme.AppCompat.Light.DarkActionBar-->
         <!-- Customize your theme here. -->
         <item name="android:actionBarStyle">@style/MyActionBar</item>
@@ -31,6 +15,22 @@
         <item name="android:background">@color/actionbar1</item>
         <item name="background">@color/actionbar1</item>
     </style>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme.HaveToolBar" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">#db1bd1ae</item>
+        <item name="colorPrimaryDark">#1565C0</item>
+        <item name="colorAccent">#E91E63</item>
+
+    </style>
+
+    <style name="AppTheme.WithoutActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+
 
 
 

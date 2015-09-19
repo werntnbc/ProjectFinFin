@@ -41,7 +41,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class NewsfeedActivity extends ActionBarActivity {
+public class NewsfeedActivity extends AppCompatActivity {
 
     // Declare Variables
     JSONObject jsonobject;

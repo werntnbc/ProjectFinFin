@@ -2,10 +2,12 @@ package com.projectfinfin.projectfinfin;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -57,9 +59,13 @@ public class TestActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(MenuItem menuItem) {
                 Fragment fragment = null;
+                Intent intent = null;
                 int id = menuItem.getItemId();
                 switch (id) {
                     case R.id.navItem1:
+                        intent = new Intent(getApplicationContext(), NewsfeedActivity.class);
+                        startActivity(intent);
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.navItem2:
                         fragment = new CategoryFragment();
@@ -67,6 +73,7 @@ public class TestActivity extends AppCompatActivity {
                         transaction1.replace(R.id.container, fragment);
                         transaction1.addToBackStack(null);
                         transaction1.commit();
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.navItem3:
                         fragment = new CameraFragment();
@@ -74,6 +81,7 @@ public class TestActivity extends AppCompatActivity {
                         transaction2.replace(R.id.container, fragment);
                         transaction2.addToBackStack(null);
                         transaction2.commit();
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.navItem4:
                         fragment = new FloorSpinner();
@@ -81,6 +89,7 @@ public class TestActivity extends AppCompatActivity {
                         transaction4.replace(R.id.container, fragment);
                         transaction4.addToBackStack(null);
                         transaction4.commit();
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.navItem5:
                         fragment = new ProfileFragment();
@@ -88,6 +97,7 @@ public class TestActivity extends AppCompatActivity {
                         transaction5.replace(R.id.container, fragment);
                         transaction5.addToBackStack(null);
                         transaction5.commit();
+                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     default:
                         break;

@@ -21,10 +21,12 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     TextView tvSignupNow;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         Bundle extra = getIntent().getExtras();
 
@@ -71,6 +73,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         tvSignupNow = (TextView)findViewById(R.id.tvSignupNow);
         tvSignupNow.setOnClickListener(this);
     }
+
 
 
 

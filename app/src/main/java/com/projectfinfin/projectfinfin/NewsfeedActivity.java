@@ -9,6 +9,7 @@ import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
@@ -52,7 +53,7 @@ public class NewsfeedActivity extends AppCompatActivity {
     ProgressDialog mProgressDialog;
     ArrayList<HashMap<String, String>> arraylist;
     ArrayList<String> arr_list;
-
+    private SwipeRefreshLayout mSwipeRefreshLayout = null;
 
 
     public static String promo_name = "promo_name";
@@ -81,72 +82,17 @@ public class NewsfeedActivity extends AppCompatActivity {
             url = "http://snappyshop.me/android/QueryPromotion.php";
         }
 
-        new DownloadJSON().execute();
-
-        //newfeed AsyncTask werntnbc
-        final int[] array_res = getImageArray(R.array.my_image_array, R.mipmap.ic_launcher);
-        final String[] array_string = getStringArray(R.array.my_string_array);
-
-        ListView listView = (ListView) findViewById(R.id.listview);
-        //error wait edit
-//        listView.setAdapter(new CustomAdapter(getApplicationContext(), android.R.id.text1, array_string, array_res));
-
-//search
-        etSearch = (EditText) findViewById(R.id.etSearch);
-        etSearch.addTextChangedListener(new TextWatcher() {
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //ArrayList<String> src_list = new ArrayList<String>();
-                ArrayList<HashMap<String, String>> src_list = new ArrayList<HashMap<String, String>>();
-                int textlength = etSearch.getText().length();
-                for (int i = 0; i < arraylist.size(); i++) {
-                    try {
-                        String storeName = arraylist.get(i).get("promo_name").toString();
-                        if (etSearch.getText().toString().equalsIgnoreCase(storeName.substring(0, textlength))) {
-                            // .equalsIgnoreCase(arraylist.get(i).subSequence(0, textlength) .toString())) {
-                            //.subSequence(0, textlength).toString())) {
-                            // src_list.add(arraylist.get(i));
-                            src_list.add(arraylist.get(i));
-                        }
-                    } catch (Exception e) {
-                    }
-                }
-                listview.setAdapter(new ArrayAdapter<>(NewsfeedActivity.this, android.R.layout.simple_list_item_1, src_list));
-                //  adapter.notifyDataSetChanged();
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
+        //mSwipeRefreshLayout.setColorSchemeColors(0,0,0,0);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //Refreshing data on server
+                new DownloadJSON().execute();
             }
-
-            public void beforeTextChanged(CharSequence s, int start
-                    , int count, int after) {
-            }
-
-            public void afterTextChanged(Editable s) {
-            }
-
         });
 
-    }
-
-
-
-
-
-    //newfeed AsyncTask for image
-    public int[] getImageArray(int resId, int defResId) {
-        TypedArray my_image_array = getResources().obtainTypedArray(resId);
-        int[] array_res = new int[my_image_array.length()];
-        for (int i = 0; i < array_res.length; i++)
-            array_res[i] = my_image_array.getResourceId(i, defResId);
-        my_image_array.recycle();
-        return array_res;
-    }
-
-    //newfeed AsyncTask for String
-    public String[] getStringArray(int resId) {
-        TypedArray my_string_array = getResources().obtainTypedArray(resId);
-        String[] array_string = new String[my_string_array.length()];
-        for (int i = 0; i < array_string.length; i++)
-            array_string[i] = my_string_array.getString(i);
-        my_string_array.recycle();
-        return array_string;
+        new DownloadJSON().execute();
     }
 
     // DownloadJSON AsyncTask
@@ -156,14 +102,16 @@ public class NewsfeedActivity extends AppCompatActivity {
         protected void onPreExecute() {
             super.onPreExecute();
             // Create a progressdialog
-            mProgressDialog = new ProgressDialog(NewsfeedActivity.this);
-            // Set progressdialog title
-            mProgressDialog.setTitle("Snap Shop");
-            // Set progressdialog message
-            mProgressDialog.setMessage("Loading...");
-            mProgressDialog.setIndeterminate(false);
-            // Show progressdialog
-            mProgressDialog.show();
+            if (!mSwipeRefreshLayout.isRefreshing()) {
+                mProgressDialog = new ProgressDialog(NewsfeedActivity.this);
+                // Set progressdialog title
+                mProgressDialog.setTitle("Snap Shop");
+                // Set progressdialog message
+                mProgressDialog.setMessage("Loading...");
+                mProgressDialog.setIndeterminate(false);
+                // Show progressdialog
+                mProgressDialog.show();
+            }
         }
 
         @Override
@@ -210,6 +158,9 @@ public class NewsfeedActivity extends AppCompatActivity {
             adapter = new ListViewAdapter(NewsfeedActivity.this, arraylist);
             // Set the adapter to the ListView
             listview.setAdapter(adapter);
+            if (mSwipeRefreshLayout.isRefreshing()) {
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
             // Close the progressdialog
             mProgressDialog.dismiss();
         }

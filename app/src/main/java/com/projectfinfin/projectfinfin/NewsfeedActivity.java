@@ -52,11 +52,7 @@ public class NewsfeedActivity extends AppCompatActivity {
     ProgressDialog mProgressDialog;
     ArrayList<HashMap<String, String>> arraylist;
     ArrayList<String> arr_list;
-    //tool bar
-    Toolbar toolbar;
-    DrawerLayout drawerLayout;
-   android.support.v7.app.ActionBarDrawerToggle drawerToggle;
-    CoordinatorLayout rootLayout;
+
 
 
     public static String promo_name = "promo_name";
@@ -126,28 +122,11 @@ public class NewsfeedActivity extends AppCompatActivity {
             }
 
         });
-        //tool bar
-        initToolbar();
-        initInstances();
-    }
-    //tool bar
-    private void initToolbar() {
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-    }
-
-    private void initInstances() {
-        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
-        drawerToggle = new android.support.v7.app.ActionBarDrawerToggle(this, drawerLayout, R.string.hello_world, R.string.hello_world);
-        drawerLayout.setDrawerListener(drawerToggle);
-
-        rootLayout = (CoordinatorLayout) findViewById(R.id.rootLayout);
-
-        getSupportActionBar().setHomeButtonEnabled(true);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
 
     }
+
+
+
 
 
     //newfeed AsyncTask for image
@@ -239,14 +218,9 @@ public class NewsfeedActivity extends AppCompatActivity {
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
-        drawerToggle.syncState();
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        drawerToggle.onConfigurationChanged(newConfig);
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -257,9 +231,6 @@ public class NewsfeedActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (drawerToggle.onOptionsItemSelected(item))
-            return true;
-
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -269,7 +240,6 @@ public class NewsfeedActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

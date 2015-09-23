@@ -64,7 +64,7 @@ public class FloorSpinner extends Fragment {
             case 0:
                 Drawable floor_g = getResources().getDrawable(R.drawable.floorg);
                 images.setImageDrawable(floor_g);
-               // mAttacher = new PhotoViewAttacher(images);
+                // mAttacher = new PhotoViewAttacher(images);
                 break;
             case 1:
                 Drawable floor_1 = getResources().getDrawable(R.drawable.floor1);

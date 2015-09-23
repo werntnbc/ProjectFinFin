@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import com.projectfinfin.projectfinfin.Floor.FloorSpinner;
 import com.projectfinfin.projectfinfin.Fragments.CameraFragment;
 import com.projectfinfin.projectfinfin.Fragments.CategoryFragment;
+import com.projectfinfin.projectfinfin.WhereToGo.InNavFragment;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -92,11 +93,19 @@ public class TestActivity extends AppCompatActivity {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.navItem5:
-                        fragment = new ProfileFragment();
+                        fragment = new InNavFragment();
                         FragmentTransaction transaction5 = getFragmentManager().beginTransaction();
                         transaction5.replace(R.id.container, fragment);
                         transaction5.addToBackStack(null);
                         transaction5.commit();
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.navItem6:
+                        fragment = new ProfileFragment();
+                        FragmentTransaction transaction6 = getFragmentManager().beginTransaction();
+                        transaction6.replace(R.id.container, fragment);
+                        transaction6.addToBackStack(null);
+                        transaction6.commit();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     default:

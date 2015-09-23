@@ -46,6 +46,7 @@
     </string-array>
     <string name="title_activity_menu">MenuActivity</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="title_activity_where">WhereActivity</string>
 
 
 </resources>

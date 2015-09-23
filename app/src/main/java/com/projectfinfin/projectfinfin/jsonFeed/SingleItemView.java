@@ -32,6 +32,7 @@ public class SingleItemView extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         // Get the view from singleitemview.xml
         setContentView(R.layout.singleitemview);
+        //button back on action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         Intent i = getIntent();

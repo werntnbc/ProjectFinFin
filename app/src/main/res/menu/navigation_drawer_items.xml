@@ -24,6 +24,11 @@
         <item
             android:id="@+id/navItem5"
             android:icon="@drawable/ic_menu"
+            android:title="Where To Go"/>
+
+        <item
+            android:id="@+id/navItem6"
+            android:icon="@drawable/ic_menu"
             android:title="Setting"/>
     </group>
 

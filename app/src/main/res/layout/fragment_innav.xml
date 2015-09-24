@@ -24,9 +24,9 @@
 
             <TextView
                 android:id="@+id/textView1"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#FFFFFF"
+                android:textColor="#dbb21753"
                 android:gravity="center"
                 android:text="From"
                 android:textSize="20sp" />
@@ -42,6 +42,7 @@
                 android:id="@+id/spinner1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="#FFFFFF"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"
@@ -59,13 +60,13 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="100dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
                 android:textSize="20sp"
                 android:text="To"
                 android:gravity="center"
-                android:textColor="#FFFFFF" />
+                android:textColor="#dbb21753" />
 
         </LinearLayout>
 
@@ -80,6 +81,7 @@
                 android:id="@+id/spinner2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:background="#FFFFFF"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="20dp"
                 android:layout_weight="1"

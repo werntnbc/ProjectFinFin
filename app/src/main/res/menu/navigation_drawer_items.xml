@@ -4,31 +4,31 @@
     <group android:checkableBehavior="all">
         <item
             android:id="@+id/navItem1"
-            android:icon="@drawable/ic_menu"
+            android:icon="@drawable/ic_newsfeed"
             android:title="Newsfeed"/>
         <item
             android:id="@+id/navItem2"
-            android:icon="@drawable/ic_menu"
+            android:icon="@drawable/ic_category"
             android:title="Category"/>
 
         <item
             android:id="@+id/navItem3"
-            android:icon="@drawable/ic_menu"
+            android:icon="@drawable/ic_camera"
             android:title="Camera"/>
 
         <item
             android:id="@+id/navItem4"
-            android:icon="@drawable/ic_menu"
+            android:icon="@drawable/ic_location"
             android:title="Floor"/>
 
         <item
             android:id="@+id/navItem5"
-            android:icon="@drawable/ic_menu"
+            android:icon="@drawable/ic_location"
             android:title="Where To Go"/>
 
         <item
             android:id="@+id/navItem6"
-            android:icon="@drawable/ic_menu"
+            android:icon="@drawable/ic_settings"
             android:title="Setting"/>
     </group>
 

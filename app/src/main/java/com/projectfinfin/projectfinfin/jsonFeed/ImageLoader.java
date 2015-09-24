@@ -46,7 +46,6 @@ public class ImageLoader {
 
     public void DisplayImage(String url, ImageView imageView) {
         if(url.equalsIgnoreCase("web/assets/images/promotion/blank_1.jpg")){
-            Log.e("s","eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee" );
             imageView.setVisibility(View.GONE);
         }
         imageViews.put(imageView, url);

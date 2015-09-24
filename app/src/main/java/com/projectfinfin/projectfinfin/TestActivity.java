@@ -101,11 +101,19 @@ public class TestActivity extends AppCompatActivity {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.navItem6:
-                        fragment = new ProfileFragment();
+                        fragment = new MapFragment();
                         FragmentTransaction transaction6 = getFragmentManager().beginTransaction();
                         transaction6.replace(R.id.container, fragment);
                         transaction6.addToBackStack(null);
                         transaction6.commit();
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.navItem7:
+                        fragment = new ProfileFragment();
+                        FragmentTransaction transaction7 = getFragmentManager().beginTransaction();
+                        transaction7.replace(R.id.container, fragment);
+                        transaction7.addToBackStack(null);
+                        transaction7.commit();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     default:

@@ -28,8 +28,15 @@
 
         <item
             android:id="@+id/navItem6"
+            android:icon="@drawable/ic_location"
+            android:title="Map"/>
+
+        <item
+            android:id="@+id/navItem7"
             android:icon="@drawable/ic_settings"
             android:title="Setting"/>
+
+
     </group>
 
 </menu>

@@ -44,6 +44,11 @@
         <item>3rd Floor</item>
         <item>4th Floor</item>
     </string-array>
+
+    <string-array name="Map_array">
+        <item>Please select Department Store</item>
+        <item>Central Rama II</item>
+    </string-array>
     <string name="title_activity_menu">MenuActivity</string>
     <string name="title_activity_test">TestActivity</string>
     <string name="title_activity_where">WhereActivity</string>

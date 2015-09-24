@@ -21,6 +21,7 @@ import android.os.Handler;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -44,6 +45,10 @@ public class ImageLoader {
     final int stub_id = R.drawable.temp_img;
 
     public void DisplayImage(String url, ImageView imageView) {
+        if(url.equalsIgnoreCase("web/assets/images/promotion/blank_1.jpg")){
+            Log.e("s","eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee" );
+            imageView.setVisibility(View.GONE);
+        }
         imageViews.put(imageView, url);
         //clearCache();
         Bitmap bitmap = memoryCache.get(url);

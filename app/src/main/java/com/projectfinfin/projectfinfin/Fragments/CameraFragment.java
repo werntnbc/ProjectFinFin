@@ -30,6 +30,9 @@ public class CameraFragment extends Fragment {
         View rootView = inflater.inflate(R.layout.fragment_camera, container, false);
 
         //getFragmentManager().beginTransaction().remove(CameraFragment.this).commit();
+        Intent intent = new Intent(getActivity(), ZBarScannerActivity.class);
+        intent.putExtra(ZBarConstants.SCAN_MODES, new int[]{Symbol.QRCODE});
+        startActivityForResult(intent, 0);
 
         Button buttonBarcode = (Button) rootView.findViewById(R.id.button_go_camera);
         buttonBarcode.setOnClickListener(new View.OnClickListener() {
@@ -50,7 +53,8 @@ public class CameraFragment extends Fragment {
         if (resultCode == Activity.RESULT_OK) {
             //Toast.makeText(getActivity(), data.getStringExtra(ZBarConstants.SCAN_RESULT) , Toast.LENGTH_LONG).show();
             Intent i = new Intent(getActivity().getApplicationContext(), NewsfeedActivity.class);
-            i.putExtra("url","http://snappyshop.me/AndroidQuery/checkPromo/"+data.getStringExtra(ZBarConstants.SCAN_RESULT));
+//            i.putExtra("url","http://snappyshop.me/AndroidQuery/checkPromo/"+data.getStringExtra(ZBarConstants.SCAN_RESULT));
+            i.putExtra("url","http://snappyshop.me/android/QueryPromotion.php?id="+data.getStringExtra(ZBarConstants.SCAN_RESULT));
             startActivity(i);
         }
     }

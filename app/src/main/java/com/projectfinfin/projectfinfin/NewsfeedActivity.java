@@ -1,5 +1,6 @@
 package com.projectfinfin.projectfinfin;
 
+import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -66,7 +67,7 @@ public class NewsfeedActivity extends AppCompatActivity {
     public static String link_img1 = "link_img1";
     public static String link_img2 = "link_img2";
     public static String link_img3 = "link_img3";
-    static String url = "http://snappyshop.me/AndroidQuery/checkPromo/2";
+    static String url = "http://snappyshop.me/android/QueryPromotion.php?";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -124,24 +125,41 @@ public class NewsfeedActivity extends AppCompatActivity {
 
             try {
                 // Locate the array name in JSON
-                jsonarray = jsonobject.getJSONArray("promotion");
+                if(jsonobject.isNull("promotion")){
+                    Log.e("234234", "23423423423423");
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(NewsfeedActivity.this);
+                            dialogBuilder.setMessage("ขออภัยร้านนี้ยังไม่มีข้อมูลโปรโมชั่น");
+                            dialogBuilder.setPositiveButton("Ok", null);
+                            dialogBuilder.show();
 
-                for (int i = 0; i < jsonarray.length(); i++) {
-                    HashMap<String, String> map = new HashMap<String, String>();
-                    jsonobject = jsonarray.getJSONObject(i);
-                    // Retrive JSON Objects
-                    map.put("promo_name", jsonobject.getString("promotion_name"));
-                    map.put("promo_startdate", jsonobject.getString("start_date"));
-                    map.put("promo_enddate", jsonobject.getString("end_date"));
-                    map.put("promo_location", jsonobject.getString("promotion_location"));
-                    map.put("promo_link", jsonobject.getString("link"));
-                    map.put("promo_des", jsonobject.getString("promotion_des"));
-                    map.put("logo_pic", jsonobject.getString("member_avatar"));
-                    map.put("link_img1", jsonobject.getString("img_name1"));
-                    map.put("link_img2", jsonobject.getString("img_name2"));
-                    map.put("link_img3", jsonobject.getString("img_name3"));
-                    // Set the JSON Objects into the array
-                    arraylist.add(map);
+                        }
+                    });
+                }else {
+                    jsonarray = jsonobject.getJSONArray("promotion");
+
+//                if(jsonarray != null && jsonobject.getString("promotion_name").equals(JSONObject.NULL)){
+//                    Log.e("234234","23423423423423");
+//                }
+
+                    for (int i = 0; i < jsonarray.length(); i++) {
+                        HashMap<String, String> map = new HashMap<String, String>();
+                        jsonobject = jsonarray.getJSONObject(i);
+                        // Retrive JSON Objects
+                        map.put("promo_name", jsonobject.getString("promotion_name"));
+                        map.put("promo_startdate", jsonobject.getString("start_date"));
+                        map.put("promo_enddate", jsonobject.getString("end_date"));
+                        map.put("promo_location", jsonobject.getString("promotion_location"));
+                        map.put("promo_link", jsonobject.getString("link"));
+                        map.put("promo_des", jsonobject.getString("promotion_des"));
+                        map.put("logo_pic", jsonobject.getString("member_avatar"));
+                        map.put("link_img1", jsonobject.getString("img_name1"));
+                        map.put("link_img2", jsonobject.getString("img_name2"));
+                        map.put("link_img3", jsonobject.getString("img_name3"));
+                        // Set the JSON Objects into the array
+                        arraylist.add(map);
+                    }
                 }
             } catch (JSONException e) {
                 Log.e("Error", e.getMessage());

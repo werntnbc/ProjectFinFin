@@ -17,6 +17,8 @@ public class TypeFoodActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type_food);
+        //button back on action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Click button type food noodle go to group
         Button buttonNoodle = (Button)findViewById(R.id.button_noodle);
         Button buttonPizza = (Button)findViewById(R.id.button_pizza);

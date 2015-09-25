@@ -13,7 +13,7 @@ public class TypeElectronicActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type_electronic);
         //button back on action bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override

@@ -13,7 +13,7 @@ public class TypeBeautyActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type_beauty);
         //button back on action bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override

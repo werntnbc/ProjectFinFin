@@ -16,7 +16,7 @@ public class TypeFashionActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type_fashion);
         //button back on action bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
     }
 

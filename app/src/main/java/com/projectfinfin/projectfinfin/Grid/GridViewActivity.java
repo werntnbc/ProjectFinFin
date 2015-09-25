@@ -30,6 +30,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.projectfinfin.projectfinfin.NewsfeedActivity;
+import com.projectfinfin.projectfinfin.NewsfeedFragment;
 import com.projectfinfin.projectfinfin.R;
 
 public class GridViewActivity extends ActionBarActivity {
@@ -46,6 +47,8 @@ public class GridViewActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grid_view);
+        //button back on action bar
+
 
         Bundle extra = getIntent().getExtras();
 
@@ -69,7 +72,7 @@ public class GridViewActivity extends ActionBarActivity {
                 //Get item at position
                 GridItem item = (GridItem) parent.getItemAtPosition(position);
 
-                Intent intent = new Intent(GridViewActivity.this, NewsfeedActivity.class);
+                Intent intent = new Intent(GridViewActivity.this, NewsfeedFragment.class);
                 intent.putExtra("url","http://snappyshop.me/android/QueryPromotion.php?id="+item.getStore_id());
 
                 /*Intent intent = new Intent(GridViewActivity.this, DetailsActivity.class);

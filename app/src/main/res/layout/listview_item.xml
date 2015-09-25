@@ -4,7 +4,6 @@
     android:layout_height="fill_parent"
     android:background="#FFFFFF">
 
-
     <!--promotion name-->
     <TextView
         android:id="@+id/promo_name"
@@ -73,9 +72,6 @@
         android:layout_marginTop="5dp"
         android:layout_toRightOf="@+id/locationlabel"
         android:textColor="#db1cf6d3" />
-
-
-
 
     <!-- pictue -->
     <ImageView

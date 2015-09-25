@@ -13,7 +13,7 @@ public class TypeHomeActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type_home);
         //button back on action bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override

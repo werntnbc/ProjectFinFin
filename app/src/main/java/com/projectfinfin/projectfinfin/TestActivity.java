@@ -64,8 +64,14 @@ public class TestActivity extends AppCompatActivity {
                 int id = menuItem.getItemId();
                 switch (id) {
                     case R.id.navItem1:
-                        intent = new Intent(getApplicationContext(), NewsfeedActivity.class);
-                        startActivity(intent);
+//                        intent = new Intent(getApplicationContext(), NewsfeedActivity.class);
+//                        startActivity(intent);
+//                        drawerLayout.closeDrawer(GravityCompat.START);
+                        fragment = new NewsfeedFragment();
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        transaction.replace(R.id.container, fragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.navItem2:
@@ -109,7 +115,7 @@ public class TestActivity extends AppCompatActivity {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.navItem7:
-                        fragment = new ProfileFragment();
+                        fragment = new SettingFragment();
                         FragmentTransaction transaction7 = getFragmentManager().beginTransaction();
                         transaction7.replace(R.id.container, fragment);
                         transaction7.addToBackStack(null);

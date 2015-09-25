@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.projectfinfin.projectfinfin.NewsfeedActivity;
+import com.projectfinfin.projectfinfin.NewsfeedFragment;
 import com.projectfinfin.projectfinfin.R;
 import com.projectfinfin.projectfinfin.TestActivity;
 

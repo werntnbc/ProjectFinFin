@@ -9,9 +9,6 @@
     android:paddingTop="16dp"
     android:background="#db92e5cc">
 
-
-
-
     <!--scroll view -->
     <ScrollView
         android:layout_width="match_parent"

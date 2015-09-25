@@ -13,7 +13,7 @@ public class TypeBabyActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type_baby);
         //button back on action bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override

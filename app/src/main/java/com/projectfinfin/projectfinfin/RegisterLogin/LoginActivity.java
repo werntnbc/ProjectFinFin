@@ -1,7 +1,11 @@
 package com.projectfinfin.projectfinfin.RegisterLogin;
 
 import android.app.AlertDialog;
+
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -12,14 +16,14 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.projectfinfin.projectfinfin.NewsfeedActivity;
+import com.projectfinfin.projectfinfin.NewsfeedFragment;
 import com.projectfinfin.projectfinfin.R;
 import com.projectfinfin.projectfinfin.TestActivity;
 
 
-public class LoginActivity extends ActionBarActivity implements View.OnClickListener{
+public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
 
     TextView tvSignupNow;
-
 
 
     @Override
@@ -30,18 +34,18 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
 
         Bundle extra = getIntent().getExtras();
 
-        if(extra != null){
+        if (extra != null) {
             String Check = (String) extra.get("Register");
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(LoginActivity.this);
             dialogBuilder.setMessage("Register Successful");
             dialogBuilder.setPositiveButton("Ok", null);
-            if(Check.equalsIgnoreCase("Success")){
+            if (Check.equalsIgnoreCase("Success")) {
                 dialogBuilder.show();
             }
         }
 
         //Click button sign in with email
-        Button buttonEmail = (Button)findViewById(R.id.button_email);
+        Button buttonEmail = (Button) findViewById(R.id.button_email);
         buttonEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,12 +54,14 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             }
         });
         //Click button sign in with facebook
-        Button buttonFacebook = (Button)findViewById(R.id.button_facebook);
+        Button buttonFacebook = (Button) findViewById(R.id.button_facebook);
         buttonFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), TestActivity.class);
                 startActivity(i);
+
+
             }
         });
 
@@ -70,11 +76,9 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             }
         });
         */
-        tvSignupNow = (TextView)findViewById(R.id.tvSignupNow);
+        tvSignupNow = (TextView) findViewById(R.id.tvSignupNow);
         tvSignupNow.setOnClickListener(this);
     }
-
-
 
 
     @Override

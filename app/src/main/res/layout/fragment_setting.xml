@@ -1,0 +1,94 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f0f0f0"
+    tools:context="com.projectfinfin.projectfinfin.SettingActivity">
+
+
+    <!--scroll view -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <!--listview in setting-->
+
+            <!--listview account-->
+            <TextView
+                android:id="@+id/text_setting_account"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:text="ACCOUNT"
+                android:textColor="@color/app_color"
+                android:textStyle="bold" />
+
+            <ListView
+                android:id="@+id/listview_account"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:dividerHeight="1dp" />
+
+            <!--listview social network-->
+            <TextView
+                android:id="@+id/text_setting_social"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/listview_account"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:text="SOCIAL NETWORK"
+                android:textColor="@color/app_color"
+                android:textStyle="bold" />
+
+            <ListView
+                android:id="@+id/listview_social"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:dividerHeight="1dp" />
+
+            <!--listview support-->
+
+            <TextView
+                android:id="@+id/text_setting_support"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/listview_social"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:text="SUPPORT"
+                android:textColor="@color/app_color"
+                android:textStyle="bold" />
+
+            <ListView
+                android:id="@+id/listview_support"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"
+                android:dividerHeight="1dp" />
+
+            <!--button logout-->
+
+            <Button
+                android:id="@+id/bLogout"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/listview_support"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/actionbar1"
+                android:text="Log out"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>

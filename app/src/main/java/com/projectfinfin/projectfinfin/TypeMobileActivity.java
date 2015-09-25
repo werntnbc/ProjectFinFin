@@ -13,7 +13,7 @@ public class TypeMobileActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type_mobile);
         //button back on action bar
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override

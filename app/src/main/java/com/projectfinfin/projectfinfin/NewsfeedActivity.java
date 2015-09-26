@@ -1,6 +1,8 @@
 package com.projectfinfin.projectfinfin;
 
 import android.app.AlertDialog;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
@@ -8,8 +10,10 @@ import android.os.AsyncTask;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -31,6 +35,8 @@ import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 
 
+import com.projectfinfin.projectfinfin.Fragments.CameraFragment;
+import com.projectfinfin.projectfinfin.Fragments.CategoryFragment;
 import com.projectfinfin.projectfinfin.jsonFeed.ImageLoader;
 import com.projectfinfin.projectfinfin.jsonFeed.JSONfunctions;
 import com.projectfinfin.projectfinfin.jsonFeed.ListViewAdapter;
@@ -55,6 +61,12 @@ public class NewsfeedActivity extends AppCompatActivity {
     ArrayList<HashMap<String, String>> arraylist;
     ArrayList<String> arr_list;
     private SwipeRefreshLayout mSwipeRefreshLayout = null;
+    //tool bar
+    Toolbar toolbar;
+    DrawerLayout drawerLayout;
+    android.support.v7.app.ActionBarDrawerToggle drawerToggle;
+    CoordinatorLayout rootLayout;
+    NavigationView navigation;
 
 
     public static String promo_name = "promo_name";
@@ -94,6 +106,91 @@ public class NewsfeedActivity extends AppCompatActivity {
         });
 
         new DownloadJSON().execute();
+        //tool bar
+        initToolbar();
+        initInstances();
+    }
+
+    //tool bar
+    private void initToolbar() {
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+    }
+
+    private void initInstances() {
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawerLayout);
+        drawerToggle = new android.support.v7.app.ActionBarDrawerToggle(this, drawerLayout, R.string.hello_world, R.string.hello_world);
+        drawerLayout.setDrawerListener(drawerToggle);
+
+        rootLayout = (CoordinatorLayout) findViewById(R.id.rootLayout);
+
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        navigation = (NavigationView) findViewById(R.id.navigation);
+        navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(MenuItem menuItem) {
+                Fragment fragment = null;
+                Intent intent = null;
+
+                int id = menuItem.getItemId();
+                switch (id) {
+                    case R.id.navItem1:
+                        intent = new Intent(getApplicationContext(), NewsfeedActivity.class);
+                        startActivity(intent);
+                        drawerLayout.closeDrawer(GravityCompat.START);
+//                        fragment = new NewsfeedFragment();
+//                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+//                        transaction.replace(R.id.container, fragment);
+//                        transaction.addToBackStack(null);
+//                        transaction.commit();
+//                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.navItem2:
+                        fragment = new CategoryFragment();
+                        FragmentTransaction transaction1 = getFragmentManager().beginTransaction();
+                        transaction1.replace(R.id.container, fragment);
+                        transaction1.addToBackStack(null);
+                        transaction1.commit();
+                        getString(R.string.title_category);
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.navItem3:
+                        fragment = new CameraFragment();
+                        FragmentTransaction transaction2 = getFragmentManager().beginTransaction();
+                        transaction2.replace(R.id.container, fragment);
+                        transaction2.addToBackStack(null);
+                        transaction2.commit();
+                        getString(R.string.title_camera);
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.navItem4:
+                        fragment = new MapFragment();
+                        FragmentTransaction transaction3 = getFragmentManager().beginTransaction();
+                        transaction3.replace(R.id.container, fragment);
+                        transaction3.addToBackStack(null);
+                        transaction3.commit();
+                        getString(R.string.title_map);
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.navItem5:
+                        fragment = new SettingFragment();
+                        FragmentTransaction transaction4 = getFragmentManager().beginTransaction();
+                        transaction4.replace(R.id.container, fragment);
+                        transaction4.addToBackStack(null);
+                        transaction4.commit();
+                        getString(R.string.title_setting);
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    default:
+                        break;
+                }
+                return false;
+            }
+        });
+
+
     }
 
     // DownloadJSON AsyncTask
@@ -187,8 +284,14 @@ public class NewsfeedActivity extends AppCompatActivity {
     @Override
     public void onPostCreate(Bundle savedInstanceState) {
         super.onPostCreate(savedInstanceState);
+        drawerToggle.syncState();
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        drawerToggle.onConfigurationChanged(newConfig);
+    }
 
 
     @Override
@@ -200,6 +303,8 @@ public class NewsfeedActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        if (drawerToggle.onOptionsItemSelected(item))
+            return true;
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.

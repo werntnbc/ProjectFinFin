@@ -72,7 +72,7 @@ public class GridViewActivity extends ActionBarActivity {
                 //Get item at position
                 GridItem item = (GridItem) parent.getItemAtPosition(position);
 
-                Intent intent = new Intent(GridViewActivity.this, NewsfeedFragment.class);
+                Intent intent = new Intent(GridViewActivity.this, NewsfeedActivity.class);
                 intent.putExtra("url","http://snappyshop.me/android/QueryPromotion.php?id="+item.getStore_id());
 
                 /*Intent intent = new Intent(GridViewActivity.this, DetailsActivity.class);

@@ -86,17 +86,17 @@ public class ListViewAdapter extends BaseAdapter {
 
         // Capture position and set results to the TextViews
 
-        proname.setText(resultp.get(NewsfeedFragment.promo_name));
-        location.setText(resultp.get(NewsfeedFragment.promo_location));
-        startdate.setText(resultp.get(NewsfeedFragment.promo_startdate));
-        enddate.setText(resultp.get(NewsfeedFragment.promo_enddate));
+        proname.setText(resultp.get(NewsfeedActivity.promo_name));
+        location.setText(resultp.get(NewsfeedActivity.promo_location));
+        startdate.setText(resultp.get(NewsfeedActivity.promo_startdate));
+        enddate.setText(resultp.get(NewsfeedActivity.promo_enddate));
     //    prolink.setText(resultp.get(NewsfeedActivity.promo_link));
     //    prodes.setText(resultp.get(NewsfeedActivity.promo_des));
 
         // Capture position and set results to the ImageView
         // Passes propic images URL into ImageLoader.class
-        Log.v("sssssssssssss", "web/assets/images/avatars/"+resultp.get(NewsfeedFragment.logo_pic));
-        imageLoader.DisplayImage("web/assets/images/avatars/" + resultp.get(NewsfeedFragment.logo_pic), propic);
+        Log.v("sssssssssssss", "web/assets/images/avatars/"+resultp.get(NewsfeedActivity.logo_pic));
+        imageLoader.DisplayImage("web/assets/images/avatars/" + resultp.get(NewsfeedActivity.logo_pic), propic);
         // Capture ListView item click
         itemView.setOnClickListener(new OnClickListener() {
 
@@ -106,23 +106,23 @@ public class ListViewAdapter extends BaseAdapter {
                 resultp = data.get(position);
                 Intent intent = new Intent(context, SingleItemView.class);
                 // Pass all data proname
-                intent.putExtra("promo_name", resultp.get(NewsfeedFragment.promo_name));
+                intent.putExtra("promo_name", resultp.get(NewsfeedActivity.promo_name));
                 // Pass all data start date
-                intent.putExtra("promo_startdate", resultp.get(NewsfeedFragment.promo_startdate));
+                intent.putExtra("promo_startdate", resultp.get(NewsfeedActivity.promo_startdate));
                 // Pass all data end date
-                intent.putExtra("promo_enddate", resultp.get(NewsfeedFragment.promo_enddate));
+                intent.putExtra("promo_enddate", resultp.get(NewsfeedActivity.promo_enddate));
                 // Pass all data location
-                intent.putExtra("promo_location", resultp.get(NewsfeedFragment.promo_location));
+                intent.putExtra("promo_location", resultp.get(NewsfeedActivity.promo_location));
                 // Pass all data link
-                intent.putExtra("promo_link", resultp.get(NewsfeedFragment.promo_link));
+                intent.putExtra("promo_link", resultp.get(NewsfeedActivity.promo_link));
                 // Pass all data description
-                intent.putExtra("promo_des", resultp.get(NewsfeedFragment.promo_des));
+                intent.putExtra("promo_des", resultp.get(NewsfeedActivity.promo_des));
                 // Pass all data propic
-                intent.putExtra("link_img1", resultp.get(NewsfeedFragment.link_img1));
+                intent.putExtra("link_img1", resultp.get(NewsfeedActivity.link_img1));
                 // Pass all data propic
-                intent.putExtra("link_img2", resultp.get(NewsfeedFragment.link_img2));
+                intent.putExtra("link_img2", resultp.get(NewsfeedActivity.link_img2));
                 // Pass all data propic
-                intent.putExtra("link_img3", resultp.get(NewsfeedFragment.link_img3));
+                intent.putExtra("link_img3", resultp.get(NewsfeedActivity.link_img3));
                 // Start SingleItemView Class
                 context.startActivity(intent);
 

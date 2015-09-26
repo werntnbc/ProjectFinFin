@@ -88,7 +88,7 @@ public class LoginEmailActivity extends ActionBarActivity implements View.OnClic
         userLocalStore.storeUserDeta(returnedUser);
         userLocalStore.setUserLoggedIn(true);
 
-        startActivity(new Intent(this, TestActivity.class));
+        startActivity(new Intent(this, NewsfeedActivity.class));
     }
 }
     /*

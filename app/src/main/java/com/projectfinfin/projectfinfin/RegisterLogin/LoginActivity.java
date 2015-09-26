@@ -58,7 +58,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         buttonFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), TestActivity.class);
+                Intent i = new Intent(getApplicationContext(), NewsfeedActivity.class);
                 startActivity(i);
 
 

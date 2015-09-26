@@ -27,6 +27,7 @@
     <string name="title_activity_group">Group</string>
     <string name="title_activity_camera_preview">Scanner</string>
     <string name="title_activity_singleitemview">Description</string>
+    <string name="title_activity_gridview">Group</string>
 
 
     <string name="promotion_id">"ID : "</string>
@@ -54,6 +55,8 @@
     <string name="title_activity_where">Where To Go</string>
     <string name="title_activity_change_password">Change Password</string>
     <string name="title_activity_forget_password">Forget Password</string>
-
-
+    <string name="title_category">Category</string>
+    <string name="title_camera">Scanner</string>
+    <string name="title_map">Map</string>
+    <string name="title_setting">Setting</string>
 </resources>

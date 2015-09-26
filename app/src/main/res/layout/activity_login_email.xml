@@ -70,8 +70,8 @@
                     android:id="@+id/tvForget"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Forget your password."
-                    android:textColor="#db1bd1ae"
+                    android:hint="Reset your password."
+                    android:textColor="#e3530d"
                     android:textStyle="bold" />
             </LinearLayout>
 

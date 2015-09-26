@@ -8,7 +8,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
+import com.projectfinfin.projectfinfin.ForgetPassword;
 import com.projectfinfin.projectfinfin.NewsfeedActivity;
 import com.projectfinfin.projectfinfin.NewsfeedFragment;
 import com.projectfinfin.projectfinfin.R;
@@ -22,6 +24,7 @@ public class LoginEmailActivity extends ActionBarActivity implements View.OnClic
     Button bLogin;
     EditText etUsername , etPassword;
     UserLocalStore userLocalStore;
+    TextView tvForget;
 
 
     @Override
@@ -36,6 +39,8 @@ public class LoginEmailActivity extends ActionBarActivity implements View.OnClic
         etUsername = (EditText)findViewById(R.id.etUsername);
         etPassword = (EditText)findViewById(R.id.etPassword);
         bLogin = (Button)findViewById(R.id.bLogin);
+        tvForget = (TextView)findViewById(R.id.tvForget);
+        tvForget.setOnClickListener(this);
 
         bLogin.setOnClickListener(this);
         userLocalStore = new UserLocalStore(this);
@@ -49,9 +54,10 @@ public class LoginEmailActivity extends ActionBarActivity implements View.OnClic
                 String username = etUsername.getText().toString();
                 String password = etPassword.getText().toString();
                 User user = new User(username , password);
-
                 authenticate(user);
-
+                break;
+            case R.id.tvForget:
+                startActivity(new Intent(this, ForgetPassword.class));
                 break;
         }
     }

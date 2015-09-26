@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="#FFFFFF">
 
     <Button
         android:id="@+id/button_go_camera"
@@ -12,5 +12,6 @@
         android:background="#dbf04685"
         android:text="Snap Camera"
         android:textColor="#FFFFFF" />
+
 
 </LinearLayout>

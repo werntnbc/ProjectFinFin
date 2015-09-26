@@ -30,9 +30,8 @@ public class SettingActivity extends ActionBarActivity implements View.OnClickLi
 
 
         // for listview setting page
-
         // for listview account
-        String[] listAccount = {"Name", "Email", "Password", "Mobile Number", "Notification"};
+        String[] listAccount = {"Change Password", "Email", "Name", "Mobile Number", "Notification"};
         CustomAdapter_Setting adapter = new CustomAdapter_Setting(getApplicationContext(), listAccount);
         ListView listviewAccount = (ListView) findViewById(R.id.listview_account);
         listviewAccount.setAdapter(adapter);

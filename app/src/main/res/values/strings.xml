@@ -49,9 +49,11 @@
         <item>Please select Department Store</item>
         <item>Central Rama II</item>
     </string-array>
-    <string name="title_activity_menu">MenuActivity</string>
+    <string name="title_activity_menu">Menu</string>
     <string name="title_activity_test">TestActivity</string>
-    <string name="title_activity_where">WhereActivity</string>
+    <string name="title_activity_where">Where To Go</string>
+    <string name="title_activity_change_password">Change Password</string>
+    <string name="title_activity_forget_password">Forget Password</string>
 
 
 </resources>

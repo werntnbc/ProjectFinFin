@@ -63,6 +63,19 @@
                         android:inputType="textPassword" />
                 </android.support.design.widget.TextInputLayout>
 
+                <!-- email-->
+                <android.support.design.widget.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp">
+
+                    <EditText
+                        android:id="@+id/etEmail"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Email" />
+                </android.support.design.widget.TextInputLayout>
+
                 <!-- Age -->
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -92,16 +105,6 @@
                     android:text="Register"
                     android:textColor="#FFFFFF"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tvTerm"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/bRegister"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp"
-                    android:text="Term of Service and Privacy Policy"
-                    android:textSize="18dp" />
 
         </LinearLayout>
     </ScrollView>

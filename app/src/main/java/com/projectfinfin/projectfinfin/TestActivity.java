@@ -91,35 +91,19 @@ public class TestActivity extends AppCompatActivity {
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.navItem4:
-                        fragment = new FloorSpinner();
+                        fragment = new MapFragment();
+                        FragmentTransaction transaction3 = getFragmentManager().beginTransaction();
+                        transaction3.replace(R.id.container, fragment);
+                        transaction3.addToBackStack(null);
+                        transaction3.commit();
+                        drawerLayout.closeDrawer(GravityCompat.START);
+                        break;
+                    case R.id.navItem5:
+                        fragment = new SettingFragment();
                         FragmentTransaction transaction4 = getFragmentManager().beginTransaction();
                         transaction4.replace(R.id.container, fragment);
                         transaction4.addToBackStack(null);
                         transaction4.commit();
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                    case R.id.navItem5:
-                        fragment = new InNavFragment();
-                        FragmentTransaction transaction5 = getFragmentManager().beginTransaction();
-                        transaction5.replace(R.id.container, fragment);
-                        transaction5.addToBackStack(null);
-                        transaction5.commit();
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                    case R.id.navItem6:
-                        fragment = new MapFragment();
-                        FragmentTransaction transaction6 = getFragmentManager().beginTransaction();
-                        transaction6.replace(R.id.container, fragment);
-                        transaction6.addToBackStack(null);
-                        transaction6.commit();
-                        drawerLayout.closeDrawer(GravityCompat.START);
-                        break;
-                    case R.id.navItem7:
-                        fragment = new SettingFragment();
-                        FragmentTransaction transaction7 = getFragmentManager().beginTransaction();
-                        transaction7.replace(R.id.container, fragment);
-                        transaction7.addToBackStack(null);
-                        transaction7.commit();
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     default:

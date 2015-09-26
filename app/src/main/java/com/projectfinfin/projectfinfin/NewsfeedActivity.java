@@ -153,7 +153,8 @@ public class NewsfeedActivity extends AppCompatActivity {
                         transaction1.replace(R.id.container, fragment);
                         transaction1.addToBackStack(null);
                         transaction1.commit();
-                        getString(R.string.title_category);
+//                        getString(R.string.title_category);
+                        getSupportActionBar().setTitle("Category");
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.navItem3:
@@ -162,7 +163,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                         transaction2.replace(R.id.container, fragment);
                         transaction2.addToBackStack(null);
                         transaction2.commit();
-                        getString(R.string.title_camera);
+                        getSupportActionBar().setTitle("Camera Scanner");
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.navItem4:
@@ -171,7 +172,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                         transaction3.replace(R.id.container, fragment);
                         transaction3.addToBackStack(null);
                         transaction3.commit();
-                        getString(R.string.title_map);
+                        getSupportActionBar().setTitle("Map");
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.navItem5:
@@ -180,7 +181,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                         transaction4.replace(R.id.container, fragment);
                         transaction4.addToBackStack(null);
                         transaction4.commit();
-                        getString(R.string.title_setting);
+                        getSupportActionBar().setTitle("Setting");
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     default:

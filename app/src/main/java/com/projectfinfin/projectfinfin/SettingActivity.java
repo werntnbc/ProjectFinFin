@@ -17,8 +17,8 @@ import com.projectfinfin.projectfinfin.RegisterLogin.UserLocalStore;
 
 public class SettingActivity extends ActionBarActivity implements View.OnClickListener {
 
-    Button bLogout;
-    EditText etUsername, etPassword, etAge;
+    Button bLogout,bChangePass;
+    EditText etUsername, etPassword, email, etAge;
     UserLocalStore userLocalStore;
 
     @Override
@@ -50,6 +50,7 @@ public class SettingActivity extends ActionBarActivity implements View.OnClickLi
 
         //Logout
         bLogout = (Button) findViewById(R.id.bLogout);
+        bChangePass = (Button) findViewById(R.id.bChangepass);
         bLogout.setOnClickListener(this);
         userLocalStore = new UserLocalStore(this);
         //maybe dont use

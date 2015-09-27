@@ -33,10 +33,13 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.widget.TextView;
 
 
 import com.projectfinfin.projectfinfin.Fragments.CameraFragment;
 import com.projectfinfin.projectfinfin.Fragments.CategoryFragment;
+import com.projectfinfin.projectfinfin.RegisterLogin.User;
+import com.projectfinfin.projectfinfin.RegisterLogin.UserLocalStore;
 import com.projectfinfin.projectfinfin.jsonFeed.ImageLoader;
 import com.projectfinfin.projectfinfin.jsonFeed.JSONfunctions;
 import com.projectfinfin.projectfinfin.jsonFeed.ListViewAdapter;
@@ -67,6 +70,7 @@ public class NewsfeedActivity extends AppCompatActivity {
     android.support.v7.app.ActionBarDrawerToggle drawerToggle;
     CoordinatorLayout rootLayout;
     NavigationView navigation;
+    UserLocalStore userLocalStore;
 
 
     public static String promo_name = "promo_name";
@@ -94,6 +98,16 @@ public class NewsfeedActivity extends AppCompatActivity {
         } else {
             url = "http://snappyshop.me/android/QueryPromotion.php";
         }
+        userLocalStore = new UserLocalStore(this);
+        if(userLocalStore.getLoggedInUser() == null){
+            Log.e("Login Status : ", "null no login");
+        }else{
+            User user = userLocalStore.getLoggedInUser();
+            TextView username = (TextView) findViewById(R.id.userNameLoginID);
+            Log.e("Login Status : ", user.username + "");
+            username.setText(user.username);
+        }
+
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
         //mSwipeRefreshLayout.setColorSchemeColors(0,0,0,0);
@@ -127,6 +141,8 @@ public class NewsfeedActivity extends AppCompatActivity {
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        //navigation.getMenu().findItem(R.id.navItem5).setVisible(false); // remove setting nav setting
+
         navigation = (NavigationView) findViewById(R.id.navigation);
         navigation.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -140,6 +156,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                         intent = new Intent(getApplicationContext(), NewsfeedActivity.class);
                         startActivity(intent);
                         drawerLayout.closeDrawer(GravityCompat.START);
+                        finish();
 //                        fragment = new NewsfeedFragment();
 //                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
 //                        transaction.replace(R.id.container, fragment);
@@ -224,7 +241,7 @@ public class NewsfeedActivity extends AppCompatActivity {
             try {
                 // Locate the array name in JSON
                 if(jsonobject.isNull("promotion")){
-                    Log.e("234234", "23423423423423");
+                    Log.e("array", "null");
                     runOnUiThread(new Runnable() {
                         public void run() {
                             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(NewsfeedActivity.this);
@@ -236,10 +253,6 @@ public class NewsfeedActivity extends AppCompatActivity {
                     });
                 }else {
                     jsonarray = jsonobject.getJSONArray("promotion");
-
-//                if(jsonarray != null && jsonobject.getString("promotion_name").equals(JSONObject.NULL)){
-//                    Log.e("234234","23423423423423");
-//                }
 
                     for (int i = 0; i < jsonarray.length(); i++) {
                         HashMap<String, String> map = new HashMap<String, String>();

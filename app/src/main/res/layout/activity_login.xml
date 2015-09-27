@@ -69,13 +69,13 @@
         android:text="Already have an account?" />
 
     <TextView
-        android:id="@+id/tvSignupNow"
+        android:id="@+id/tvSignInNow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerInParent="true"
         android:textColor="#ffc060dd"
         android:textStyle="bold"
-        android:text="Sign up now!"/>
+        android:text="Login Now"/>
 
 </RelativeLayout>

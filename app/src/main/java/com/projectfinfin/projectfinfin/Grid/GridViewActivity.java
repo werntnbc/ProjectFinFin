@@ -3,15 +3,18 @@ package com.projectfinfin.projectfinfin.Grid;
 /**
  * Created by haball on 18/9/2558.
  */
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
@@ -53,7 +56,7 @@ public class GridViewActivity extends ActionBarActivity {
         Bundle extra = getIntent().getExtras();
 
         if (extra != null) {
-            FEED_URL = FEED_URL+extra.get("ParamUrl");
+            FEED_URL = FEED_URL + extra.get("ParamUrl");
         } else {
             FEED_URL = "http://snappyshop.me/android/QueryType.php";
         }
@@ -73,7 +76,7 @@ public class GridViewActivity extends ActionBarActivity {
                 GridItem item = (GridItem) parent.getItemAtPosition(position);
 
                 Intent intent = new Intent(GridViewActivity.this, NewsfeedActivity.class);
-                intent.putExtra("url","http://snappyshop.me/android/QueryPromotion.php?id="+item.getStore_id());
+                intent.putExtra("url", "http://snappyshop.me/android/QueryPromotion.php?id=" + item.getStore_id());
 
                 /*Intent intent = new Intent(GridViewActivity.this, DetailsActivity.class);
                 ImageView imageView = (ImageView) v.findViewById(R.id.grid_item_image);
@@ -173,27 +176,49 @@ public class GridViewActivity extends ActionBarActivity {
     private void parseResult(String result) {
         try {
             JSONObject response = new JSONObject(result);
-            JSONArray posts = response.optJSONArray("promotion");
-            GridItem item;
-            for (int i = 0; i < posts.length(); i++) {
-                JSONObject post = posts.optJSONObject(i);
-                String title = post.optString("store_name");
-                String store_id = post.optString("store_id");
-                String member_id = post.optString("member_id");
-                item = new GridItem();
-                item.setTitle(title);
-                item.setStore_id(store_id);
-                item.setMember_id(member_id);
-                String image = post.optString("member_avatar");
-                item.setImage("http://www.snappyshop.me/web/assets/images/avatars/"+image);
-                Log.v("image", "www.snappyshop.me/web/assets/images/avatars/"+image);
-                /*JSONArray attachments = post.getJSONArray("img_name");
-                if (null != attachments && attachments.length() > 0) {
-                    JSONObject attachment = attachments.getJSONObject(0);
-                    if (attachment != null)
-                        item.setImage(attachment.getString("url"));
-                }*/
-                mGridData.add(item);
+            if(response.isNull("promotion")){
+                Log.e("sdf","erorr");
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(GridViewActivity.this);
+                        dialogBuilder.setMessage("ขออภัยหมวดหมู่นี้ยังไม่มีข้อมูล");
+                        dialogBuilder.setPositiveButton("Ok", null);
+                        final Handler handler = new Handler();
+                        final AlertDialog alert = dialogBuilder.create();
+                        alert.show();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                alert.cancel();
+                                finish();
+                            }
+                        }, 1000);
+
+                    }
+                });
+            }else {
+                JSONArray posts = response.optJSONArray("promotion");
+                GridItem item;
+                for (int i = 0; i < posts.length(); i++) {
+                    JSONObject post = posts.optJSONObject(i);
+                    String title = post.optString("store_name");
+                    String store_id = post.optString("store_id");
+                    String member_id = post.optString("member_id");
+                    item = new GridItem();
+                    item.setTitle(title);
+                    item.setStore_id(store_id);
+                    item.setMember_id(member_id);
+                    String image = post.optString("member_avatar");
+                    item.setImage("http://www.snappyshop.me/web/assets/images/avatars/" + image);
+                    Log.v("image", "www.snappyshop.me/web/assets/images/avatars/" + image);
+                    /*JSONArray attachments = post.getJSONArray("img_name");
+                    if (null != attachments && attachments.length() > 0) {
+                        JSONObject attachment = attachments.getJSONObject(0);
+                        if (attachment != null)
+                            item.setImage(attachment.getString("url"));
+                    }*/
+                    mGridData.add(item);
+                }
             }
         } catch (JSONException e) {
             e.printStackTrace();

@@ -2,13 +2,10 @@ package com.projectfinfin.projectfinfin.RegisterLogin;
 
 import android.app.AlertDialog;
 
-import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.content.Intent;
-import android.support.v4.view.GravityCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,14 +13,13 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.projectfinfin.projectfinfin.NewsfeedActivity;
-import com.projectfinfin.projectfinfin.NewsfeedFragment;
 import com.projectfinfin.projectfinfin.R;
-import com.projectfinfin.projectfinfin.TestActivity;
 
 
 public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
 
     TextView tvSignupNow;
+    UserLocalStore userLocalStore;
 
 
     @Override
@@ -37,11 +33,21 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         if (extra != null) {
             String Check = (String) extra.get("Register");
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(LoginActivity.this);
-            dialogBuilder.setMessage("Register Successful");
+            dialogBuilder.setMessage("สมัครสมาชิกเรียบร้อย กรุณาเข้าไปที่ E-mail ของท่านเพื่อยืนยันตัวตนเปิดใช้งาน");
             dialogBuilder.setPositiveButton("Ok", null);
             if (Check.equalsIgnoreCase("Success")) {
                 dialogBuilder.show();
             }
+        }
+
+        // check user login ? if yes then go newsfeeds
+        userLocalStore = new UserLocalStore(this);
+        if(userLocalStore.getLoggedInUser() == null){
+            Log.e("Login Status : ", "null no login");
+        }else{
+            Intent i = new Intent(getApplicationContext(), NewsfeedActivity.class);
+            finish();
+            startActivity(i);
         }
 
         //Click button sign in with email
@@ -49,7 +55,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
         buttonEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), LoginEmailActivity.class);
+                Intent i = new Intent(getApplicationContext(), SignupActivity.class);
                 startActivity(i);
             }
         });
@@ -76,7 +82,7 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             }
         });
         */
-        tvSignupNow = (TextView) findViewById(R.id.tvSignupNow);
+        tvSignupNow = (TextView) findViewById(R.id.tvSignInNow);
         tvSignupNow.setOnClickListener(this);
     }
 
@@ -84,8 +90,8 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tvSignupNow:
-                startActivity(new Intent(this, SignupActivity.class));
+            case R.id.tvSignInNow:
+                startActivity(new Intent(this, LoginEmailActivity.class));
                 break;
         }
     }

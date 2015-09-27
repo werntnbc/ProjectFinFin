@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.projectfinfin.projectfinfin.Grid.GridViewActivity;
 import com.projectfinfin.projectfinfin.NewsfeedActivity;
 import com.projectfinfin.projectfinfin.R;
 import com.projectfinfin.projectfinfin.zbarscanner.ZBarConstants;
@@ -52,9 +53,15 @@ public class CameraFragment extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
             //Toast.makeText(getActivity(), data.getStringExtra(ZBarConstants.SCAN_RESULT) , Toast.LENGTH_LONG).show();
-            Intent i = new Intent(getActivity().getApplicationContext(), NewsfeedActivity.class);
-//            i.putExtra("url","http://snappyshop.me/AndroidQuery/checkPromo/"+data.getStringExtra(ZBarConstants.SCAN_RESULT));
-            i.putExtra("url","http://snappyshop.me/android/QueryPromotion.php?id="+data.getStringExtra(ZBarConstants.SCAN_RESULT));
+            Intent i = null;
+            if(data.getStringExtra(ZBarConstants.SCAN_RESULT).indexOf(',') != -1) {
+                i = new Intent(getActivity().getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=" + data.getStringExtra(ZBarConstants.SCAN_RESULT));
+            } else {
+                i = new Intent(getActivity().getApplicationContext(), NewsfeedActivity.class);
+                i.putExtra("url", "http://snappyshop.me/android/QueryPromotion.php?id=" + data.getStringExtra(ZBarConstants.SCAN_RESULT));
+            }
+//          i.putExtra("url","http://snappyshop.me/AndroidQuery/checkPromo/"+data.getStringExtra(ZBarConstants.SCAN_RESULT));
             startActivity(i);
         }
     }

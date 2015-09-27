@@ -30,10 +30,13 @@ public class SingleItemView extends ActionBarActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         // Get the view from singleitemview.xml
         setContentView(R.layout.singleitemview);
         //button back on action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
 
         Intent i = getIntent();
 
@@ -85,6 +88,8 @@ public class SingleItemView extends ActionBarActivity {
         imageLoader.DisplayImage(link_img1, imgflag1);
         imageLoader.DisplayImage(link_img2, imgflag2);
         imageLoader.DisplayImage(link_img3, imgflag3);
+
+
 
 
     }

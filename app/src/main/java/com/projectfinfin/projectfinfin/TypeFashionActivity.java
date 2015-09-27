@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import com.projectfinfin.projectfinfin.Grid.GridViewActivity;
+
 
 public class TypeFashionActivity extends ActionBarActivity {
 
@@ -15,7 +17,62 @@ public class TypeFashionActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type_fashion);
-        //button back on action bar
+
+        Button buttonWomen = (Button) findViewById(R.id.button);
+        Button buttonMen = (Button) findViewById(R.id.button1);
+        Button buttonAccessory = (Button) findViewById(R.id.button2);
+        Button Shoes = (Button) findViewById(R.id.button3);
+        Button Bags = (Button) findViewById(R.id.button4);
+        Button Sports = (Button) findViewById(R.id.button5);
+
+        buttonWomen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=16");
+                startActivity(i);
+            }
+        });
+        buttonMen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=17");
+                startActivity(i);
+            }
+        });
+        buttonAccessory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=18");
+                startActivity(i);
+            }
+        });
+        Shoes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=19");
+                startActivity(i);
+            }
+        });
+        Bags.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=20");
+                startActivity(i);
+            }
+        });
+        Sports.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=21");
+                startActivity(i);
+            }
+        });
 
 
     }

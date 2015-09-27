@@ -1,9 +1,14 @@
 package com.projectfinfin.projectfinfin;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+
+import com.projectfinfin.projectfinfin.Grid.GridViewActivity;
 
 
 public class TypeBeautyActivity extends ActionBarActivity {
@@ -12,8 +17,50 @@ public class TypeBeautyActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_type_beauty);
-        //button back on action bar
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Button Beauty = (Button) findViewById(R.id.button);
+        Button Access = (Button) findViewById(R.id.button1);
+        Button Cosmetic = (Button) findViewById(R.id.button2);
+        Button Health = (Button) findViewById(R.id.button3);
+
+        Beauty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=23");
+                startActivity(i);
+            }
+        });
+        Access.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=22");
+                startActivity(i);
+            }
+        });
+        Cosmetic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=24");
+                startActivity(i);
+            }
+        });
+        Health.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=25");
+                startActivity(i);
+            }
+        });
+
+    }
+
+    public void onBackPressed() {
+        finish();
     }
 
     @Override

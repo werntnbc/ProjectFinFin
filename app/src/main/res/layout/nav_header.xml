@@ -14,17 +14,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-       android:layout_marginLeft="12dp"
-       android:layout_margin="10dp"
+        android:layout_margin="10dp"
+        android:layout_marginLeft="12dp"
         android:src="@drawable/ic_user" />
 
     <TextView
+        android:id="@+id/userNameLoginID"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:gravity="center"
-        android:textSize="20sp"
+        android:text="@string/userNameLogin"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:text="werntnbc"/>
+        android:textSize="20sp" />
 
 </FrameLayout>

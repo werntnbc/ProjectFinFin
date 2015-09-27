@@ -22,32 +22,31 @@
                 android:background="?attr/colorPrimary"
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
                 app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
-            <android.support.v4.widget.SwipeRefreshLayout
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                android:id="@+id/swipeRefreshLayout"
+
+
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-
-                <RelativeLayout
+                android:layout_height="match_parent"
+                android:background="#FFFFFF"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                <!-- Content -->
+                <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/swipeRefreshLayout"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="#FFFFFF"
-                    app:layout_behavior="@string/appbar_scrolling_view_behavior">
-                    <!-- Content -->
+                    android:layout_height="wrap_content">
 
                     <ListView
                         android:id="@+id/listview"
                         android:layout_width="fill_parent"
                         android:layout_height="fill_parent" />
+                </android.support.v4.widget.SwipeRefreshLayout>
 
-                    <FrameLayout
-                        android:id="@+id/container"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
+                <FrameLayout
+                    android:id="@+id/container"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-                </RelativeLayout>
-            </android.support.v4.widget.SwipeRefreshLayout>
+            </RelativeLayout>
 
 
         </android.support.design.widget.AppBarLayout>

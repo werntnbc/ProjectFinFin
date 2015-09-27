@@ -32,6 +32,18 @@ public class LoginEmailActivity extends ActionBarActivity implements View.OnClic
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_email);
 
+        Bundle extra = getIntent().getExtras();
+
+        if (extra != null) {
+            String Check = (String) extra.get("forgotpass");
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(LoginEmailActivity.this);
+            dialogBuilder.setMessage("ทางระบบได้ส่ง รหัสผ่านใหม่ไปทาง Email ของท่านเรียบร้อยแล้วโปรดตรวจสอบรหัสได้ที่ E-mail ของท่าน");
+            dialogBuilder.setPositiveButton("Ok", null);
+            if (Check.equalsIgnoreCase("Success")) {
+                dialogBuilder.show();
+            }
+        }
+
         //button back on action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
@@ -78,17 +90,30 @@ public class LoginEmailActivity extends ActionBarActivity implements View.OnClic
     }
 
     private void showErrorMessage(){
-        AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(LoginEmailActivity.this);
-        dialogBuilder.setMessage("Incorrect user details");
-        dialogBuilder.setPositiveButton("Ok", null);
-        dialogBuilder.show();
+        if(ServerRequests.Result.equalsIgnoreCase("useractivefalse")){
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(LoginEmailActivity.this);
+            dialogBuilder.setMessage("ไอดีของท่านยังไม่ได้ยืนยัน ไม่สามารถเข้าสู่ระบบได้กรุณาตรวจ สอบ E-Mail ของท่านเพื่อยืนยัน");
+            dialogBuilder.setPositiveButton("Ok", null);
+            dialogBuilder.show();
+        }else if(ServerRequests.Result.equalsIgnoreCase("wrongpass")){
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(LoginEmailActivity.this);
+            dialogBuilder.setMessage("รหัสผ่านไม่ถูกต้องกรุณาใหม่ลองอีกครั้ง");
+            dialogBuilder.setPositiveButton("Ok", null);
+            dialogBuilder.show();
+        }else{
+            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(LoginEmailActivity.this);
+            dialogBuilder.setMessage("ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
+            dialogBuilder.setPositiveButton("Ok", null);
+            dialogBuilder.show();
+        }
     }
 
     private void logUserIn(User returnedUser){
         userLocalStore.storeUserDeta(returnedUser);
         userLocalStore.setUserLoggedIn(true);
+        Intent i = new Intent(getApplicationContext(), NewsfeedActivity.class);
 
-        startActivity(new Intent(this, NewsfeedActivity.class));
+        startActivity(i);
     }
 }
     /*

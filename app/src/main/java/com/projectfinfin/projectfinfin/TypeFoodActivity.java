@@ -3,6 +3,7 @@ package com.projectfinfin.projectfinfin;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,13 +21,36 @@ public class TypeFoodActivity extends ActionBarActivity {
         //button back on action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Click button type food noodle go to group
-        Button buttonNoodle = (Button)findViewById(R.id.button_noodle);
-        Button buttonPizza = (Button)findViewById(R.id.button_pizza);
+        Button buttonNoodle = (Button) findViewById(R.id.button_noodle);
+        Button buttonBuffet = (Button) findViewById(R.id.button_buffet);
+        Button buttonPizza = (Button) findViewById(R.id.button_pizza);
+        Button buttonFastfood = (Button) findViewById(R.id.button_fastfood);
+        Button buttonSteak = (Button) findViewById(R.id.button_steak);
+        Button buttonShabu = (Button) findViewById(R.id.button_shabu);
+        Button buttonSeafood = (Button) findViewById(R.id.button_seafood);
+        Button buttonGrill = (Button) findViewById(R.id.button_grill);
+        Button buttonJapan = (Button) findViewById(R.id.button_japan);
+        Button buttonThai = (Button) findViewById(R.id.button_thai);
+        Button buttonChinese = (Button) findViewById(R.id.button_chinese);
+        Button buttonBeverage = (Button) findViewById(R.id.button_beverage);
+        Button buttonDessert = (Button) findViewById(R.id.button_dessert);
+        Button buttonBakery = (Button) findViewById(R.id.button_bakery);
+        Button buttonIce = (Button) findViewById(R.id.button_ice);
+
+
         buttonNoodle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
-                i.putExtra("ParamUrl","?id=1");
+                i.putExtra("ParamUrl", "?id=1");
+                startActivity(i);
+            }
+        });
+        buttonBuffet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=2");
                 startActivity(i);
             }
         });
@@ -34,11 +58,107 @@ public class TypeFoodActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
-                i.putExtra("ParamUrl","?id=3");
+                i.putExtra("ParamUrl", "?id=3");
                 startActivity(i);
             }
         });
-        
+        buttonFastfood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=4");
+                startActivity(i);
+            }
+        });
+        buttonSteak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=5");
+                startActivity(i);
+            }
+        });
+        buttonShabu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=6");
+                startActivity(i);
+            }
+        });
+        buttonSeafood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=7");
+                startActivity(i);
+            }
+        });
+        buttonGrill.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=8");
+                startActivity(i);
+            }
+        });
+        buttonJapan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=9");
+                startActivity(i);
+            }
+        });
+        buttonThai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=10");
+                startActivity(i);
+            }
+        });
+        buttonChinese.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=11");
+                startActivity(i);
+            }
+        });
+        buttonBeverage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=12");
+                startActivity(i);
+            }
+        });
+        buttonDessert.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=13");
+                startActivity(i);
+            }
+        });
+        buttonBakery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=14");
+                startActivity(i);
+            }
+        });
+        buttonIce.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), GridViewActivity.class);
+                i.putExtra("ParamUrl", "?id=15");
+                startActivity(i);
+            }
+        });
+
     }
 
     @Override

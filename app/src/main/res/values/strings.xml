@@ -28,6 +28,7 @@
     <string name="title_activity_camera_preview">Scanner</string>
     <string name="title_activity_singleitemview">Description</string>
     <string name="title_activity_gridview">Group</string>
+    <string name="userNameLogin">Guest</string>
 
 
     <string name="promotion_id">"ID : "</string>

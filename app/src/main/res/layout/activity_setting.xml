@@ -71,10 +71,9 @@
                 android:layout_height="160dp"
                 android:dividerHeight="1dp" />
 
-            <!--button logout-->
-
+            <!--button changepassword-->
             <Button
-                android:id="@+id/bLogout"
+                android:id="@+id/bChangepass"
                 android:layout_width="300dp"
                 android:layout_height="40dp"
                 android:layout_below="@+id/listview_support"
@@ -82,10 +81,24 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@color/actionbar1"
-                android:text="Log out"
+                android:text="Change Password"
                 android:textColor="#FFFFFF"
                 android:textStyle="bold" />
 
+            <!--button logout-->
+
+            <Button
+                android:id="@+id/bLogout"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_below="@+id/bChangepass"
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/actionbar1"
+                android:text="Log out"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
 
         </LinearLayout>
     </ScrollView>

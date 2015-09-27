@@ -17,6 +17,8 @@ import org.apache.http.params.BasicHttpParams;
 import org.apache.http.params.HttpConnectionParams;
 import org.apache.http.params.HttpParams;
 import org.apache.http.util.EntityUtils;
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -70,11 +72,13 @@ public class ServerRequests {
             ArrayList<NameValuePair> dataToSend = new ArrayList<>();
             dataToSend.add(new BasicNameValuePair("username", user.username));
             dataToSend.add(new BasicNameValuePair("password", user.password));
+            dataToSend.add(new BasicNameValuePair("email", user.email));
             dataToSend.add(new BasicNameValuePair("age", user.age + ""));
+            Log.e("Check before Post",user.email+"");
 
             HttpParams httpRequestParams = getHttpRequestParams();
             HttpClient client = new DefaultHttpClient(httpRequestParams);
-            HttpPost post = new HttpPost(SERVER_ADDRESS + "SignupActivity.php");
+            HttpPost post = new HttpPost("http://snappyshop.me/AndroidScript/onSignUp");
 
             try {
                 post.setEntity(new UrlEncodedFormEntity(dataToSend));
@@ -120,6 +124,8 @@ public class ServerRequests {
             ArrayList<NameValuePair> dataToSend = new ArrayList<>();
             dataToSend.add(new BasicNameValuePair("username", user.username));
             dataToSend.add(new BasicNameValuePair("password", user.password));
+            Log.e("Check before Post", user.username + "");
+            Log.e("Check before Post", user.password + "");
 
             HttpParams httpRequestParams = new BasicHttpParams();
             HttpConnectionParams.setConnectionTimeout(httpRequestParams, CONNECTION_TIMEOUT);
@@ -129,22 +135,28 @@ public class ServerRequests {
             HttpPost post = new HttpPost(SERVER_ADDRESS + "FetchUserData.php");
 
             User returnedUser = null;
-
             try {
                 post.setEntity(new UrlEncodedFormEntity(dataToSend));
                 HttpResponse httpResponse = client.execute(post);
-
                 HttpEntity entity = httpResponse.getEntity();
-                String result = EntityUtils.toString(entity);
-                JSONObject jObject = new JSONObject(result);
+                Result = EntityUtils.toString(entity);
+                JSONObject jObject = null;
 
-                if (jObject.length() != 0) {
-                    Log.v("happened", "2");
-                    String name = jObject.getString("name");
-                    int age = jObject.getInt("age");
-
-                    returnedUser = new User(user.username , user.password,age);
+                try{
+                    jObject = new JSONObject(Result);
+                    if (jObject.length() != 0) {
+                        /*Log.e("After aa", Result);
+                        Log.e("After ss", jObject+"");
+                        Log.v("happened", "2");*/
+                        String name = jObject.getString("name");
+                        String email = jObject.getString("email");
+                        int age = jObject.getInt("age");
+                        returnedUser = new User(user.username , user.password,email,age);
+                    }
+                }catch (Throwable t){
+                    Log.e("After Post", Result);
                 }
+
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -159,111 +171,19 @@ public class ServerRequests {
             progressDialog.dismiss();
             userCallBack.done(returnedUser);
         }
+
+        public boolean isJSONValid(String test) {
+            try {
+                new JSONObject(test);
+            } catch (JSONException ex) {
+                try {
+                    new JSONArray(test);
+                } catch (JSONException ex1) {
+                    return false;
+                }
+            }
+            return true;
+        }
     }
 }
-
-/*
-    public void fetchUserDataInBackground(User user, GetUserCallback callback) {
-        progressDialog.show();
-        new fetchUserDataAsyncTask(user,callback).execute();
-    }
-
-    public class StoreUserDataAsyncTask extends AsyncTask<Void, Void, Void> {
-        User user;
-        GetUserCallback userCallback;
-
-        public StoreUserDataAsyncTask(User user, GetUserCallback userCallback) {
-            this.user = user;
-            this.userCallback = userCallback;
-
-        }
-
-        @Override
-        protected Void doInBackground(Void... params) {
-            ArrayList<NameValuePair> dataToSend = new ArrayList<>();
-            dataToSend.add(new BasicNameValuePair("username", user.username));
-            dataToSend.add(new BasicNameValuePair("password", user.password));
-            dataToSend.add(new BasicNameValuePair("age", user.age + ""));
-
-            HttpParams httpRequestParams = new BasicHttpParams();
-            HttpConnectionParams.setConnectionTimeout(httpRequestParams, CONNECTION_TIMEOUT);
-            HttpConnectionParams.setSoTimeout(httpRequestParams, CONNECTION_TIMEOUT);
-
-            HttpClient client = new DefaultHttpClient(httpRequestParams);
-            HttpPost post = new HttpPost(SERVER_ADDRESS + "SingupActivity.php");
-
-            try {
-                post.setEntity(new UrlEncodedFormEntity(dataToSend));
-                client.execute(post);
-            } catch (Exception e) {
-                e.printStackTrace();
-
-            }
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void aVoid) {
-            progressDialog.dismiss();
-            userCallback.done(null);
-            super.onPostExecute(aVoid);
-        }
-    }
-
-    public class fetchUserDataAsyncTask extends AsyncTask<Void, Void, User> {
-        User user;
-        GetUserCallback userCallback;
-
-        public fetchUserDataAsyncTask(User user, GetUserCallback userCallback) {
-            this.user = user;
-            this.userCallback = userCallback;
-
-        }
-
-        @Override
-        protected User doInBackground(Void... params) {
-            ArrayList<NameValuePair> dataToSend = new ArrayList<>();
-            dataToSend.add(new BasicNameValuePair("username", user.username));
-            dataToSend.add(new BasicNameValuePair("password", user.password));
-
-            HttpParams httpRequestParams = new BasicHttpParams();
-            HttpConnectionParams.setConnectionTimeout(httpRequestParams, CONNECTION_TIMEOUT);
-            HttpConnectionParams.setSoTimeout(httpRequestParams, CONNECTION_TIMEOUT);
-
-            HttpClient client = new DefaultHttpClient(httpRequestParams);
-            HttpPost post = new HttpPost(SERVER_ADDRESS + "FetchUserData.php");
-
-            User returnedUser = null;
-            try {
-                post.setEntity(new UrlEncodedFormEntity(dataToSend));
-                HttpResponse httpResponse = client.execute(post);
-
-                HttpEntity entity = httpResponse.getEntity();
-                String result = EntityUtils.toString(entity);
-                JSONObject jObject = new JSONObject(result);
-
-                if(jObject.length() == 0){
-                    returnedUser = null;
-                }else {
-                    //String name = jObject.getString("name");
-                    int age = jObject.getInt("age");
-
-                    returnedUser = new User(user.username , user.password,age);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-            return returnedUser;
-        }
-
-        @Override
-        protected void onPostExecute(User returnedUser) {
-            progressDialog.dismiss();
-            userCallback.done(returnedUser);
-            super.onPostExecute(returnedUser);
-        }
-    }
-    */
 

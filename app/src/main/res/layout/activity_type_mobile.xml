@@ -33,8 +33,7 @@
         android:layout_below="@+id/button"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="10dp"
-        android:background="@drawable/mobile_tablets" />
-
+        android:background="@drawable/mobile_tablet" />
 
     <Button
         android:id="@+id/button2"

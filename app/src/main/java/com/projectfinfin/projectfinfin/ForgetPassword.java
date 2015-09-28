@@ -38,6 +38,8 @@ public class ForgetPassword extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forget_password);
         final EditText EmailEdit = (EditText) findViewById(R.id.etEmail);
+        //button back on action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Button buttonForgot = (Button) findViewById(R.id.bSubmit);
         Log.e("GGGGGGGGGGGGGGGGGG", " / ");
 
@@ -70,14 +72,16 @@ public class ForgetPassword extends AppCompatActivity {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; goto parent activity.
+                this.finish();
+                return true;
+            case R.id.action_settings:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
-
-        return super.onOptionsItemSelected(item);
     }
 
     public class ForgotPassHttp extends AsyncTask<String, Void, String> {

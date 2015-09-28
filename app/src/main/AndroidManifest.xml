@@ -30,12 +30,7 @@
         <!-- Single -->
         <activity
             android:name=".jsonFeed.SingleItemView"
-            android:label="Description"
-            android:parentActivityName=".NewsfeedActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".NewsfeedActivity" />
-        </activity>
+            android:label="Description" />
         <activity
             android:name=".RegisterLogin.LoginActivity"
             android:label="@string/app_name" >
@@ -54,12 +49,8 @@
         </activity>
         <activity
             android:name=".RegisterLogin.SignupActivity"
-            android:label="@string/title_activity_signup"
-            android:parentActivityName=".RegisterLogin.LoginActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".RegisterLogin.LoginActivity" />
-        </activity>
+            android:label="@string/title_activity_signup" />
+
         <activity
             android:name=".DescriptionActivity"
             android:label="@string/title_activity_description"
@@ -70,12 +61,8 @@
         </activity>
         <activity
             android:name=".RegisterLogin.LoginEmailActivity"
-            android:label="@string/title_activity_login_email"
-            android:parentActivityName=".RegisterLogin.LoginActivity" >
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".RegisterLogin.LoginActivity" />
-        </activity>
+            android:label="@string/title_activity_login_email" />
+
         <activity
             android:name=".SettingActivity"
             android:label="@string/title_activity_setting" />

@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
@@ -51,6 +52,7 @@ public class GridViewActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_grid_view);
         //button back on action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
         Bundle extra = getIntent().getExtras();
@@ -108,6 +110,8 @@ public class GridViewActivity extends ActionBarActivity {
         new AsyncHttpTask().execute(FEED_URL);
         mProgressBar.setVisibility(View.VISIBLE);
     }
+
+
 
 
     //Downloading data asynchronously
@@ -222,6 +226,20 @@ public class GridViewActivity extends ActionBarActivity {
             }
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                // app icon in action bar clicked; goto parent activity.
+                this.finish();
+                return true;
+            case R.id.action_settings:
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
         }
     }
 }

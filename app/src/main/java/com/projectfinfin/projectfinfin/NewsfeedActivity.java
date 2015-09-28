@@ -75,6 +75,7 @@ public class NewsfeedActivity extends AppCompatActivity {
 
     public static String promo_name = "promo_name";
     public static String promo_location = "promo_location";
+    public static String promo_storename = "promo_storename";
     public static String promo_startdate = "promo_startdate";
     public static String promo_enddate = "promo_enddate";
     public static String promo_link = "promo_link";
@@ -262,6 +263,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                         map.put("promo_startdate", jsonobject.getString("start_date"));
                         map.put("promo_enddate", jsonobject.getString("end_date"));
                         map.put("promo_location", jsonobject.getString("promotion_location"));
+                        map.put("promo_storename", jsonobject.getString("store_name"));
                         map.put("promo_link", jsonobject.getString("link"));
                         map.put("promo_des", jsonobject.getString("promotion_des"));
                         map.put("logo_pic", jsonobject.getString("member_avatar"));

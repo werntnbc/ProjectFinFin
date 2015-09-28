@@ -16,7 +16,7 @@ import com.projectfinfin.projectfinfin.NewsfeedActivity;
 import com.projectfinfin.projectfinfin.R;
 
 
-public class LoginActivity extends ActionBarActivity implements View.OnClickListener {
+public class LoginActivity extends ActionBarActivity {
 
     TextView tvSignupNow;
     UserLocalStore userLocalStore;
@@ -50,26 +50,38 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             startActivity(i);
         }
 
-        //Click button sign in with email
-        Button buttonEmail = (Button) findViewById(R.id.button_email);
-        buttonEmail.setOnClickListener(new View.OnClickListener() {
+        //Click button sign up
+        Button buttonSignup = (Button) findViewById(R.id.button_signupnow);
+        buttonSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(getApplicationContext(), SignupActivity.class);
                 startActivity(i);
             }
         });
-        //Click button sign in with facebook
-        Button buttonFacebook = (Button) findViewById(R.id.button_facebook);
-        buttonFacebook.setOnClickListener(new View.OnClickListener() {
+
+        //Click button login in with email
+        Button buttonEmail = (Button) findViewById(R.id.button_email);
+        buttonEmail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), NewsfeedActivity.class);
+                Intent i = new Intent(getApplicationContext(), LoginEmailActivity.class);
                 startActivity(i);
-
-
             }
         });
+
+
+        //Click button sign in with facebook
+//        Button buttonFacebook = (Button) findViewById(R.id.button_facebook);
+//        buttonFacebook.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent i = new Intent(getApplicationContext(), NewsfeedActivity.class);
+//                startActivity(i);
+//
+//
+//            }
+//        });
 
         //Click text sign up now!
         /*
@@ -82,19 +94,11 @@ public class LoginActivity extends ActionBarActivity implements View.OnClickList
             }
         });
         */
-        tvSignupNow = (TextView) findViewById(R.id.tvSignInNow);
-        tvSignupNow.setOnClickListener(this);
+
     }
 
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.tvSignInNow:
-                startActivity(new Intent(this, LoginEmailActivity.class));
-                break;
-        }
-    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -60,7 +60,8 @@ public class ListViewAdapter extends BaseAdapter {
         TextView proname;
         TextView startdate;
         TextView enddate;
-        TextView location;
+        TextView prostorename;
+    //    TextView location;
     //    TextView prolink;
     //    TextView prodes;
         ImageView propic;
@@ -77,7 +78,8 @@ public class ListViewAdapter extends BaseAdapter {
         proname = (TextView) itemView.findViewById(R.id.promo_name);
         startdate = (TextView)itemView.findViewById(R.id.promo_startdate);
         enddate = (TextView)itemView.findViewById(R.id.promo_enddate);
-        location = (TextView)itemView.findViewById(R.id.promo_location);
+        prostorename = (TextView)itemView.findViewById(R.id.promo_storename);
+    //    location = (TextView)itemView.findViewById(R.id.promo_location);
     //    prolink = (TextView)itemView.findViewById(R.id.promo_link);
     //    prodes = (TextView)itemView.findViewById(R.id.promo_des);
 
@@ -87,9 +89,10 @@ public class ListViewAdapter extends BaseAdapter {
         // Capture position and set results to the TextViews
 
         proname.setText(resultp.get(NewsfeedActivity.promo_name));
-        location.setText(resultp.get(NewsfeedActivity.promo_location));
+    //    location.setText(resultp.get(NewsfeedActivity.promo_location));
         startdate.setText(resultp.get(NewsfeedActivity.promo_startdate));
         enddate.setText(resultp.get(NewsfeedActivity.promo_enddate));
+        prostorename.setText(resultp.get(NewsfeedActivity.promo_storename));
     //    prolink.setText(resultp.get(NewsfeedActivity.promo_link));
     //    prodes.setText(resultp.get(NewsfeedActivity.promo_des));
 
@@ -113,6 +116,8 @@ public class ListViewAdapter extends BaseAdapter {
                 intent.putExtra("promo_enddate", resultp.get(NewsfeedActivity.promo_enddate));
                 // Pass all data location
                 intent.putExtra("promo_location", resultp.get(NewsfeedActivity.promo_location));
+                // Pass all data store name
+                intent.putExtra("promo_storename", resultp.get(NewsfeedActivity.promo_storename));
                 // Pass all data link
                 intent.putExtra("promo_link", resultp.get(NewsfeedActivity.promo_link));
                 // Pass all data description

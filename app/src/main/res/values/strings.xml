@@ -37,6 +37,7 @@
     <string name="promotion_description">"Description : "</string>
     <string name="promotion_date">"Date : "</string>
     <string name="promotion_location">"Location : "</string>
+    <string name="promotion_branch">"Branch : "</string>
     <string name="promotion_link">"Link : "</string>
 
     <string-array name="Floor_array">

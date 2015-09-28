@@ -92,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/promo_startdate"
                     android:layout_marginTop="20dp"
-                    android:text="@string/promotion_location"
+                    android:text="@string/promotion_branch"
                     android:textColor="#5ec98b" />
                 <TextView
                     android:id="@+id/promo_location"

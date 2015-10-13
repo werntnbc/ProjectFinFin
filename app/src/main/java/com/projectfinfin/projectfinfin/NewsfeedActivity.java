@@ -6,7 +6,9 @@ import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -74,6 +76,7 @@ public class NewsfeedActivity extends AppCompatActivity {
 
 
     public static String promo_name = "promo_name";
+    public static String promo_id = "promo_id";
     public static String promo_location = "promo_location";
     public static String promo_storename = "promo_storename";
     public static String promo_startdate = "promo_startdate";
@@ -100,9 +103,9 @@ public class NewsfeedActivity extends AppCompatActivity {
             url = "http://snappyshop.me/android/QueryPromotion.php";
         }
         userLocalStore = new UserLocalStore(this);
-        if(userLocalStore.getLoggedInUser() == null){
+        if (userLocalStore.getLoggedInUser() == null) {
             Log.e("Login Status : ", "null no login");
-        }else{
+        } else {
             User user = userLocalStore.getLoggedInUser();
             TextView username = (TextView) findViewById(R.id.userNameLoginID);
             Log.e("Login Status : ", user.username + "");
@@ -111,12 +114,21 @@ public class NewsfeedActivity extends AppCompatActivity {
 
 
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipeRefreshLayout);
-        //mSwipeRefreshLayout.setColorSchemeColors(0,0,0,0);
+        mSwipeRefreshLayout.setColorSchemeColors(Color.parseColor("#03C9A9"),
+                Color.parseColor("#F62459"),
+                Color.parseColor("#F4D03F"));
         mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 //Refreshing data on server
-                new DownloadJSON().execute();
+                final Handler handler = new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        new DownloadJSON().execute();
+                    }
+                }, 2500);
+
             }
         });
 
@@ -141,6 +153,13 @@ public class NewsfeedActivity extends AppCompatActivity {
 
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        Bundle i = getIntent().getExtras();
+        if (i != null) {
+            if (i.getString("title") != null) {
+                getSupportActionBar().setTitle(i.getString("title"));
+            }
+        }
+
 
         //navigation.getMenu().findItem(R.id.navItem5).setVisible(false); // remove setting nav setting
 
@@ -158,12 +177,6 @@ public class NewsfeedActivity extends AppCompatActivity {
                         startActivity(intent);
                         drawerLayout.closeDrawer(GravityCompat.START);
                         finish();
-//                        fragment = new NewsfeedFragment();
-//                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                        transaction.replace(R.id.container, fragment);
-//                        transaction.addToBackStack(null);
-//                        transaction.commit();
-//                        drawerLayout.closeDrawer(GravityCompat.START);
                         break;
                     case R.id.navItem2:
                         fragment = new CategoryFragment();
@@ -171,7 +184,6 @@ public class NewsfeedActivity extends AppCompatActivity {
                         transaction1.replace(R.id.container, fragment);
                         transaction1.addToBackStack(null);
                         transaction1.commit();
-//                        getString(R.string.title_category);
                         getSupportActionBar().setTitle("Category");
                         drawerLayout.closeDrawer(GravityCompat.START);
                         break;
@@ -241,7 +253,7 @@ public class NewsfeedActivity extends AppCompatActivity {
 
             try {
                 // Locate the array name in JSON
-                if(jsonobject.isNull("promotion")){
+                if (jsonobject.isNull("promotion")) {
                     Log.e("array", "null");
                     runOnUiThread(new Runnable() {
                         public void run() {
@@ -252,7 +264,7 @@ public class NewsfeedActivity extends AppCompatActivity {
 
                         }
                     });
-                }else {
+                } else {
                     jsonarray = jsonobject.getJSONArray("promotion");
 
                     for (int i = 0; i < jsonarray.length(); i++) {
@@ -260,6 +272,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                         jsonobject = jsonarray.getJSONObject(i);
                         // Retrive JSON Objects
                         map.put("promo_name", jsonobject.getString("promotion_name"));
+                        map.put("promo_id", jsonobject.getString("promotion_id"));
                         map.put("promo_startdate", jsonobject.getString("start_date"));
                         map.put("promo_enddate", jsonobject.getString("end_date"));
                         map.put("promo_location", jsonobject.getString("promotion_location"));

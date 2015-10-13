@@ -31,13 +31,27 @@ public class LoginActivity extends ActionBarActivity {
         Bundle extra = getIntent().getExtras();
 
         if (extra != null) {
+            String logout = (String) extra.get("Logout");
             String Check = (String) extra.get("Register");
             AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(LoginActivity.this);
             dialogBuilder.setMessage("สมัครสมาชิกเรียบร้อย กรุณาเข้าไปที่ E-mail ของท่านเพื่อยืนยันตัวตนเปิดใช้งาน");
             dialogBuilder.setPositiveButton("Ok", null);
-            if (Check.equalsIgnoreCase("Success")) {
-                dialogBuilder.show();
+
+            if(Check != null){
+                if (Check.equalsIgnoreCase("Success")) {
+                    dialogBuilder.show();
+                }
             }
+
+            if(logout != null){
+                if (logout.equalsIgnoreCase("true")) {
+                    dialogBuilder = new AlertDialog.Builder(LoginActivity.this);
+                    dialogBuilder.setMessage("ออกจากระบบเรียบร้อยแล้ว");
+                    dialogBuilder.setPositiveButton("Ok", null);
+                    dialogBuilder.show();
+                }
+            }
+
         }
 
         // check user login ? if yes then go newsfeeds
@@ -46,8 +60,8 @@ public class LoginActivity extends ActionBarActivity {
             Log.e("Login Status : ", "null no login");
         }else{
             Intent i = new Intent(getApplicationContext(), NewsfeedActivity.class);
-            finish();
             startActivity(i);
+            finish();
         }
 
         //Click button sign up

@@ -122,6 +122,9 @@
             android:name=".ForgetPassword"
             android:label="@string/title_activity_forget_password" >
         </activity>
+        <activity
+            android:name=".jsonFeed.DetailsActivity">
+        </activity>
     </application>
 
 </manifest>

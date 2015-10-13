@@ -1,7 +1,10 @@
 package com.projectfinfin.projectfinfin.WhereToGo;
 
+import android.app.Activity;
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -14,6 +17,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.projectfinfin.projectfinfin.R;
+import com.projectfinfin.projectfinfin.jsonFeed.DetailsActivity;
+import com.squareup.picasso.Picasso;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -39,6 +44,9 @@ public class ShowMapInnavFragment extends Fragment {
 	static ImageView endStoreMap;
 	static Bitmap startBitMap;
 	static Bitmap endBitMap;
+	static Context c;
+	static String startStorePath;
+	static String endStorePath;
 
 	// constructor
 
@@ -53,11 +61,43 @@ public class ShowMapInnavFragment extends Fragment {
 			Bundle savedInstanceState) {
 		rootView = inflater.inflate(R.layout.fragment_showmapinnav, container,
 				false);
-
+		c = getActivity().getApplicationContext();
 		startStoreMap = (ImageView) rootView.findViewById(R.id.StartMap);
 		endStoreMap = (ImageView) rootView.findViewById(R.id.EndMap);
 		startStoreName = (TextView) rootView.findViewById(R.id.StartStoreName);
 		endStoreName = (TextView) rootView.findViewById(R.id.EndStoreName);
+
+		startStoreMap.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent intent = new Intent(getActivity(), DetailsActivity.class);
+					int[] screenLocation = new int[2];
+					startStoreMap.getLocationOnScreen(screenLocation);
+					intent.putExtra("left", screenLocation[0]).
+							putExtra("top", screenLocation[1]).
+							putExtra("width", startStoreMap.getWidth()).
+							putExtra("height", startStoreMap.getHeight()).
+							putExtra("title", "Navigation").
+							putExtra("image", startStorePath);
+					startActivity(intent);
+				}
+			});
+
+			endStoreMap.setOnClickListener(new View.OnClickListener() {
+				@Override
+				public void onClick(View view) {
+					Intent intent = new Intent(getActivity(), DetailsActivity.class);
+					int[] screenLocation = new int[2];
+					endStoreMap.getLocationOnScreen(screenLocation);
+					intent.putExtra("left", screenLocation[0]).
+							putExtra("top", screenLocation[1]).
+							putExtra("width", endStoreMap.getWidth()).
+							putExtra("height", endStoreMap.getHeight()).
+							putExtra("title", "Navigation").
+							putExtra("image", endStorePath);
+					startActivity(intent);
+				}
+			});
 
 		return rootView;
 
@@ -113,7 +153,7 @@ public class ShowMapInnavFragment extends Fragment {
 		}
 	}
 
-	private static void showData(String jsonString) throws JSONException {
+	public static void showData(String jsonString) throws JSONException {
 
 		jsonString = "{\"advancedStores\":" + jsonString + "}";
 		Log.d("json", jsonString);
@@ -137,62 +177,37 @@ public class ShowMapInnavFragment extends Fragment {
 		if(startFloor.equalsIgnoreCase(endFloor)){
 			// ชั้นเดียวกัน
 			
-			String startStorePath = "http://188.166.251.138:8080/images/map/"
+			startStorePath = "http://188.166.251.138:8080/images/map/"
 					+ startStoreMapFromJson;
-			String endStorePath = "http://188.166.251.138:8080/images/map/"
+			endStorePath = "http://188.166.251.138:8080/images/map/"
 					+ endStoreMapFromJson;
 			// รูป end ไม่ขึ้น 
-			new LoadEndImage().execute(endStorePath);
-			new LoadStartImage().execute(startStorePath);
-			// can zoom in - out the image with this code
-//			PhotoViewAttacher mAttacher1 = null;
-//			mAttacher1 = new PhotoViewAttacher(startStoreMap);
-//			mAttacher1.update();
-//			PhotoViewAttacher mAttacher2 = null;
-//			mAttacher2 = new PhotoViewAttacher(endStoreMap);
-//			mAttacher2.update();
+
+			Picasso.with(c).load(startStorePath).resize(900,900).centerInside().into(startStoreMap);
+			Picasso.with(c).load(endStorePath).resize(900,900).centerInside().into(endStoreMap);
+
 			Log.d("startStorePath", startStorePath);
 			Log.d("endStorePath", endStorePath);
 		}else{
 			// คนละชั้น
 			
-			String startStorePath = "http://188.166.251.138:8080/images/direction/"
+			startStorePath = "http://188.166.251.138:8080/images/direction/"
 					+ startStoreMapFromJson;
-			String endStorePath = "http://188.166.251.138:8080/images/direction/"
+			endStorePath = "http://188.166.251.138:8080/images/direction/"
 					+ endStoreMapFromJson;
 			// รูป end ไม่ขึ้น
-			new LoadEndImage().execute(endStorePath);
-			new LoadStartImage().execute(startStorePath);
-			// can zoom in - out the image with this code
-//			PhotoViewAttacher mAttacher1 = null;
-//			mAttacher1 = new PhotoViewAttacher(startStoreMap);
-//			mAttacher1.update();
-//			PhotoViewAttacher mAttacher2 = null;
-//			mAttacher2 = new PhotoViewAttacher(endStoreMap);
-//			mAttacher2.update();
+
+			Picasso.with(c).load(startStorePath).resize(900,900).centerInside().into(startStoreMap);
+			Picasso.with(c).load(endStorePath).resize(900,900).centerInside().into(endStoreMap);
+
+			//new LoadEndImage().execute(endStorePath);
+			//new LoadStartImage().execute(startStorePath);
+
 			Log.d("startStorePath", startStorePath);
 			Log.d("endStorePath", endStorePath);
 		}
 		
-		
-		
-//		
-//		
-//		String startStorePath = "http://188.166.251.138:8080/images/direction/"
-//				+ startStoreMapFromJson;
-//		String endStorePath = "http://188.166.251.138:8080/images/direction/"
-//				+ endStoreMapFromJson;
-//		// รูป end ไม่ขึ้น
-//		new LoadEndImage().execute(endStorePath);
-//		new LoadStartImage().execute(startStorePath);
-//		// can zoom in - out the image with this code
-//		PhotoViewAttacher mAttacher1 = null;
-//		mAttacher1 = new PhotoViewAttacher(startStoreMap);
-//		mAttacher1.update();
-//		PhotoViewAttacher mAttacher2 = null;
-//		mAttacher2 = new PhotoViewAttacher(endStoreMap);
-//		mAttacher2.update();
-//		//
+
 
 		Log.d("startStoreNameFromJson", startStoreNameFromJson);
 		Log.d("startStoreMapFromJson", startStoreMapFromJson);

@@ -87,7 +87,10 @@ public class SettingFragment extends Fragment {
                 case R.id.bLogout:
                     userLocalStore.clearUserData();
                     userLocalStore.setUserLoggedIn(false);
-                    startActivity(new Intent(getActivity(), LoginActivity.class));
+                    Intent i = new Intent(getActivity(), LoginActivity.class);
+                    i.putExtra("Logout", "true");
+                    startActivity(i);
+                    getActivity().finish();
                     break;
                 case R.id.bChangepass:
                     startActivity(new Intent(getActivity(), ChangePassword.class));

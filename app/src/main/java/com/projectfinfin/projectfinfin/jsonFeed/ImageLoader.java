@@ -55,7 +55,7 @@ public class ImageLoader {
             imageView.setImageBitmap(bitmap);
         else {
             queuePhoto(url, imageView);
-            imageView.setImageResource(stub_id);
+            //imageView.setImageResource(stub_id);
             //imageView.setImageResource(android.R.color.transparent);
             //imageView.setImageDrawable(null);
             //imageView.setImageBitmap(null);

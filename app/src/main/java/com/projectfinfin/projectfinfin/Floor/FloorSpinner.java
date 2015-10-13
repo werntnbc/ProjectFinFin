@@ -1,6 +1,8 @@
 package com.projectfinfin.projectfinfin.Floor;
 
 import android.app.Fragment;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,19 +14,19 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.projectfinfin.projectfinfin.R;
+import com.projectfinfin.projectfinfin.TouchImageView;
+import com.squareup.picasso.Picasso;
 
 /**
  * Created by TNBC's on 31/8/2558.
  */
 public class FloorSpinner extends Fragment {
-
-    private ImageView images;
-
+        private TouchImageView images;
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
         View rootView = inflater.inflate(R.layout.fragment_floorspinner, container, false);
 
-        images = (ImageView) rootView.findViewById(R.id.imageView1);
+        images = (TouchImageView) rootView.findViewById(R.id.imageView1);
         Spinner spinner = (Spinner) rootView.findViewById(R.id.floor_spinner);
         spinner.setOnItemSelectedListener(new SpinnerClickListener());
 
@@ -62,29 +64,23 @@ public class FloorSpinner extends Fragment {
       //  PhotoViewAttacher mAttacher = null;
         switch (position) {
             case 0:
-                Drawable floor_g = getResources().getDrawable(R.drawable.floorg);
-                images.setImageDrawable(floor_g);
+                //Drawable floor_g = getResources().getDrawable(R.drawable.floorg);
+                //images.setImageDrawable(floor_1);
+                //Bitmap image = BitmapFactory.decodeResource(getResources(), R.drawable.floorg);
                 // mAttacher = new PhotoViewAttacher(images);
+                Picasso.with(getActivity()).load(R.drawable.floorg).resize(1000,1000).into(images);
                 break;
             case 1:
-                Drawable floor_1 = getResources().getDrawable(R.drawable.floor1);
-                images.setImageDrawable(floor_1);
-               // mAttacher = new PhotoViewAttacher(images);
+                Picasso.with(getActivity()).load(R.drawable.floor1).resize(1000, 1000).into(images);
                 break;
             case 2:
-                Drawable floor_2 = getResources().getDrawable(R.drawable.floor2);
-                images.setImageDrawable(floor_2);
-              //  mAttacher = new PhotoViewAttacher(images);
+                Picasso.with(getActivity()).load(R.drawable.floor2).resize(1000, 1000).into(images);
                 break;
             case 3:
-                Drawable floor_3 = getResources().getDrawable(R.drawable.floor3);
-                images.setImageDrawable(floor_3);
-              //  mAttacher = new PhotoViewAttacher(images);
+                Picasso.with(getActivity()).load(R.drawable.floor3).resize(1000, 1000).into(images);
                 break;
             case 4:
-                Drawable floor_4 = getResources().getDrawable(R.drawable.floor4);
-                images.setImageDrawable(floor_4);
-               // mAttacher = new PhotoViewAttacher(images);
+                Picasso.with(getActivity()).load(R.drawable.floor4).resize(1000,1000).into(images);
                 break;
             default:
                 break;

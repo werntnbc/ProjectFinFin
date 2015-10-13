@@ -165,7 +165,6 @@ public class ChangePassword extends AppCompatActivity {
                     @Override
                     public void run() {
                         Intent i = new Intent(ChangePassword.this, NewsfeedActivity.class);
-                        //i.putExtra("ChangePassword","Success");
                         startActivity(i);
                         alert.cancel();
                     }

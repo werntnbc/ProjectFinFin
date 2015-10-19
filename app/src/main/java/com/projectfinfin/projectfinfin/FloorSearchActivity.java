@@ -5,35 +5,22 @@ import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
 import android.content.res.Configuration;
-import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Handler;
-import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
@@ -42,9 +29,8 @@ import com.projectfinfin.projectfinfin.Fragments.CameraFragment;
 import com.projectfinfin.projectfinfin.Fragments.CategoryFragment;
 import com.projectfinfin.projectfinfin.RegisterLogin.User;
 import com.projectfinfin.projectfinfin.RegisterLogin.UserLocalStore;
-import com.projectfinfin.projectfinfin.jsonFeed.ImageLoader;
 import com.projectfinfin.projectfinfin.jsonFeed.JSONfunctions;
-import com.projectfinfin.projectfinfin.jsonFeed.ListViewAdapter;
+import com.projectfinfin.projectfinfin.jsonFeed.ListViewAdapterDepartment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,14 +40,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class NewsfeedActivity extends AppCompatActivity {
+public class FloorSearchActivity extends AppCompatActivity {
 
     // Declare Variables
     JSONObject jsonobject;
     JSONArray jsonarray;
     ListView listview;
     EditText etSearch;
-    ListViewAdapter adapter;
+    ListViewAdapterDepartment adapter;
     ProgressDialog mProgressDialog;
     ArrayList<HashMap<String, String>> arraylist;
     ArrayList<String> arr_list;
@@ -75,19 +61,10 @@ public class NewsfeedActivity extends AppCompatActivity {
     UserLocalStore userLocalStore;
 
 
-    public static String promo_name = "promo_name";
-    public static String promo_id = "promo_id";
-    public static String promo_location = "promo_location";
-    public static String promo_storename = "promo_storename";
-    public static String promo_startdate = "promo_startdate";
-    public static String promo_enddate = "promo_enddate";
-    public static String promo_link = "promo_link";
-    public static String logo_pic = "logo_pic";
-    public static String promo_des = "promo_des";
-    public static String link_img1 = "link_img1";
-    public static String link_img2 = "link_img2";
-    public static String link_img3 = "link_img3";
-    static String url = "http://snappyshop.me/android/QueryPromotion.php?";
+    public static String FloorNumber = "FloorNumber";
+    public static String Department_ID = "Department_ID";
+    public static String DepartmentName = "DepartmentName";
+    static String url = "http://snappyshop.me/android/QueryPromotion.php?DepartmentID=1";
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -100,7 +77,7 @@ public class NewsfeedActivity extends AppCompatActivity {
         if (extra != null) {
             url = (String) extra.get("url");
         } else {
-            url = "http://snappyshop.me/android/QueryPromotion.php";
+            url = "http://snappyshop.me/android/QueryPromotion.php?DepartmentID=1";
         }
         userLocalStore = new UserLocalStore(this);
         if (userLocalStore.getLoggedInUser() == null) {
@@ -173,7 +150,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                 int id = menuItem.getItemId();
                 switch (id) {
                     case R.id.navItem1:
-                        intent = new Intent(getApplicationContext(), FloorSearchActivity.class);
+                        intent = new Intent(getApplicationContext(), NewsfeedActivity.class);
                         startActivity(intent);
                         drawerLayout.closeDrawer(GravityCompat.START);
                         finish();
@@ -232,7 +209,7 @@ public class NewsfeedActivity extends AppCompatActivity {
             super.onPreExecute();
             // Create a progressdialog
             if (!mSwipeRefreshLayout.isRefreshing()) {
-                mProgressDialog = new ProgressDialog(NewsfeedActivity.this);
+                mProgressDialog = new ProgressDialog(FloorSearchActivity.this);
                 // Set progressdialog title
                 mProgressDialog.setTitle("Snap Shop");
                 // Set progressdialog message
@@ -257,8 +234,8 @@ public class NewsfeedActivity extends AppCompatActivity {
                     Log.e("array", "null");
                     runOnUiThread(new Runnable() {
                         public void run() {
-                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(NewsfeedActivity.this);
-                            dialogBuilder.setMessage("ขออภัยร้านนี้ยังไม่มีข้อมูลโปรโมชั่น");
+                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(FloorSearchActivity.this);
+                            dialogBuilder.setMessage("ขออภัยห้างนี้ยังไม่มีโปรโมชั่นใดๆ");
                             dialogBuilder.setPositiveButton("Ok", null);
                             dialogBuilder.show();
 
@@ -270,20 +247,9 @@ public class NewsfeedActivity extends AppCompatActivity {
                     for (int i = 0; i < jsonarray.length(); i++) {
                         HashMap<String, String> map = new HashMap<String, String>();
                         jsonobject = jsonarray.getJSONObject(i);
-                        // Retrive JSON Objects
-                        map.put("promo_name", jsonobject.getString("promotion_name"));
-                        map.put("promo_id", jsonobject.getString("promotion_id"));
-                        map.put("promo_startdate", jsonobject.getString("start_date"));
-                        map.put("promo_enddate", jsonobject.getString("end_date"));
-                        map.put("promo_location", jsonobject.getString("promotion_location"));
-                        map.put("promo_storename", jsonobject.getString("store_name"));
-                        map.put("promo_link", jsonobject.getString("link"));
-                        map.put("promo_des", jsonobject.getString("promotion_des"));
-                        map.put("logo_pic", jsonobject.getString("member_avatar"));
-                        map.put("link_img1", jsonobject.getString("img_name1"));
-                        map.put("link_img2", jsonobject.getString("img_name2"));
-                        map.put("link_img3", jsonobject.getString("img_name3"));
-                        // Set the JSON Objects into the array
+                        map.put("FloorNumber", jsonobject.getString("Floor_No"));
+                        map.put("Department_ID", jsonobject.getString("Department_ID"));
+                        map.put("DepartmentName", jsonobject.getString("Department_Name"));
                         arraylist.add(map);
                     }
                 }
@@ -299,7 +265,7 @@ public class NewsfeedActivity extends AppCompatActivity {
             // Locate the listview in listview_main.xml
             listview = (ListView) findViewById(R.id.listview);
             // Pass the results into ListViewAdapter.java
-            adapter = new ListViewAdapter(NewsfeedActivity.this, arraylist);
+            adapter = new ListViewAdapterDepartment(FloorSearchActivity.this, arraylist);
             // Set the adapter to the ListView
             listview.setAdapter(adapter);
             if (mSwipeRefreshLayout.isRefreshing()) {

@@ -125,14 +125,16 @@ public class ListViewAdapter extends BaseAdapter {
         //    prodes.setText(resultp.get(NewsfeedActivity.promo_des));
 
         String path = "http://www.snappyshop.me/web/assets/images/avatars/" + resultp.get(NewsfeedActivity.logo_pic);
-        Log.v("Link Image", "" + path);
-        Log.v("Promotion ID", "" + resultp.get(NewsfeedActivity.promo_id));
+        //Log.v("Link Image", "" + path);
+        //Log.v("Promotion ID", "" + resultp.get(NewsfeedActivity.promo_id));
         //imageLoader.DisplayImage("web/assets/images/avatars/" + resultp.get(NewsfeedActivity.logo_pic), propic);
         Picasso.with(context).invalidate(path);
         Picasso.with(context)
                 .load(path)
-                        //.memoryPolicy(MemoryPolicy.NO_CACHE)
-                        //.networkPolicy(NetworkPolicy.NO_CACHE)
+                .resize(400,400)
+                .centerInside()
+//                .memoryPolicy(MemoryPolicy.NO_CACHE)
+//                .networkPolicy(NetworkPolicy.NO_CACHE)
                 .into(propic);
 
 

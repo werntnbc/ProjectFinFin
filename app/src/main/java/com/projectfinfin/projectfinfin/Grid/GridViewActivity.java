@@ -63,6 +63,12 @@ public class GridViewActivity extends ActionBarActivity {
             FEED_URL = "http://snappyshop.me/android/QueryType.php";
         }
 
+        if (extra != null) {
+            if (extra.getString("title") != null) {
+                getSupportActionBar().setTitle(extra.getString("title"));
+            }
+        }
+
         mGridView = (GridView) findViewById(R.id.gridView);
         mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
 
@@ -79,10 +85,9 @@ public class GridViewActivity extends ActionBarActivity {
 
                 Intent intent = new Intent(GridViewActivity.this, NewsfeedActivity.class);
                 intent.putExtra("url", "http://snappyshop.me/android/QueryPromotion.php?id=" + item.getStore_id());
-                intent.putExtra("title",item.getTitle());
+                intent.putExtra("title", item.getTitle());
 
                 startActivity(intent);
-                finish();
             }
         });
 

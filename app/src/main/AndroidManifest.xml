@@ -91,6 +91,10 @@
             android:name=".zbarscanner.ZBarScannerActivity"
             android:label="@string/title_activity_camera_preview" />
         <activity
+            android:name=".FloorSearchActivity"
+            android:label="Department Floor View"
+            android:theme="@style/AppTheme.HaveToolBar" />
+        <activity
             android:name=".GroupActivity"
             android:label="@string/title_activity_group"
             android:parentActivityName=".TypeFoodActivity" >

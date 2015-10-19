@@ -1,9 +1,11 @@
 package com.projectfinfin.projectfinfin;
 
 import android.app.Fragment;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +24,7 @@ import com.projectfinfin.projectfinfin.RegisterLogin.UserLocalStore;
  */
 public class SettingFragment extends Fragment {
 
-    Button bLogout , bChangePass;
+    Button bLogout, bChangePass;
     EditText etUsername, etPassword, etAge;
     UserLocalStore userLocalStore;
 
@@ -33,14 +35,13 @@ public class SettingFragment extends Fragment {
         // for listview setting page
 
 
-
         userLocalStore = new UserLocalStore(getActivity());
         String[] listAccount = null;
-        if(userLocalStore.getLoggedInUser() == null){
+        if (userLocalStore.getLoggedInUser() == null) {
             listAccount = new String[]{"Name : Guest", "Email : Snap-Shop@gmail.com"};
-        }else {
+        } else {
             User user = userLocalStore.getLoggedInUser();
-            listAccount = new String[]{"Name : "+user.username, "Email : "+user.email};
+            listAccount = new String[]{"Name : " + user.username, "Email : " + user.email};
         }
 
         // for listview account
@@ -64,11 +65,11 @@ public class SettingFragment extends Fragment {
         bChangePass = (Button) rootView.findViewById(R.id.bChangepass);
 
 
-        if(userLocalStore.getLoggedInUser() == null){
+        if (userLocalStore.getLoggedInUser() == null) {
             Log.e("Login Status : ", "null no login");
             bLogout.setVisibility(View.GONE);
             bChangePass.setVisibility(View.GONE);
-        }else {
+        } else {
             User user = userLocalStore.getLoggedInUser();
             Log.e("Login Status : ", user.username + "");
         }
@@ -76,21 +77,45 @@ public class SettingFragment extends Fragment {
         bChangePass.setOnClickListener(new buttonClick());
         bLogout.setOnClickListener(new buttonClick());
 
-
         return rootView;
     }
 
-    public class buttonClick implements View.OnClickListener{
+    public class buttonClick implements View.OnClickListener {
         @Override
         public void onClick(View v) {
             switch (v.getId()) {
                 case R.id.bLogout:
-                    userLocalStore.clearUserData();
-                    userLocalStore.setUserLoggedIn(false);
-                    Intent i = new Intent(getActivity(), LoginActivity.class);
-                    i.putExtra("Logout", "true");
-                    startActivity(i);
-                    getActivity().finish();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+                    builder.setTitle("Logout");
+                    builder.setMessage("Are u really want to Logout ?");
+
+                    builder.setPositiveButton("YES", new DialogInterface.OnClickListener() {
+
+                        public void onClick(DialogInterface dialog, int which) {
+                            // Do nothing but close the dialog
+                            userLocalStore.clearUserData();
+                            userLocalStore.setUserLoggedIn(false);
+                            Intent i = new Intent(getActivity(), LoginActivity.class);
+                            i.putExtra("Logout", "true");
+                            startActivity(i);
+                            getActivity().finish();
+                            dialog.dismiss();
+                        }
+
+                    });
+
+                    builder.setNegativeButton("NO", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    AlertDialog alert = builder.create();
+                    alert.show();
+
                     break;
                 case R.id.bChangepass:
                     startActivity(new Intent(getActivity(), ChangePassword.class));
@@ -98,13 +123,4 @@ public class SettingFragment extends Fragment {
             }
         }
     }
-
-    private boolean authenticate() {
-        return userLocalStore.getUserLoggedIn();
-    }
-
-
-
-
-
 }

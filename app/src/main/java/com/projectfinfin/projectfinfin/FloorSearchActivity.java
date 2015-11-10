@@ -75,7 +75,7 @@ public class FloorSearchActivity extends AppCompatActivity {
         Bundle extra = lin.getExtras();
 
         if (extra != null) {
-            url = (String) extra.get("url");
+            url = "http://snappyshop.me/android/QueryPromotion.php?DepartmentID="+extra.get("url");
         } else {
             url = "http://snappyshop.me/android/QueryPromotion.php?DepartmentID=1";
         }
@@ -234,11 +234,21 @@ public class FloorSearchActivity extends AppCompatActivity {
                     Log.e("array", "null");
                     runOnUiThread(new Runnable() {
                         public void run() {
-                            AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(FloorSearchActivity.this);
-                            dialogBuilder.setMessage("ขออภัยห้างนี้ยังไม่มีโปรโมชั่นใดๆ");
+                            final Handler handler = new Handler();
+                            final AlertDialog.Builder dialogBuilder = new AlertDialog.Builder(FloorSearchActivity.this);
                             dialogBuilder.setPositiveButton("Ok", null);
-                            dialogBuilder.show();
-
+                            dialogBuilder.setMessage("ขออภัยห้างนี้ยังไม่มีโปรโมชั่นใดๆ");
+                            final AlertDialog alert = dialogBuilder.create();
+                            alert.show();
+                            handler.postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Intent i = new Intent(FloorSearchActivity.this, NewsfeedActivity.class);
+                                    startActivity(i);
+                                    alert.cancel();
+                                    finish();
+                                }
+                            }, 1800);
                         }
                     });
                 } else {

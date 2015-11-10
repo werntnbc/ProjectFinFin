@@ -5,7 +5,9 @@ import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.projectfinfin.projectfinfin.FloorSearchActivity;
 import com.projectfinfin.projectfinfin.Grid.GridViewActivity;
 import com.projectfinfin.projectfinfin.NewsfeedActivity;
 import com.projectfinfin.projectfinfin.R;
@@ -54,15 +57,25 @@ public class CameraFragment extends Fragment {
         if (resultCode == Activity.RESULT_OK) {
             //Toast.makeText(getActivity(), data.getStringExtra(ZBarConstants.SCAN_RESULT) , Toast.LENGTH_LONG).show();
             Intent i = null;
+            String scan = data.getStringExtra(ZBarConstants.SCAN_RESULT).toLowerCase();
             if(data.getStringExtra(ZBarConstants.SCAN_RESULT).indexOf(',') != -1) {
                 i = new Intent(getActivity().getApplicationContext(), GridViewActivity.class);
                 i.putExtra("ParamUrl", "?id=" + data.getStringExtra(ZBarConstants.SCAN_RESULT));
-            } else {
+            } else if(scan.contains("department")){
+                String substr = "department";
+                i = new Intent(getActivity().getApplicationContext(), FloorSearchActivity.class);
+                if(substr.equalsIgnoreCase(scan)){
+                    i.putExtra("url", "0");
+                }else{
+                    scan = scan.substring(scan.indexOf(substr) + substr.length());
+                    i.putExtra("url", ""+scan);
+                }
+            }else {
                 i = new Intent(getActivity().getApplicationContext(), NewsfeedActivity.class);
                 i.putExtra("url", "http://snappyshop.me/android/QueryPromotion.php?id=" + data.getStringExtra(ZBarConstants.SCAN_RESULT));
             }
-//          i.putExtra("url","http://snappyshop.me/AndroidQuery/checkPromo/"+data.getStringExtra(ZBarConstants.SCAN_RESULT));
             startActivity(i);
+            getActivity().finish();
         }
     }
 }

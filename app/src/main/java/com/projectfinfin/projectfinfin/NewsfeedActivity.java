@@ -173,7 +173,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                 int id = menuItem.getItemId();
                 switch (id) {
                     case R.id.navItem1:
-                        intent = new Intent(getApplicationContext(), FloorSearchActivity.class);
+                        intent = new Intent(getApplicationContext(), NewsfeedActivity.class);
                         startActivity(intent);
                         drawerLayout.closeDrawer(GravityCompat.START);
                         finish();

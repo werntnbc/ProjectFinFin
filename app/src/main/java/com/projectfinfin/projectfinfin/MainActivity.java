@@ -1,193 +1,149 @@
 package com.projectfinfin.projectfinfin;
 
-import android.support.v7.app.ActionBarActivity;
-import android.content.Intent;
-import android.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
-import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-
-import com.projectfinfin.projectfinfin.Floor.FloorSpinner;
-import com.projectfinfin.projectfinfin.Fragments.CameraFragment;
-import com.projectfinfin.projectfinfin.Fragments.CategoryFragment;
-
 /**
- * Created by TNBC's on 19/9/2558.
+ * Created by Ha on 11/10/2015.
  */
-public class MainActivity extends ActionBarActivity{
-    //for navigation drawable
-    public static final String KEY_DRAWABLE_ID = "drawableId";
-    private String[] mDrawerTitle = {"News feed", "Category", "Camera", "Map",  "Floor", "Profile" };
-    private ListView mListView;
-    private ActionBarDrawerToggle mDrawerToggle;
-    private DrawerLayout mDrawerLayout;
+import static com.projectfinfin.projectfinfin.CommonUtilities.DISPLAY_MESSAGE_ACTION;
+import static com.projectfinfin.projectfinfin.CommonUtilities.EXTRA_MESSAGE;
+import static com.projectfinfin.projectfinfin.CommonUtilities.SENDER_ID;
+import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.os.AsyncTask;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.android.gcm.GCMRegistrar;
+
+public class MainActivity extends Activity {
+    // label to display gcm messages
+    TextView lblMessage;
+
+    // Asyntask
+    AsyncTask<Void, Void, Void> mRegisterTask;
+
+    // Alert dialog manager
+    AlertDialogManager alert = new AlertDialogManager();
+
+    // Connection detector
+    ConnectionDetector cd;
+
+    public static String name;
+    public static String email;
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_testnoti);
 
+        cd = new ConnectionDetector(getApplicationContext());
 
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
-        mListView = (ListView) findViewById(R.id.drawer);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_list_item_1, mDrawerTitle);
-
-        mListView.setAdapter(adapter);
-
-        //Click all menu navigation
-        mListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Fragment fragment = null;
-                Intent intent = null;
-                switch (position) {
-                    case 0:
-                        intent = new Intent(getApplicationContext(), NewsfeedActivity.class);
-                        startActivity(intent);
-                        break;
-                    case 1:
-                        fragment = new CategoryFragment();
-                        FragmentTransaction transaction1 = getFragmentManager().beginTransaction();
-                        transaction1.replace(R.id.container, fragment);
-                        transaction1.addToBackStack(null);
-                        transaction1.commit();
-                        break;
-                    case 2:
-                        fragment = new CameraFragment();
-                        FragmentTransaction transaction2 = getFragmentManager().beginTransaction();
-                        transaction2.replace(R.id.container, fragment);
-                        transaction2.addToBackStack(null);
-                        transaction2.commit();
-                        break;
-                    case 3:
-                        fragment = new MapFragment();
-                        FragmentTransaction transaction3 = getFragmentManager().beginTransaction();
-                        transaction3.replace(R.id.container, fragment);
-                        transaction3.addToBackStack(null);
-                        transaction3.commit();
-                        break;
-                    case 4:
-                        fragment = new FloorSpinner();
-                        FragmentTransaction transaction4 = getFragmentManager().beginTransaction();
-                        transaction4.replace(R.id.container, fragment);
-                        transaction4.addToBackStack(null);
-                        transaction4.commit();
-                        break;
-                    case 5:
-                        fragment = new ProfileFragment();
-                        FragmentTransaction transaction5 = getFragmentManager().beginTransaction();
-                        transaction5.replace(R.id.container, fragment);
-                        transaction5.addToBackStack(null);
-                        transaction5.commit();
-                        break;
-                    default:
-                        break;
-                }
-                if (fragment != null) {
-                    FragmentManager fragmentManager = getFragmentManager();
-                    fragmentManager.beginTransaction()
-                            .replace(R.id.container, fragment).commit();
-                } else {
-                    // error in creating fragment
-                    Log.e("MainActivity", "Error in creating fragment");
-                }
-            }
-        });
-
-
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setHomeButtonEnabled(true);
-
-        mDrawerToggle = new ActionBarDrawerToggle(
-                this,   // Context
-                mDrawerLayout,
-                R.drawable.ic_drawer,
-                R.string.drawer_open,
-                R.string.drawer_close
-        ) {
-
-
-            public void onDrawerClosed(View view) {
-                super.onDrawerClosed(view);
-                invalidateOptionsMenu();
-            }
-
-            public void onDrawerOpened(View drawerView) {
-                super.onDrawerOpened(drawerView);
-                invalidateOptionsMenu();
-            }
-        };
-
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
-
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
+        // Check if Internet present
+        if (!cd.isConnectingToInternet()) {
+            // Internet Connection is not present
+            alert.showAlertDialog(MainActivity.this,
+                    "Internet Connection Error",
+                    "Please connect to working Internet connection", false);
+            // stop executing code by return
+            return;
         }
-        return super.onOptionsItemSelected(item);
-    }
 
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        // Sync the toggle state after onRestoreInstanceState has occurred.
-        mDrawerToggle.syncState();
-    }
+        // Getting name, email from intent
+        Intent i = getIntent();
 
+        // Make sure the device has the proper dependencies.
+        GCMRegistrar.checkDevice(this);
 
+        // Make sure the manifest was properly set - comment out this line
+        // while developing the app, then uncomment it when it's ready.
+        GCMRegistrar.checkManifest(this);
 
-   /* public void displayView(int position) {
-        Fragment fragment = null;
-        switch (position) {
-            case 0:
-                fragment = new CameraFragment();
-                break;
-            default:
-                break;
-        }
-        if (fragment != null) {
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction()
-                    .replace(R.id.container, fragment).commit();
+        lblMessage = (TextView) findViewById(R.id.lblMessage);
+
+        registerReceiver(mHandleMessageReceiver, new IntentFilter(
+                DISPLAY_MESSAGE_ACTION));
+
+        // Get GCM registration id
+        final String regId = GCMRegistrar.getRegistrationId(this);
+        Log.e("regid",regId+" ");
+
+        // Check if regid already presents
+        if (regId.equals("")) {
+            // Registration is not present, register now with GCM
+            GCMRegistrar.register(this, SENDER_ID);
         } else {
-            // error in creating fragment
-            Log.e("MainActivity", "Error in creating fragment");
+            // Device is already registered on GCM
+            if (GCMRegistrar.isRegisteredOnServer(this)) {
+                // Skips registration.
+                Toast.makeText(getApplicationContext(), "Already registered with GCM", Toast.LENGTH_LONG).show();
+            } else {
+                // Try to register again, but not in the UI thread.
+                // It's also necessary to cancel the thread onDestroy(),
+                // hence the use of AsyncTask instead of a raw thread.
+                final Context context = this;
+                mRegisterTask = new AsyncTask<Void, Void, Void>() {
+
+                    @Override
+                    protected Void doInBackground(Void... params) {
+                        // Register on our server
+                        // On server creates a new user
+                        ServerUtilities.register(context, name, email, regId);
+                        return null;
+                    }
+
+                    @Override
+                    protected void onPostExecute(Void result) {
+                        mRegisterTask = null;
+                    }
+
+                };
+                mRegisterTask.execute(null, null, null);
+            }
         }
     }
 
-    private void selectFragment(int position) {
-        //Fragment fragment = new CameraFragment();
-        Bundle args = new Bundle();
-        //fragment.setArguments(args);
+    /**
+     * Receiving push messages
+     * */
+    private final BroadcastReceiver mHandleMessageReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String newMessage = intent.getExtras().getString(EXTRA_MESSAGE);
+            // Waking up mobile if it is sleeping
+            WakeLocker.acquire(getApplicationContext());
 
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        //transaction.replace(R.id.container, fragment);
-        transaction.commit();
+            /**
+             * Take appropriate action on this message
+             * depending upon your app requirement
+             * For now i am just displaying it on the screen
+             * */
 
-        mListView.setItemChecked(position, true);
-        setTitle(mDrawerTitle[position]);
-        mDrawerLayout.closeDrawer(mListView);
-    } */
+            // Showing received message
+            lblMessage.append(newMessage + "\n");
+            Toast.makeText(getApplicationContext(), "New Message: " + newMessage, Toast.LENGTH_LONG).show();
+
+            // Releasing wake lock
+            WakeLocker.release();
+        }
+    };
+
+    @Override
+    protected void onDestroy() {
+        if (mRegisterTask != null) {
+            mRegisterTask.cancel(true);
+        }
+        try {
+            unregisterReceiver(mHandleMessageReceiver);
+            GCMRegistrar.onDestroy(this);
+        } catch (Exception e) {
+            //Log.e("UnRegister Receiver Error", "> " + e.getMessage());
+        }
+        super.onDestroy();
+    }
+
 }

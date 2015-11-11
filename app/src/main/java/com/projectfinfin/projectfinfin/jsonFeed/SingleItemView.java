@@ -11,6 +11,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.ActionBarActivity;
+import android.text.util.Linkify;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -112,6 +113,8 @@ public class SingleItemView extends ActionBarActivity {
         txtlocation.setText(promo_location);
         txtlink.setText(promo_link);
         txtdes.setText(promo_des);
+
+        Linkify.addLinks(txtlink,Linkify.WEB_URLS);
 
 
         // Capture position and set results to theImageView

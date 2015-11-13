@@ -11,11 +11,16 @@
     <LinearLayout
         android:id="@+id/myproject"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:layout_centerInParent="true"
-        android:padding="16dp"
+        android:layout_height="wrap_content"
         android:gravity="center"
+        android:layout_marginTop="70dp"
         android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="140dp"
+            android:layout_height="150dp"
+            android:src="@drawable/ic_launcher"/>
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -23,14 +28,19 @@
             android:text="Snapshop"
             android:textStyle="bold"
             android:textColor="#fff2dc45"
-            android:textSize="60sp" />
+            android:textSize="50sp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="See promotion you want"
-            android:textSize="20sp"
-            android:layout_marginBottom="70dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_marginTop="70dp"
+        android:layout_below="@id/myproject">
 
 
         <Button
@@ -42,8 +52,7 @@
             android:background="@drawable/button_signup"
             android:textStyle="bold"
             android:textColor="#ffffff"
-            android:textSize="25sp"
-            />
+            android:textSize="25sp" />
 
         <Button
             android:id="@+id/button_email"
@@ -56,8 +65,6 @@
             android:textColor="#ffffff"
             android:textSize="25sp"
             />
-
-
 
     </LinearLayout>
 

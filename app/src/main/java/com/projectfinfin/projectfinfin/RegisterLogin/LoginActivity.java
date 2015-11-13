@@ -186,7 +186,7 @@ public class LoginActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
+   /* @Override
     protected void onResume() {
         super.onResume();
 
@@ -200,7 +200,7 @@ public class LoginActivity extends ActionBarActivity {
 
         // Logs 'app deactivate' App Event.
         AppEventsLogger.deactivateApp(this);
-    }
+    }*/
     /*public void onConfirmClicked(View v){
         Intent i = new Intent(getApplicationContext(), NewsfeedActivity.class);
         startActivity(i);

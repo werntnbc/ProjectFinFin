@@ -33,5 +33,6 @@ dependencies {
     compile 'com.android.support:design:22.2.1'
     compile project(':gson-2.3.1')
     compile 'com.facebook.android:facebook-android-sdk:4.6.0'
+    compile 'com.squareup.okhttp:okhttp:2.5.0'
     compile files('libs/gcm.jar')
 }

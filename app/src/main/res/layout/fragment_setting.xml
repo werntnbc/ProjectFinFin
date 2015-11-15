@@ -25,35 +25,16 @@
                 android:layout_height="match_parent"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="10dp"
-                android:text="ACCOUNT"
+                android:layout_marginTop="15dp"
+                android:text="User Informations"
                 android:textColor="@color/app_color"
                 android:textStyle="bold" />
 
             <ListView
                 android:id="@+id/listview_account"
                 android:layout_width="match_parent"
-                android:layout_height="160dp"
+                android:layout_height="140dp"
                 android:dividerHeight="1dp" />
-
-            <!--listview social network-->
-            <TextView
-                android:id="@+id/text_setting_social"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/listview_account"
-                android:layout_marginBottom="5dp"
-                android:layout_marginLeft="10dp"
-                android:text="SOCIAL NETWORK"
-                android:textColor="@color/app_color"
-                android:textStyle="bold" />
-
-            <ListView
-                android:id="@+id/listview_social"
-                android:layout_width="match_parent"
-                android:layout_height="160dp"
-                android:dividerHeight="1dp" />
-
-            <!--listview support-->
 
             <TextView
                 android:id="@+id/text_setting_support"
@@ -62,7 +43,7 @@
                 android:layout_below="@+id/listview_social"
                 android:layout_marginBottom="5dp"
                 android:layout_marginLeft="10dp"
-                android:text="SUPPORT"
+                android:text="About Us"
                 android:textColor="@color/app_color"
                 android:textStyle="bold" />
 

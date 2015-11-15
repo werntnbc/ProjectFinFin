@@ -128,7 +128,7 @@ public class ListViewAdapter extends BaseAdapter {
         //Log.v("Link Image", "" + path);
         //Log.v("Promotion ID", "" + resultp.get(NewsfeedActivity.promo_id));
         //imageLoader.DisplayImage("web/assets/images/avatars/" + resultp.get(NewsfeedActivity.logo_pic), propic);
-        Picasso.with(context).invalidate(path);
+//        Picasso.with(context).invalidate(path); // cache
         Picasso.with(context)
                 .load(path)
                 .resize(400,400)

@@ -100,6 +100,7 @@ public class SingleItemView extends ActionBarActivity {
         TextView txtlocation = (TextView) findViewById(R.id.promo_location);
         TextView txtlink = (TextView) findViewById(R.id.promo_link);
         TextView txtdes = (TextView) findViewById(R.id.promo_des);
+        TextView Linktitle = (TextView) findViewById(R.id.linklabel);
 
         // Locate the ImageView in singleitemview.xml
         ImageView imgflag1 = (ImageView) findViewById(R.id.link_img1);
@@ -111,7 +112,13 @@ public class SingleItemView extends ActionBarActivity {
         txtstartdate.setText(promo_startdate);
         txtenddate.setText(promo_enddate);
         txtlocation.setText(promo_location);
-        txtlink.setText(promo_link);
+        if(promo_link.length() == 0){
+            txtlink.setVisibility(View.GONE);
+            Linktitle.setVisibility(View.GONE);
+        }else{
+            txtlink.setText(promo_link);
+        }
+
         txtdes.setText(promo_des);
 
         Linkify.addLinks(txtlink,Linkify.WEB_URLS);

@@ -4,9 +4,12 @@ import android.app.AlertDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Handler;
 import android.support.design.widget.CollapsingToolbarLayout;
@@ -125,14 +128,14 @@ public class NewsfeedActivity extends AppCompatActivity {
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        new DownloadJSON().execute();
+                        goFeed();
                     }
                 }, 2500);
 
             }
         });
 
-        new DownloadJSON().execute();
+        goFeed();
         //tool bar
         initToolbar();
         initInstances();
@@ -142,6 +145,37 @@ public class NewsfeedActivity extends AppCompatActivity {
     private void initToolbar() {
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+    }
+
+    public void goFeed() {
+        if (isNetworkOnline()) {
+            new DownloadJSON().execute();
+        } else {
+            AlertDialogManager alert = new AlertDialogManager();
+            alert.showAlertDialog(NewsfeedActivity.this,
+                    "Internet Connection Error",
+                    "ไม่พบการเชื่อมต่ออินเทอร์เน็ต", false);
+        }
+    }
+
+    public boolean isNetworkOnline() {
+        boolean status = false;
+        try {
+            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo netInfo = cm.getNetworkInfo(0);
+            if (netInfo != null && netInfo.getState() == NetworkInfo.State.CONNECTED) {
+                status = true;
+            } else {
+                netInfo = cm.getNetworkInfo(1);
+                if (netInfo != null && netInfo.getState() == NetworkInfo.State.CONNECTED)
+                    status = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return status;
+
     }
 
     private void initInstances() {

@@ -1,7 +1,10 @@
 package com.projectfinfin.projectfinfin.RegisterLogin;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -11,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.projectfinfin.projectfinfin.AlertDialogManager;
 import com.projectfinfin.projectfinfin.ForgetPassword;
 import com.projectfinfin.projectfinfin.NewsfeedActivity;
 import com.projectfinfin.projectfinfin.NewsfeedFragment;
@@ -64,10 +68,18 @@ public class LoginEmailActivity extends ActionBarActivity implements View.OnClic
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.bLogin:
-                String username = etUsername.getText().toString();
-                String password = etPassword.getText().toString();
-                User user = new User(username , password);
-                authenticate(user);
+                if (isNetworkOnline()) {
+                    String username = etUsername.getText().toString();
+                    String password = etPassword.getText().toString();
+                    User user = new User(username , password);
+                    authenticate(user);
+                    break;
+                } else {
+                    AlertDialogManager alert = new AlertDialogManager();
+                    alert.showAlertDialog(LoginEmailActivity.this,
+                            "Internet Connection Error",
+                            "ไม่พบการเชื่อมต่ออินเทอร์เน็ต", false);
+                }
                 break;
             case R.id.tvForget:
                 startActivity(new Intent(this, ForgetPassword.class));
@@ -131,6 +143,26 @@ public class LoginEmailActivity extends ActionBarActivity implements View.OnClic
             default:
                 return super.onOptionsItemSelected(item);
         }
+
+    }
+
+    public boolean isNetworkOnline() {
+        boolean status = false;
+        try {
+            ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo netInfo = cm.getNetworkInfo(0);
+            if (netInfo != null && netInfo.getState() == NetworkInfo.State.CONNECTED) {
+                status = true;
+            } else {
+                netInfo = cm.getNetworkInfo(1);
+                if (netInfo != null && netInfo.getState() == NetworkInfo.State.CONNECTED)
+                    status = true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return status;
 
     }
 }

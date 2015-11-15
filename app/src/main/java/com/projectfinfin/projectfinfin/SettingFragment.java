@@ -1,6 +1,7 @@
 package com.projectfinfin.projectfinfin;
 
 import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -49,16 +51,11 @@ public class SettingFragment extends Fragment {
         ListView listviewAccount = (ListView) rootView.findViewById(R.id.listview_account);
         listviewAccount.setAdapter(adapter);
 
-        //for listview social network
-        String[] listSocial = {"Facebook", "Twitter"};
-        CustomAdapter_Setting adapterSocial = new CustomAdapter_Setting(getActivity(), listSocial);
-        ListView listviewSocial = (ListView) rootView.findViewById(R.id.listview_social);
-        listviewSocial.setAdapter(adapterSocial);
 
         //for listview support
-        String[] listSupport = {"Feedback", "Terms of Service", "Privacy Policy"};
+        String[] listSupport = {"Version 1.0", "Contact SnapShop"};
         CustomAdapter_Setting adapterSupport = new CustomAdapter_Setting(getActivity(), listSupport);
-        ListView listviewSupport = (ListView) rootView.findViewById(R.id.listview_support);
+        final ListView listviewSupport = (ListView) rootView.findViewById(R.id.listview_support);
         listviewSupport.setAdapter(adapterSupport);
 
         bLogout = (Button) rootView.findViewById(R.id.bLogout);
@@ -76,7 +73,22 @@ public class SettingFragment extends Fragment {
 
         bChangePass.setOnClickListener(new buttonClick());
         bLogout.setOnClickListener(new buttonClick());
-
+        listviewSupport.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                switch (position){
+                    case 0:
+                        break;
+                    case 1:
+                        Fragment fragment = new ContactUs();
+                        FragmentTransaction transaction1 = getFragmentManager().beginTransaction();
+                        transaction1.replace(R.id.container, fragment);
+                        transaction1.addToBackStack(null);
+                        transaction1.commit();
+                        break;
+                }
+            }
+        });
         return rootView;
     }
 

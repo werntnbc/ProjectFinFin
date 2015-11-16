@@ -42,8 +42,9 @@ public class ContactUs extends Fragment {
 
         //for listview support
         ((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Contact Us");
-        String[] listSupport = {"Email:    snapshopteam@gmail.com", "Write a Feedback"};
-        CustomAdapter_Setting adapterSupport = new CustomAdapter_Setting(getActivity(), listSupport);
+        String[] listSupport = {"Email: snapshopteam@gmail.com", "Write a Feedback"};
+        boolean[] listcheck = {true, true};
+        CustomAdapter_Setting adapterSupport = new CustomAdapter_Setting(getActivity(), listSupport,listcheck);
         final ListView listview = (ListView) rootView.findViewById(R.id.listview_aboutUs);
         listview.setAdapter(adapterSupport);
 
@@ -107,16 +108,6 @@ public class ContactUs extends Fragment {
             this.message = FeedbackDetail.getText().toString();
 
         }
-
-        protected void OnPreExecute() {
-            super.onPreExecute();
-            ProgressDialog mProgressDialog = new ProgressDialog(getActivity());
-            mProgressDialog.setTitle("Snap Shop");
-            mProgressDialog.setMessage("Loading...");
-            mProgressDialog.setIndeterminate(false);
-            mProgressDialog.show();
-        }
-
         @Override
         protected String doInBackground(String... params) {
 

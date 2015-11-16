@@ -5,8 +5,12 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +22,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.google.gson.Gson;
+import com.projectfinfin.projectfinfin.AlertDialogManager;
 import com.projectfinfin.projectfinfin.R;
 
 import org.apache.http.HttpResponse;
@@ -54,6 +59,7 @@ public class InNavFragment extends Fragment {
 		View rootView = inflater.inflate(R.layout.fragment_innav, container,
 				false);
 
+		((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Find by Location");
 		startspinner = (Spinner) rootView.findViewById(R.id.spinner1);
 		endspinner = (Spinner) rootView.findViewById(R.id.spinner2);
 		btn = (Button) rootView.findViewById(R.id.button1);
@@ -63,12 +69,41 @@ public class InNavFragment extends Fragment {
 		btn.setOnClickListener(new buttonClick());
 
 		
-		new SimpleTask().execute(url);
+		goFeed();
 		return rootView;
 
 	}
-	
-	
+
+	public void goFeed() {
+		if (isNetworkOnline()) {
+			new SimpleTask().execute();
+		} else {
+			AlertDialogManager alert = new AlertDialogManager();
+			alert.showAlertDialog(getActivity(),
+					"Internet Connection Error",
+					"ไม่พบการเชื่อมต่ออินเทอร์เน็ต", false);
+		}
+	}
+
+	public boolean isNetworkOnline() {
+		boolean status = false;
+		try {
+			ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+			NetworkInfo netInfo = cm.getNetworkInfo(0);
+			if (netInfo != null && netInfo.getState() == NetworkInfo.State.CONNECTED) {
+				status = true;
+			} else {
+				netInfo = cm.getNetworkInfo(1);
+				if (netInfo != null && netInfo.getState() == NetworkInfo.State.CONNECTED)
+					status = true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return status;
+
+	}
 	
 	public class buttonClick implements OnClickListener {
 

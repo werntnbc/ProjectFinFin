@@ -16,6 +16,7 @@ public class CustomAdapter_Setting extends BaseAdapter {
     //Create all this class for help listview setting page
     Context mContext;
     String[] strName;
+    boolean[] check;
 
 
     public CustomAdapter_Setting (Context context, String[] strName){
@@ -24,6 +25,11 @@ public class CustomAdapter_Setting extends BaseAdapter {
 
     }
 
+    public CustomAdapter_Setting (Context context, String[] strName , boolean[] check){
+        this.mContext = context;
+        this.strName = strName;
+        this.check = check;
+    }
     @Override
     public int getCount() {
         return strName.length;
@@ -50,6 +56,12 @@ public class CustomAdapter_Setting extends BaseAdapter {
         TextView textView = (TextView)view.findViewById(R.id.title_setting);
         textView.setText(strName[position]);
 
+        if(check != null){
+            if (check[position]) {
+                ImageView icon = (ImageView) view.findViewById(R.id.image1);
+                icon.setImageResource(R.drawable.arrow);
+            }
+        }
         return view;
     }
 }

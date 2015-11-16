@@ -22,7 +22,7 @@
 
             <Button
                 android:id="@+id/button_find_floor"
-                android:layout_width="320dp"
+                android:layout_width="300dp"
                 android:layout_height="60dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="20dp"
@@ -30,7 +30,7 @@
 
             <Button
                 android:id="@+id/button_find_location"
-                android:layout_width="320dp"
+                android:layout_width="300dp"
                 android:layout_height="60dp"
                 android:layout_below="@+id/button_find_floor"
                 android:layout_gravity="center"

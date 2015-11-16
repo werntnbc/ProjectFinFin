@@ -53,7 +53,7 @@ public class SettingFragment extends Fragment {
 
 
         //for listview support
-        String[] listSupport = {"Version 1.0", "Contact SnapShop"};
+        String[] listSupport = {"Version 1.0", "Contact SnapShop ->"};
         CustomAdapter_Setting adapterSupport = new CustomAdapter_Setting(getActivity(), listSupport);
         final ListView listviewSupport = (ListView) rootView.findViewById(R.id.listview_support);
         listviewSupport.setAdapter(adapterSupport);

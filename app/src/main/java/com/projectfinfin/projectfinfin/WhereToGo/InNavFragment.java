@@ -5,12 +5,8 @@ import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.app.ProgressDialog;
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,7 +18,6 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import com.google.gson.Gson;
-import com.projectfinfin.projectfinfin.AlertDialogManager;
 import com.projectfinfin.projectfinfin.R;
 
 import org.apache.http.HttpResponse;
@@ -42,274 +37,237 @@ import java.util.List;
 
 public class InNavFragment extends Fragment {
 
-	public static final String url = "http://188.166.251.138:8080/GsonShowStore";
-	private ProgressDialog pDialog;
-	private CustomAdapter_Storelv mAdapter;
-	Spinner startspinner;
-	Spinner endspinner;
-	Button btn;
+    public static final String url = "http://188.166.251.138:8080/GsonShowStore";
+    private ProgressDialog pDialog;
+    private CustomAdapter_Storelv mAdapter;
+    Spinner startspinner;
+    Spinner endspinner;
+    Button btn;
 
-	public InNavFragment() {
-	}
+    public InNavFragment() {
+    }
 
-	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
 
-		View rootView = inflater.inflate(R.layout.fragment_innav, container,
-				false);
+        View rootView = inflater.inflate(R.layout.fragment_innav, container,
+                false);
 
-		((AppCompatActivity) getActivity()).getSupportActionBar().setTitle("Find by Location");
-		startspinner = (Spinner) rootView.findViewById(R.id.spinner1);
-		endspinner = (Spinner) rootView.findViewById(R.id.spinner2);
-		btn = (Button) rootView.findViewById(R.id.button1);
+        startspinner = (Spinner) rootView.findViewById(R.id.spinner1);
+        endspinner = (Spinner) rootView.findViewById(R.id.spinner2);
+        btn = (Button) rootView.findViewById(R.id.button1);
 
-		startspinner.setOnItemSelectedListener(new SpinnerSelected());
-		endspinner.setOnItemSelectedListener(new SpinnerSelected());
-		btn.setOnClickListener(new buttonClick());
+        startspinner.setOnItemSelectedListener(new SpinnerSelected());
+        endspinner.setOnItemSelectedListener(new SpinnerSelected());
+        btn.setOnClickListener(new buttonClick());
 
-		
-		goFeed();
-		return rootView;
 
-	}
+        new SimpleTask().execute(url);
+        return rootView;
 
-	public void goFeed() {
-		if (isNetworkOnline()) {
-			new SimpleTask().execute();
-		} else {
-			AlertDialogManager alert = new AlertDialogManager();
-			alert.showAlertDialog(getActivity(),
-					"Internet Connection Error",
-					"ไม่พบการเชื่อมต่ออินเทอร์เน็ต", false);
-		}
-	}
+    }
 
-	public boolean isNetworkOnline() {
-		boolean status = false;
-		try {
-			ConnectivityManager cm = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-			NetworkInfo netInfo = cm.getNetworkInfo(0);
-			if (netInfo != null && netInfo.getState() == NetworkInfo.State.CONNECTED) {
-				status = true;
-			} else {
-				netInfo = cm.getNetworkInfo(1);
-				if (netInfo != null && netInfo.getState() == NetworkInfo.State.CONNECTED)
-					status = true;
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
-		return status;
 
-	}
-	
-	public class buttonClick implements OnClickListener {
+    public class buttonClick implements OnClickListener {
 
-		@Override
-		public void onClick(View v) {
-			// TODO Auto-generated method stub
-			int startPosition = startspinner.getSelectedItemPosition();
-			int endPosition = endspinner.getSelectedItemPosition();
-			String start = (String) startspinner.getItemAtPosition(startPosition);
-			String end = (String) endspinner.getItemAtPosition(endPosition);
+        @Override
+        public void onClick(View v) {
+            // TODO Auto-generated method stub
+            int startPosition = startspinner.getSelectedItemPosition();
+            int endPosition = endspinner.getSelectedItemPosition();
+            String start = (String) startspinner.getItemAtPosition(startPosition);
+            String end = (String) endspinner.getItemAtPosition(endPosition);
 //			Toast.makeText(getActivity(), start + " and " + end,Toast.LENGTH_SHORT).show();
-			if(start.equalsIgnoreCase(end)){
-				new HttpAsyncTaskSameStore().execute("http://188.166.251.138:8080/GsonShowInNav",start,end);
-			}else{
-				new HttpAsyncTask().execute("http://188.166.251.138:8080/GsonShowInNav",start,end);
-			}
+            if (start.equalsIgnoreCase(end)) {
+                new HttpAsyncTaskSameStore().execute("http://188.166.251.138:8080/GsonShowInNav", start, end);
+            } else {
+                new HttpAsyncTask().execute("http://188.166.251.138:8080/GsonShowInNav", start, end);
+            }
 
-		}
-	}
+        }
+    }
 
-	@SuppressLint("ShowToast")
-	public class SpinnerSelected implements OnItemSelectedListener {
+    @SuppressLint("ShowToast")
+    public class SpinnerSelected implements OnItemSelectedListener {
 
-		@Override
-		public void onItemSelected(AdapterView<?> parent, View view,
-				int position, long id) {
-			int startPosition = startspinner.getSelectedItemPosition();
-			int endPosition = endspinner.getSelectedItemPosition();
-			String start = (String) startspinner
-					.getItemAtPosition(startPosition);
-			String end = (String) endspinner.getItemAtPosition(endPosition);
-			Log.d("SelectedItemOnSpinner", start + " and " + end);
-			
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view,
+                                   int position, long id) {
+            int startPosition = startspinner.getSelectedItemPosition();
+            int endPosition = endspinner.getSelectedItemPosition();
+            String start = (String) startspinner
+                    .getItemAtPosition(startPosition);
+            String end = (String) endspinner.getItemAtPosition(endPosition);
+            Log.d("SelectedItemOnSpinner", start + " and " + end);
 
-		}
 
-		@Override
-		public void onNothingSelected(AdapterView<?> parent) {
-			// TODO Auto-generated method stub
-		}
+        }
 
-	}
+        @Override
+        public void onNothingSelected(AdapterView<?> parent) {
+            // TODO Auto-generated method stub
+        }
 
-	private class SimpleTask extends AsyncTask<String, Void, String> {
+    }
 
-		@Override
-		protected void onPreExecute() {
-			// Create Show ProgressBar
-			pDialog = new ProgressDialog(getActivity());
-			pDialog.setMessage("Please wait...");
-			pDialog.setCancelable(false);
-			pDialog.show();
-		}
+    private class SimpleTask extends AsyncTask<String, Void, String> {
 
-		protected String doInBackground(String... urls) {
-			String result = "";
-			try {
+        @Override
+        protected void onPreExecute() {
+            // Create Show ProgressBar
+            pDialog = new ProgressDialog(getActivity());
+            pDialog.setMessage("Please wait...");
+            pDialog.setCancelable(false);
+            pDialog.show();
+        }
 
-				HttpGet httpGet = new HttpGet(urls[0]);
-				HttpClient client = new DefaultHttpClient();
+        protected String doInBackground(String... urls) {
+            String result = "";
+            try {
 
-				HttpResponse response = client.execute(httpGet);
+                HttpGet httpGet = new HttpGet(urls[0]);
+                HttpClient client = new DefaultHttpClient();
 
-				int statusCode = response.getStatusLine().getStatusCode();
+                HttpResponse response = client.execute(httpGet);
 
-				if (statusCode == 200) {
-					InputStream inputStream = response.getEntity().getContent();
-					BufferedReader reader = new BufferedReader(
-							new InputStreamReader(inputStream));
-					String line;
-					while ((line = reader.readLine()) != null) {
-						result += line;
-					}
-				}
+                int statusCode = response.getStatusLine().getStatusCode();
 
-			} catch (ClientProtocolException e) {
+                if (statusCode == 200) {
+                    InputStream inputStream = response.getEntity().getContent();
+                    BufferedReader reader = new BufferedReader(
+                            new InputStreamReader(inputStream));
+                    String line;
+                    while ((line = reader.readLine()) != null) {
+                        result += line;
+                    }
+                }
 
-			} catch (IOException e) {
+            } catch (ClientProtocolException e) {
 
-			}
-			return result;
+            } catch (IOException e) {
 
-		}
+            }
+            return result;
 
-		protected void onPostExecute(String jsonString) {
-			// Dismiss ProgressBar
-			if (pDialog.isShowing())
-				pDialog.dismiss();
+        }
 
-			showData(jsonString);
-		}
-	}
+        protected void onPostExecute(String jsonString) {
+            // Dismiss ProgressBar
+            if (pDialog.isShowing())
+                pDialog.dismiss();
 
-	private void showData(String jsonString) {
+            showData(jsonString);
+        }
+    }
 
-		jsonString = "{\"stores\":" + jsonString + "}";
+    private void showData(String jsonString) {
 
-		Gson gson = new Gson();
-		Blog blog = gson.fromJson(jsonString, Blog.class);
-		List<Store> stores = blog.getStores();
+        jsonString = "{\"stores\":" + jsonString + "}";
 
-		mAdapter = new CustomAdapter_Storelv(getActivity(), stores);
+        Gson gson = new Gson();
+        Blog blog = gson.fromJson(jsonString, Blog.class);
+        List<Store> stores = blog.getStores();
 
-		startspinner.setAdapter(mAdapter);
-		endspinner.setAdapter(mAdapter);
+        mAdapter = new CustomAdapter_Storelv(getActivity(), stores);
 
-	}
-	
-	private class HttpAsyncTask extends AsyncTask<String, Void, String> {
-		@Override
-		protected String doInBackground(String... urls) {
-			
-			InnavDirection innav = new InnavDirection();
-			innav.setStartStore(urls[1]);
-			innav.setEndStore(urls[2]);
-			
-			return POST(urls[0], innav);
-		}
+        startspinner.setAdapter(mAdapter);
+        endspinner.setAdapter(mAdapter);
 
-		protected void onPostExecute(String mapStoreurl) {
-			Log.d("mapStoreurl", mapStoreurl);
+    }
 
-			Fragment fg = new ShowMapInnavFragment(mapStoreurl);
-			FragmentManager fragmentManager = getFragmentManager();
-			FragmentTransaction ft = fragmentManager.beginTransaction();
-			ft.replace(R.id.container, fg);
-			ft.addToBackStack(null);
-			ft.commit();
+    private class HttpAsyncTask extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
 
-		}
-	}
+            InnavDirection innav = new InnavDirection();
+            innav.setStartStore(urls[1]);
+            innav.setEndStore(urls[2]);
 
-	public static String POST(String url, InnavDirection innav) {
+            return POST(urls[0], innav);
+        }
 
-		String mapStoreurl = "";
-		try {
+        protected void onPostExecute(String mapStoreurl) {
+            Log.d("mapStoreurl", mapStoreurl);
 
-			String json = "";
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.accumulate("startStore", innav.getStartStore());
-			jsonObject.accumulate("endStore", innav.getEndStore());
-			json = jsonObject.toString();
-			// print Store Name
-			Log.d("json", json);
-			
-			mapStoreurl = url + "?jsonData=" + URLEncoder.encode(json, "UTF-8");
+            Fragment fg = new ShowMapInnavFragment(mapStoreurl);
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            ft.replace(R.id.container, fg);
+            ft.addToBackStack(null);
+            ft.commit();
+
+        }
+    }
+
+    public static String POST(String url, InnavDirection innav) {
+
+        String mapStoreurl = "";
+        try {
+
+            String json = "";
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.accumulate("startStore", innav.getStartStore());
+            jsonObject.accumulate("endStore", innav.getEndStore());
+            json = jsonObject.toString();
+            // print Store Name
+            Log.d("json", json);
+
+            mapStoreurl = url + "?jsonData=" + URLEncoder.encode(json, "UTF-8");
 //			Log.d("mapStoreurl", mapStoreurl);
 
-		} catch (Exception e) {
-			
-		}
-		return mapStoreurl;
-	}
-	
-	
-	private class HttpAsyncTaskSameStore extends AsyncTask<String, Void, String> {
-		@Override
-		protected String doInBackground(String... urls) {
-			
-			InnavDirection innav = new InnavDirection();
-			innav.setStartStore(urls[1]);
-			innav.setEndStore(urls[2]);
-			
-			return POST(urls[0], innav);
-		}
+        } catch (Exception e) {
 
-		protected void onPostExecute(String mapStoreurl) {
-			Log.d("mapStoreurl", mapStoreurl);
+        }
+        return mapStoreurl;
+    }
 
-			Fragment fg = new ShowMapInnavSameStoreFragment(mapStoreurl);
-			FragmentManager fragmentManager = getFragmentManager();
-			FragmentTransaction ft = fragmentManager.beginTransaction();
-			fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-			ft.replace(R.id.container, fg);
-			ft.addToBackStack(null);
-			ft.commit();
 
-		}
-	}
+    private class HttpAsyncTaskSameStore extends AsyncTask<String, Void, String> {
+        @Override
+        protected String doInBackground(String... urls) {
 
-	public static String POSTSameStore(String url, InnavDirection innav) {
+            InnavDirection innav = new InnavDirection();
+            innav.setStartStore(urls[1]);
+            innav.setEndStore(urls[2]);
 
-		String mapStoreurl = "";
-		try {
+            return POST(urls[0], innav);
+        }
 
-			String json = "";
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.accumulate("startStore", innav.getStartStore());
-			jsonObject.accumulate("endStore", innav.getEndStore());
-			json = jsonObject.toString();
-			// print Store Name
-			Log.d("json", json);
-			
-			mapStoreurl = url + "?jsonData=" + URLEncoder.encode(json, "UTF-8");
+        protected void onPostExecute(String mapStoreurl) {
+            Log.d("mapStoreurl", mapStoreurl);
+
+            Fragment fg = new ShowMapInnavSameStoreFragment(mapStoreurl);
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction ft = fragmentManager.beginTransaction();
+            fragmentManager.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+            ft.replace(R.id.container, fg);
+            ft.addToBackStack(null);
+            ft.commit();
+
+        }
+    }
+
+    public static String POSTSameStore(String url, InnavDirection innav) {
+
+        String mapStoreurl = "";
+        try {
+
+            String json = "";
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.accumulate("startStore", innav.getStartStore());
+            jsonObject.accumulate("endStore", innav.getEndStore());
+            json = jsonObject.toString();
+            // print Store Name
+            Log.d("json", json);
+
+            mapStoreurl = url + "?jsonData=" + URLEncoder.encode(json, "UTF-8");
 //			Log.d("mapStoreurl", mapStoreurl);
 
-		} catch (Exception e) {
-			
-		}
-		return mapStoreurl;
-	}
+        } catch (Exception e) {
 
-
-	
-	
-	
-	
+        }
+        return mapStoreurl;
+    }
 
 }
